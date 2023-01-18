@@ -1,0 +1,70 @@
+.whytitle{
+    position: relative;
+    left: 73%;
+    font-weight: bold;
+    padding-top: 50px;
+    width: 10px;
+}
+.Brit{
+    float: right;
+    font-weight: bold; 
+    padding-left: 100px;
+}
+.whyblock{
+    display: flex;
+    position: relative;
+    width: 40%;
+    float: right;
+    align-items: center;
+    }
+body{
+    margin: 10;
+    font-family: 'Times New Roman';
+}
+.time{
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    float: left;
+    margin-left: 5%;
+    margin-top: -23%;
+}
+#timey{
+    float: right;
+    margin-left: -4%;
+    width: 150px;
+}
+#dayy{
+    float: left;
+    width: 200px;
+}
+.caloriesleftsofar{
+    clear: both;
+    float: left;
+    margin-left: 5%;
+    margin-top: -21%;
+}
+#caloriessofar{
+    float: left;
+    width: 310px;
+}
+#caloriesleft{
+    float: right;
+    width: 310px;
+}
+#weekday{
+    margin-left: -14%;
+    float: left;
+    width: 200px;
+}
+#daytime{
+    margin-left: -7%;
+    float: left;
+    width: 200px;   
+}
+#nextmeal{
+    margin-left: -13%;
+}
+#nextmealdisplay{
+    margin-left: 1%;
+}
