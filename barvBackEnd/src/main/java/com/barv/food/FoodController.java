@@ -1,9 +1,11 @@
 package com.barv.food;
 
+import com.barv.firebase.FirebaseService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,8 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping(path = "api/v1/food" )
 public class FoodController {
     private final FoodService foodService;
-
+    @Autowired
+    private FirebaseService firebaseService;
 
     @Autowired //foodService will be automatically instantiated for us.
     public FoodController(FoodService foodService) {
@@ -35,9 +38,9 @@ public class FoodController {
     public List<Food> getAllFoods() throws ExecutionException, InterruptedException {
         return foodService.getAllFoods();
     }
-    @PostMapping
-    public void registerNewFood(@RequestBody Food food) {
-        foodService.addNewFood(food);
+    @PostMapping("/registerFood")
+    public void registerNewFood(@RequestBody Food food) throws ExecutionException, InterruptedException {
+        firebaseService.saveFoodDetails(food);
     }
     @DeleteMapping(path = "{foodId}")
     public void removeFood(@PathVariable("foodId") Long foodId) {
