@@ -1,25 +1,38 @@
 package com.barv.food;
 
+import com.barv.firebase.FirebaseInit;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class FoodService {
     private final FoodRepository foodRepository;
     @Autowired
+    private FirebaseInit database;
+
+    @Autowired
     public FoodService(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
-    public List<Food> getAllFoods() {
-        return foodRepository.findAll();
+    public List<Food> getAllFoods() throws ExecutionException, InterruptedException {
+        List<Food> foodList = new ArrayList<>();
+        CollectionReference breakfast = database.getFirebase().collection("Breakfast");
+        ApiFuture<QuerySnapshot> querySnap = breakfast.get();
+        for (DocumentSnapshot doc : querySnap.get().getDocuments()) {
+            Food food = doc.toObject(Food.class);
+            foodList.add(food);
+        }
+        return foodList;
     }
 
     public void addNewFood(Food food) {

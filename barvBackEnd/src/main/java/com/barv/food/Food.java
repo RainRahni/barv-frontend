@@ -9,6 +9,8 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 
@@ -17,6 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Food {
     @Id
     @SequenceGenerator(
@@ -36,8 +39,6 @@ public class Food {
     private int calories;
     //Weight in grams
     private int weight;
-    public Food() {
-    }
     public Food(String name, int carbs, int protein, int fats, int calories,
                 int weight) {
         this.name = name;
