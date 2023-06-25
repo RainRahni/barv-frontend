@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Configuration
 public class FoodConfig {
     /**@Bean
     CommandLineRunner commandLineRunner(

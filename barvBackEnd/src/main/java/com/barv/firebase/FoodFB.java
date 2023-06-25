@@ -1,26 +1,20 @@
-package com.barv.food;
+package com.barv.firebase;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 
-@Entity
-@Table
+//@Entity
+//@Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Food {
-    @Id
+public class FoodFB {
+    /**@Id
     @SequenceGenerator(
             name = "food_sequence",
             sequenceName = "food_sequence",
@@ -29,8 +23,8 @@ public class Food {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "food_sequence"
-    )
-    private Long id;
+    )*/
+    private String id;
     private String name;
     private int carbohydrates;
     private int protein;
@@ -38,8 +32,8 @@ public class Food {
     private int calories;
     //Weight in grams
     private int weight;
-    public Food(String name, int carbs, int protein, int fats, int calories,
-                int weight) {
+    public FoodFB(String name, int carbs, int protein, int fats, int calories,
+                  int weight) {
         this.name = name;
         this.carbohydrates = carbs;
         this.protein = protein;

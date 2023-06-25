@@ -1,7 +1,5 @@
-package com.barv.food;
+package com.barv.firebase;
 
-import com.barv.firebase.FirebaseService;
-import com.barv.firebase.FoodFB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(path = "api/v1/food" )
-public class FoodController {
+public class FoodFBController {
     //private final FoodService foodService;
     //@Autowired
     private final FirebaseService firebaseService;
@@ -26,7 +25,7 @@ public class FoodController {
         this.foodService = foodService;
     }*/
     @Autowired
-    public FoodController(FirebaseService firebaseService) {
+    public FoodFBController(FirebaseService firebaseService) {
         this.firebaseService = firebaseService;
     }
     @GetMapping(path = "/{collectionId}")
