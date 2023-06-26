@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 @Service
 @Transactional
@@ -39,14 +40,15 @@ public class FoodService {
         foodRepository.deleteById(foodId);
         return String.format("Food with id %d successfully removed from the database!", foodId);
     }
-    /**
+
     @Transactional
-    public void updateFood(Long foodId, String name) {
+    public String updateFoodName(Long foodId, String name) {
         Food food = foodRepository
                 .findById(foodId)
-                .orElseThrow(() -> new IllegalStateException("no food with given id"));
+                .orElseThrow(() -> new IllegalStateException("No food with given id"));
         if (name != null && name.length() > 0 && !Objects.equals(food.getName(), name)) {
             food.setName(name);
         }
-    }*/
+        return "Successfully changed food`s name to " + name;
+    }
 }

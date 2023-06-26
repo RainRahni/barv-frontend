@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -41,9 +43,9 @@ public class FoodController {
     public String deleteFood(@PathVariable("foodId") Long foodId) throws ExecutionException, InterruptedException {
         return foodService.removeFood(foodId);
     }
-    /**@PutMapping(path = "{foodId}")
-    public void updateFood(@PathVariable("foodId") Long foodId,
+    @PutMapping(path = "/upt{foodId}")
+    public String updateFoodName(@PathVariable("foodId") Long foodId,
                            @RequestParam(required = false) String name) {
-        foodService.updateFood(foodId, name);
-    }*/
+        return foodService.updateFoodName(foodId, name);
+    }
 }
