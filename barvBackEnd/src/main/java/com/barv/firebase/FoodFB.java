@@ -6,24 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-//@Entity
-//@Table
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodFB {
-    /**@Id
-    @SequenceGenerator(
-            name = "food_sequence",
-            sequenceName = "food_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "food_sequence"
-    )*/
     private String id;
     private String name;
     private int carbohydrates;

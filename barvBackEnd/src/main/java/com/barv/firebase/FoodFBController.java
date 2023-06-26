@@ -16,14 +16,7 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping(path = "api/v1/food" )
 public class FoodFBController {
-    //private final FoodService foodService;
-    //@Autowired
     private final FirebaseService firebaseService;
-
-    /**@Autowired //foodService will be automatically instantiated for us.
-    public FoodController(FoodService foodService) {
-        this.foodService = foodService;
-    }*/
     @Autowired
     public FoodFBController(FirebaseService firebaseService) {
         this.firebaseService = firebaseService;

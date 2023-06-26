@@ -1,16 +1,17 @@
 package com.barv.food;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 
 @Entity
@@ -30,7 +31,7 @@ public class Food {
             strategy = GenerationType.SEQUENCE,
             generator = "food_sequence"
     )
-    private Long id;
+    private Long Id;
     private String name;
     private int carbohydrates;
     private int protein;

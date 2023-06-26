@@ -2,6 +2,7 @@ package com.barv.food;
 
 import com.barv.firebase.FirebaseService;
 import com.barv.firebase.FoodFB;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,34 +18,28 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping(path = "api/v1/food" )
 public class FoodController {
-    //private final FoodService foodService;
-    //@Autowired
-    private final FirebaseService firebaseService;
+    private final FoodService foodService;
 
-    /**@Autowired //foodService will be automatically instantiated for us.
+    @Autowired
     public FoodController(FoodService foodService) {
         this.foodService = foodService;
-    }*/
-    @Autowired
-    public FoodController(FirebaseService firebaseService) {
-        this.firebaseService = firebaseService;
     }
-    @GetMapping(path = "/{collectionId}")
-    public List<FoodFB> getFoodsInCollection(@PathVariable("collectionId") String collectionId) throws ExecutionException, InterruptedException {
-        return firebaseService.getAllFoodsInCollection(collectionId);
-    }
-    @GetMapping(path = "/{documentId}")
-    public String getFoodWithDocumentId(@PathVariable("documentId") String documentId)
+    @GetMapping(path = "/{foodId}")
+    public void getFoodWithId(@PathVariable("foodId") Integer foodId)
             throws ExecutionException, InterruptedException {
-        return firebaseService.getFood(documentId);
+
     }
-    @PostMapping("/registerFood")
-    public String registerNewFood(@RequestBody FoodFB foodFB) throws ExecutionException, InterruptedException {
-        return firebaseService.saveFoodDetails(foodFB);
+    @GetMapping(path = "/allFoods")
+    public List<Food> getAllFoods() throws ExecutionException, InterruptedException {
+        return foodService.findAll();
     }
-    @DeleteMapping(path = "/{foodId}")
-    public void removeFood(@PathVariable("foodId") String foodId) throws ExecutionException, InterruptedException {
-        firebaseService.deleteFood(foodId);
+    @PostMapping("/addFood")
+    public String addNewFood(@RequestBody Food food) throws ExecutionException, InterruptedException {
+        return foodService.addFood(food);
+    }
+    @DeleteMapping(path = "/del{foodId}")
+    public String deleteFood(@PathVariable("foodId") Long foodId) throws ExecutionException, InterruptedException {
+        return foodService.removeFood(foodId);
     }
     /**@PutMapping(path = "{foodId}")
     public void updateFood(@PathVariable("foodId") Long foodId,
