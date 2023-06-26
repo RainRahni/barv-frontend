@@ -9,9 +9,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Objects;
 
 
 @Entity
@@ -20,6 +23,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Food {
     @Id
     @SequenceGenerator(
@@ -31,7 +35,7 @@ public class Food {
             strategy = GenerationType.SEQUENCE,
             generator = "food_sequence"
     )
-    private Long Id;
+    @EqualsAndHashCode.Exclude private Long Id;
     private String name;
     private int carbohydrates;
     private int protein;
