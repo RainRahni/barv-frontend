@@ -4,6 +4,7 @@ import com.barv.firebase.FirebaseService;
 import com.barv.firebase.FoodFB;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +47,7 @@ public class FoodController {
      * Get all foods in database.
      * @return list of foods in database.
      */
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping(path = "/allFoods")
     public List<Food> getAllFoods() {
         return foodService.findAll();
@@ -56,6 +58,7 @@ public class FoodController {
      * @param food that will be added to database.
      * @return whether adding was successful or not.
      */
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping("/addFood")
     public String addNewFood(@RequestBody Food food) {
         return foodService.addFood(food);
