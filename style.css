@@ -68,3 +68,22 @@ body{
 #nextmealdisplay{
     margin-left: 1%;
 }
+.btn{
+    padding: 10px 60px;
+}
+.popup{
+    width: 300px;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color : #333;
+    transition: transform 0.4s;
+    visibility: hidden;
+}
+.open-popup{
+    visibility: visible;
+}
