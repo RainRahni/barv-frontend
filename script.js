@@ -36,6 +36,7 @@ document.getElementById("nextmealdisplay").innerHTML = displayNextMeal()
 let popup = document.getElementById("popup");
 function openPopup() {
     popup.classList.add("open-popup");
+    console.log(retrieveFoods());
 }
 //Remove popup from the screen.
 function closePopup() {
@@ -44,6 +45,7 @@ function closePopup() {
     const data = {};
     getInputValues(inputs, data);
     sendDataToBackEnd(data);
+    addFoodInformationRow(data);
 }
 //Assign each value from text box to its key and put it into object.
 const getInputValues = (inputs, data) => {
@@ -62,5 +64,26 @@ const sendDataToBackEnd = (data) => {
         body: JSON.stringify(data)
       });
 } 
+//Retrieve all foods from database.
+const retrieveFoods = async () => {
+    const response = await fetch('http://localhost:8080/api/v1/food/allFoods', {
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    return await response.json();
+  }
+  
+//Add new row of food.
+const addFoodInformationRow = (data) => {
+    const row = document.createElement("div");
+    Object.values(data).forEach(value => {
+        const cell = document.createElement("div");
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
+    const table = document.getElementById('foods');
+    table.appendChild(row);
+}
 
 

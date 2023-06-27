@@ -29,6 +29,12 @@ body{
     margin-left: 5%;
     margin-top: -23%;
 }
+.foodInformation{
+    display: flex;
+    flex-direction: row;
+    margin-left: 27%;
+    margin-top: 5%;
+}
 #timey{
     float: right;
     margin-left: -4%;
