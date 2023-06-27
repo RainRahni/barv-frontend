@@ -1,3 +1,5 @@
+//const { send } = require("express/lib/response");
+
 // Display what weekday it currently is
 const currentDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -30,11 +32,35 @@ const displayNextMeal = () => {
     }
 };
 document.getElementById("nextmealdisplay").innerHTML = displayNextMeal()
-
+//Open popup
 let popup = document.getElementById("popup");
 function openPopup() {
     popup.classList.add("open-popup");
 }
+//Remove popup from the screen.
 function closePopup() {
     popup.classList.remove("open-popup");
+    const inputs = document.querySelectorAll(".input");
+    const data = {};
+    getInputValues(inputs, data);
+    sendDataToBackEnd(data);
 }
+//Assign each value from text box to its key and put it into object.
+const getInputValues = (inputs, data) => {
+    inputs.forEach(input => {
+        data[input.name] = input.value;
+        input.value = "";
+    });
+}
+//Send data to backend.
+const sendDataToBackEnd = (data) => {
+    fetch('http://localhost:8080/api/v1/food/addFood', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+} 
+
+

@@ -22,10 +22,15 @@
                 <h2 id="timey">TIME:</h2>
                 <h2 id="daytime"></h2>
                 <h2 id="nextmeal">NEXT MEAL:</h2>     
-                <h2 id="nextmealdisplay"></h2> 
-                <button type="submit" class="btn" onclick="openPopup()">add</button>
+                <h2 id="nextmealdisplay"></h2>
+                <button type="submit" class="btn" onclick="openPopup()">Add Food</button>
                 <div class="popup" id="popup">
-                    <h2>Done!</h2>
+                    <input type="text" class="input" name="name" placeholder="Name">
+                    <input type="text" class="input" name="weight" placeholder="Weight">
+                    <input type="text" class="input" name="carbohydrates" placeholder="Carbohydrates">
+                    <input type="text" class="input" name="protein" placeholder="Protein">
+                    <input type="text" class="input" name="fats" placeholder="Fats">
+                    <input type="text" class="input" name="calories" placeholder="Calories">
                     <button type="button" onclick="closePopup()"> OK</button>
                 </div>        
             </div>
