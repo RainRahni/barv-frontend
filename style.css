@@ -75,9 +75,9 @@ body{
     margin-left: 1%;
 }
 .btn{
+    position: absolute;
     padding: 10px 60px;
-    margin-top: -2%;
-    margin-left: -30%;
+    margin-top: 300px;
 }
 .popup{
     display: flex;
@@ -110,8 +110,9 @@ table, th, td {
     border: 1px solid black;
 }
 table{
-    margin-left: 78px;
-    margin-top: 90px;
-    width: 400px;
+    justify-content: center;
+    position: absolute;
+    margin-left: 75px;
+    width: 650-px;
     visibility: visible;
 }
