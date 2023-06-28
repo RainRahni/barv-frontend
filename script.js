@@ -5,8 +5,12 @@ window.addEventListener('load', () => {
         console.log(Object.entries(resolvedValue));
         return Object.entries(resolvedValue);
     });
+    console.log(data.then(m => {
+        console.log(m[0][1])}))
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
+    generateRows(data);
 });
+
 
 // Display what weekday it currently is
 const currentDay = () => {
@@ -99,6 +103,23 @@ const addFoodInformationRow = (data) => {
 const changeTableVisibility = (boolean) => {
     const table = document.getElementById("tableFoods");
     boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
+}
+//Generate rows into table
+const generateRows = (foodsInDb) => {
+    foodsInDb.then(m => {
+        m.forEach(food => {
+            const row = document.createElement("tr");
+            const { name, calories, carbohydrates, protein, fats, weight } = food[1];
+            const values = [name, weight, calories, carbohydrates, protein, fats];
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            const table = document.getElementById("tableFoods");
+            table.appendChild(row);
+        });
+    });
 }
 
 
