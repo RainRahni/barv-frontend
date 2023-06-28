@@ -1,4 +1,12 @@
 //const { send } = require("express/lib/response");
+window.addEventListener('load', () => {
+    const data = retrieveFoods()
+    .then((resolvedValue) => {
+        console.log(Object.entries(resolvedValue));
+        return Object.entries(resolvedValue);
+    });
+    data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
+});
 
 // Display what weekday it currently is
 const currentDay = () => {
@@ -36,7 +44,7 @@ document.getElementById("nextmealdisplay").innerHTML = displayNextMeal()
 let popup = document.getElementById("popup");
 function openPopup() {
     popup.classList.add("open-popup");
-    console.log(retrieveFoods());
+    
 }
 //Remove popup from the screen.
 function closePopup() {
@@ -45,7 +53,9 @@ function closePopup() {
     const data = {};
     getInputValues(inputs, data);
     sendDataToBackEnd(data);
-    addFoodInformationRow(data);
+    //addFoodInformationRow(data);
+    changeTableVisibility(true);
+
 }
 //Assign each value from text box to its key and put it into object.
 const getInputValues = (inputs, data) => {
@@ -84,6 +94,11 @@ const addFoodInformationRow = (data) => {
     });
     const table = document.getElementById('foods');
     table.appendChild(row);
+}
+//Change visibility of table.
+const changeTableVisibility = (boolean) => {
+    const table = document.getElementById("tableFoods");
+    boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
 }
 
 
