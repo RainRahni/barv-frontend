@@ -13,10 +13,6 @@ window.addEventListener('load', () => {
 $(document).on('click', '#btnoke', function () {
     generateRows(data);
 });
-
-
-
-
 // Display what weekday it currently is
 const currentDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -109,6 +105,7 @@ const changeTableVisibility = (boolean) => {
     boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
 }
 var totalCalories = 0;
+var caloriesLeft = 3000;
 
 //Generate rows into table
 const generateRows = (foodsInDb) => {
@@ -120,6 +117,7 @@ const generateRows = (foodsInDb) => {
             values.forEach(value => {
                 if (value == calories) { 
                     totalCalories += value;
+                    caloriesLeft -= value;
                 }
                 const cell = document.createElement("td");
                 cell.textContent = value;
@@ -131,7 +129,9 @@ const generateRows = (foodsInDb) => {
             table.appendChild(row);
         });
         document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
+        document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
     });
 }
+
 
 
