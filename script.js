@@ -125,7 +125,7 @@ const generateRows = (foodsInDb) => {
             });
             const table = document.getElementById("tableFoods");
             const btn = document.getElementById("btny");
-            btn.style.marginTop += 10;
+            btn.style.marginTop += 200;
             table.appendChild(row);
         });
         document.getElementById("caloriessofar").innerHTML += " " + totalCalories;

@@ -52,9 +52,11 @@ body{
 #caloriesleft{
     float: right;
     width: 310px;
+
 }
 #caloriesSoFarNumber{
     margin-top: -100%;
+    margin-right: 10%;
 }
 #weekday{
     margin-left: -20%;
