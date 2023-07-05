@@ -74,6 +74,11 @@ body{
     padding: 10px 60px;
     margin-top: 80px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .popup{
     display: flex;
     flex-wrap: wrap;
