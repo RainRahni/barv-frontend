@@ -10,6 +10,11 @@ window.addEventListener('load', () => {
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
 });
+$(document).on('click', '#btnoke', function () {
+    generateRows(data);
+});
+
+
 
 
 // Display what weekday it currently is
@@ -32,7 +37,6 @@ const displayTimeOfMeal = () =>{
         return "8:20";
     }
 };
-document.getElementById("daytime").innerHTML = displayTimeOfMeal()
 //Display next meal.
 const displayNextMeal = () => {
     if (displayTimeOfMeal() == "8:20"){
@@ -73,10 +77,10 @@ const sendDataToBackEnd = (data) => {
     fetch('http://localhost:8080/api/v1/food/addFood', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-      });
+    });
 } 
 //Retrieve all foods from database.
 const retrieveFoods = async () => {
@@ -86,8 +90,8 @@ const retrieveFoods = async () => {
         }
     });
     return await response.json();
-  }
-  
+}
+
 //Add new row of food.
 const addFoodInformationRow = (data) => {
     const row = document.createElement("div");
@@ -104,6 +108,8 @@ const changeTableVisibility = (boolean) => {
     const table = document.getElementById("tableFoods");
     boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
 }
+var totalCalories = 0;
+
 //Generate rows into table
 const generateRows = (foodsInDb) => {
     foodsInDb.then(m => {
@@ -112,13 +118,19 @@ const generateRows = (foodsInDb) => {
             const { name, calories, carbohydrates, protein, fats, weight } = food[1];
             const values = [name, weight, calories, carbohydrates, protein, fats];
             values.forEach(value => {
+                if (value == calories) { 
+                    totalCalories += value;
+                }
                 const cell = document.createElement("td");
                 cell.textContent = value;
                 row.appendChild(cell);
             });
             const table = document.getElementById("tableFoods");
+            const btn = document.getElementById("btny");
+            btn.style.marginTop += 10;
             table.appendChild(row);
         });
+        document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
     });
 }
 

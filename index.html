@@ -3,6 +3,11 @@
 <head>
     <title>BARV</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
+            var auto_refresh = setInterval(function () {
+                    $('#tableFoods').load('index.html').fadeIn("slow");
+                }, 1000);
+    </script>
 </head>
 <body>
     <div class="wholepage">
@@ -19,8 +24,6 @@
             <div class="time">
                 <h2 id="dayy">DAY:</h2>
                 <h2 id="weekday"></h2>
-                <h2 id="timey">TIME:</h2>
-                <h2 id="daytime"></h2>
                 <h2 id="nextmeal">NEXT MEAL:</h2>     
                 <h2 id="nextmealdisplay"></h2>
             </div>   
@@ -37,7 +40,7 @@
                 </tbody>
             </table>     
             <div class="foodInformation" id="foods">
-                <button type="submit" class="btn" onclick="openPopup()">Add Food</button>
+                <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
                 <div class="popup" id="popup">
                     <input type="text" class="input" name="name" placeholder="Name">
                     <input type="text" class="input" name="weight" placeholder="Weight">
@@ -45,12 +48,13 @@
                     <input type="text" class="input" name="protein" placeholder="Protein">
                     <input type="text" class="input" name="fats" placeholder="Fats">
                     <input type="text" class="input" name="calories" placeholder="Calories">
-                    <button type="button" onclick="closePopup()"> OK</button>
+                    <button type="button" onclick="closePopup()" id="btnoke"> OK</button>
                 </div>
             </div>
             </div>
             <div class="caloriesleftsofar">
                 <h2 id="caloriessofar">CALORIES SO FAR:</h2>
+                <h2 id ="caloriesSoFarNumber"></h2>
                 <h2 id="caloriesleft">CALORIES LEFT:</h2>
             </div>
             <div class="foods">
