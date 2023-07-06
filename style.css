@@ -70,7 +70,7 @@ body{
     margin-left: 1%;
 }
 .btn{
-    margin-left: 11%;
+    margin-left: 17.6%;
     position: absolute;
     padding: 10px 60px;
     margin-top: 10px;
@@ -114,6 +114,6 @@ table{
     margin-top: 75px;
     position: relative;
     margin-left: 75px;
-    width: 650-px;
+    width: 565px;
     visibility: visible;
 }
