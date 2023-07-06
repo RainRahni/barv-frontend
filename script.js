@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 //const { send } = require("express/lib/response");
 window.addEventListener('load', () => {
     const data = retrieveFoods()
@@ -10,9 +12,20 @@ window.addEventListener('load', () => {
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
 });
-$(document).on('click', '#btnoke', function () {
-    generateRows(data);
-});
+/**document.querySelector("#btnoke").addEventListener("click", () => {
+    fetch('http://localhost:8080/api/v1/food/allFoods')
+    .then(response => response.json()
+    .then(data => {
+        let tbody = document.querySelector("#tableFoods");
+        data.forEach(item => {
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+        cell.textContent = item;
+        row.appendChild(cell);
+        tbody.appendChild(row);
+        });
+    }))
+})*/
 // Display what weekday it currently is
 const currentDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -54,7 +67,7 @@ function openPopup() {
 function closePopup() {
     popup.classList.remove("open-popup");
     const inputs = document.querySelectorAll(".input");
-    const data = {};
+    let data = {};
     getInputValues(inputs, data);
     sendDataToBackEnd(data);
     //addFoodInformationRow(data);
@@ -114,11 +127,10 @@ const generateRows = (foodsInDb) => {
             const row = document.createElement("tr");
             const { name, calories, carbohydrates, protein, fats, weight } = food[1];
             const values = [name, weight, calories, carbohydrates, protein, fats];
+            let cals = food[1]["calories"];
+            totalCalories += cals;
+            caloriesLeft -= cals;
             values.forEach(value => {
-                if (value == calories) { 
-                    totalCalories += value;
-                    caloriesLeft -= value;
-                }
                 const cell = document.createElement("td");
                 cell.textContent = value;
                 row.appendChild(cell);

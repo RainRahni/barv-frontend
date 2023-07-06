@@ -3,11 +3,12 @@
 <head>
     <title>BARV</title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
+    <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
             var auto_refresh = setInterval(function () {
                     $('#tableFoods').load('index.html').fadeIn("slow");
                 }, 1000);
     </script>
+    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="wholepage">
@@ -27,20 +28,22 @@
                 <h2 id="nextmeal">NEXT MEAL:</h2>     
                 <h2 id="nextmealdisplay"></h2>
             </div>   
-            <table>
-                <tbody id="tableFoods">
-                    <tr>
-                        <th>Name</th>
-                        <th>Weight</th>
-                        <th>Calories</th>
-                        <th>Carbohydrates</th>
-                        <th>Protein</th>
-                        <th>Fats</th>
-                    </tr>
-                </tbody>
-            </table>     
-            <div class="foodInformation" id="foods">
+            <div class="tblebtn">
+                <table id="tble">
+                    <tbody id="tableFoods">
+                        <tr>
+                            <th>Name</th>
+                            <th>Weight</th>
+                            <th>Calories</th>
+                            <th>Carbohydrates</th>
+                            <th>Protein</th>
+                            <th>Fats</th>
+                        </tr>
+                    </tbody>
+                </table>
                 <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
+            </div>
+            <div class="foodInformation" id="foods">
                 <form class="popup" id="popup">
                     <input type="text" class="input" name="name" placeholder="Name">
                     <input type="number" class="input" name="weight" placeholder="Weight">
@@ -60,6 +63,5 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
