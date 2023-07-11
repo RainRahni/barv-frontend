@@ -1,8 +1,7 @@
-package com.barv.food;
+package com.barv.foodController;
 
-import com.barv.firebase.FirebaseService;
-import com.barv.firebase.FoodFB;
-import jakarta.transaction.Transactional;
+import com.barv.food.Food;
+import com.barv.foodService.FoodServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,24 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(path = "api/v1/food" )
 public class FoodController {
-    private final FoodService foodService;
+    private final FoodServiceImpl foodService;
 
     /**
      * Constructor for food controller.
      * @param foodService where will all the methods be at.
      */
     @Autowired
-    public FoodController(FoodService foodService) {
+    public FoodController(FoodServiceImpl foodService) {
         this.foodService = foodService;
     }
 
@@ -50,7 +47,7 @@ public class FoodController {
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping(path = "/allFoods")
     public List<Food> getAllFoods() {
-        return foodService.findAll();
+        return foodService.findAllFoods();
     }
 
     /**

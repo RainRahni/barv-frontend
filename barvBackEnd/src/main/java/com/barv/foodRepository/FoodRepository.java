@@ -1,6 +1,7 @@
-package com.barv.food;
+package com.barv.foodRepository;
 
 import com.barv.firebase.FoodFB;
+import com.barv.food.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,22 +1,21 @@
-package com.barv.food;
+package com.barv.foodService;
 
-import com.barv.firebase.FirebaseInit;
-import com.barv.firebase.FoodFB;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
+import com.barv.food.Food;
+import com.barv.foodRepository.FoodRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
+
 @Service
 @Transactional
-public class FoodService {
+public class FoodServiceImpl implements FoodService{
     private final FoodRepository foodRepository;
 
     /**
@@ -24,7 +23,7 @@ public class FoodService {
      * @param foodRepository where data is stored.
      */
 
-    public FoodService(FoodRepository foodRepository) {
+    public FoodServiceImpl(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
     public Optional<Food> getFoodById(Long foodId) {
@@ -42,12 +41,35 @@ public class FoodService {
         foodRepository.save(food);
         return food.getName() + " successfully added to database!";
     }
+    public void createTable(String tableName, String column1, String column2) {
+        String url = "jdbc:mysql://localhost:3306/mydatabase";
+        String username = "myusername";
+        String password = "mypassword";
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n"
+                + " id int NOT NULL AUTO_INCREMENT,\n"
+                + " " + column1 + " varchar(255),\n"
+                + " " + column2 + " varchar(255),\n"
+                + " PRIMARY KEY (id)\n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+            System.out.println("Table created successfully");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     /**
      * Find all items in database.
      * @return list of foods in database.
      */
-    public List<Food> findAll() {
+    public List<Food> findAllFoods() {
         return foodRepository.findAll();
     }
 
