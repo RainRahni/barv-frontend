@@ -29,18 +29,51 @@ body{
     margin-left: 5%;
     margin-top: -23%;
 }
-#timey{
-    float: right;
-    margin-left: -4%;
-    width: 150px;
+.dropbtn {
+    margin-top: -2%;
+    color:black;
+    background-color:white;
+    border: none;
+    height: 10px;
+    font-size: 17px;
+    font-weight:bolder;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block}  
+.foodInformation{
+    display: flex;
+    flex-direction: row;
+    margin-left: 27%;
+    margin-top: 5%;
 }
 #dayy{
     float: left;
     width: 200px;
 }
 .caloriesleftsofar{
-    clear: both;
     float: left;
+    width: 620px;
     margin-left: 5%;
     margin-top: -21%;
 }
@@ -51,27 +84,33 @@ body{
 #caloriesleft{
     float: right;
     width: 310px;
+
+}
+#caloriesSoFarNumber{
+    margin-top: -100%;
+    margin-right: 10%;
 }
 #weekday{
-    margin-left: -12%;
+    margin-left: -20%;
     float: left;
     width: 200px;
 }
-#daytime{
-    margin-left: -7%;
-    float: left;
-    width: 200px;   
-}
 #nextmeal{
-    margin-left: -12%;
+    margin-left: -5%;
 }
 #nextmealdisplay{
     margin-left: 1%;
 }
 .btn{
+    margin-left: 17.6%;
+    position: absolute;
     padding: 10px 60px;
-    margin-top: 10%;
-    margin-left: -30%;
+    margin-top: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .popup{
     display: flex;
@@ -99,4 +138,14 @@ body{
 .input{
     width: 40%;
     margin: 10px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+table{
+    margin-top: 75px;
+    position: relative;
+    margin-left: 75px;
+    width: 565px;
+    visibility: visible;
 }
