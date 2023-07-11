@@ -1,5 +1,7 @@
 package com.barv.foodController;
 
+import com.barv.exception.FoodAlreadyInDatabaseException;
+import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodService.FoodServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class FoodController {
      * @param foodId id which food to
      */
     @GetMapping(path = "/{foodId}")
-    public Optional<Food> getFoodWithId(@PathVariable("foodId") Long foodId) {
+    public Food getFoodWithId(@PathVariable("foodId") Long foodId) throws FoodNotFoundException {
         return foodService.getFoodById(foodId);
 
     }
@@ -57,7 +59,7 @@ public class FoodController {
      */
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping("/addFood")
-    public String addNewFood(@RequestBody Food food) {
+    public Food addNewFood(@RequestBody Food food) throws FoodAlreadyInDatabaseException {
         return foodService.addFood(food);
     }
 

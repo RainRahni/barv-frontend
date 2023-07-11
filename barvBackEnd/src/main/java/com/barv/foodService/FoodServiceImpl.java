@@ -1,5 +1,7 @@
 package com.barv.foodService;
 
+import com.barv.exception.FoodAlreadyInDatabaseException;
+import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
 import jakarta.transaction.Transactional;
@@ -26,20 +28,24 @@ public class FoodServiceImpl implements FoodService{
     public FoodServiceImpl(FoodRepository foodRepository) {
         this.foodRepository = foodRepository;
     }
-    public Optional<Food> getFoodById(Long foodId) {
-        return foodRepository.findById(foodId);
+    public Food getFoodById(Long foodId) throws FoodNotFoundException {
+        Optional<Food> potentialFood = foodRepository.findById(foodId);
+        if (potentialFood.isEmpty()) {
+            throw new FoodNotFoundException("No food with this Id in the database!");
+        }
+        return potentialFood.get();
     }
     /**
      * Add given food to database.
      * @param food to be added to database.
      * @return whether adding to database was successful.
      */
-    public String addFood(Food food) {
+    public Food addFood(Food food) throws FoodAlreadyInDatabaseException {
         if (foodRepository.findAll().contains(food)) {
-            return "Food already in database.";
+            throw new FoodAlreadyInDatabaseException("Food is already in the database!");
         }
         foodRepository.save(food);
-        return food.getName() + " successfully added to database!";
+        return food;
     }
     public void createTable(String tableName, String column1, String column2) {
         String url = "jdbc:mysql://localhost:3306/mydatabase";
