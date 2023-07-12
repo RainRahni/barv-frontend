@@ -5,6 +5,7 @@ import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
@@ -17,7 +18,8 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class FoodServiceImpl implements FoodService{
+public class FoodServiceImpl implements FoodService {
+    @Autowired
     private final FoodRepository foodRepository;
 
     /**
@@ -84,10 +86,10 @@ public class FoodServiceImpl implements FoodService{
      * @param foodId food`s id that should be removed.
      * @return whether deleting from database was successful.
      */
-    public String removeFood(Long foodId) {
+    public String removeFood(Long foodId) throws FoodNotFoundException {
         boolean exists = foodRepository.existsById(foodId);
         if (!exists) {
-            throw new IllegalStateException("Food with given id does not exist!");
+            throw new FoodNotFoundException("Food with given id does not exist!");
         }
         foodRepository.deleteById(foodId);
         return String.format("Food with id %d successfully removed from the database!", foodId);
@@ -100,10 +102,10 @@ public class FoodServiceImpl implements FoodService{
      */
 
     @Transactional
-    public String updateFood(Long foodId, Food food) {
+    public String updateFood(Long foodId, Food food) throws FoodNotFoundException, FoodAlreadyInDatabaseException {
         Food existingFood = foodRepository
                 .findById(foodId)
-                .orElseThrow(() -> new IllegalStateException("No food with given id"));
+                .orElseThrow(FoodNotFoundException::new);
         if (!Objects.equals(food, existingFood)) {
             existingFood.setName(food.getName());
             existingFood.setProtein(food.getProtein());
@@ -113,6 +115,6 @@ public class FoodServiceImpl implements FoodService{
             existingFood.setCalories(food.getCalories());
             return "Successfully changed food`s details!";
         }
-        return "Both food`s details are completely same.";
+        throw new FoodAlreadyInDatabaseException();
     }
 }

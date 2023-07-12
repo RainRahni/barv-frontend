@@ -45,13 +45,4 @@ public class Food {
     private int calories;
     //Weight in grams
     private int weight;
-    public Food(String name, int carbs, int protein, int fats, int calories,
-                int weight) {
-        this.name = name;
-        this.carbohydrates = carbs;
-        this.protein = protein;
-        this.fats = fats;
-        this.calories = calories;
-        this.weight = weight;
-    }
 }

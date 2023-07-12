@@ -69,7 +69,7 @@ public class FoodController {
      * @return whether deleting was successful or not.
      */
     @DeleteMapping(path = "/del{foodId}")
-    public String deleteFood(@PathVariable("foodId") Long foodId) {
+    public String deleteFood(@PathVariable("foodId") Long foodId) throws FoodNotFoundException {
         return foodService.removeFood(foodId);
     }
 
@@ -81,7 +81,7 @@ public class FoodController {
      */
     @PutMapping(path = "/upt{foodId}")
     public String updateFoodDetails(@PathVariable("foodId") Long foodId,
-                           @RequestBody Food food) {
+                           @RequestBody Food food) throws FoodAlreadyInDatabaseException, FoodNotFoundException {
         return foodService.updateFood(foodId, food);
     }
 }
