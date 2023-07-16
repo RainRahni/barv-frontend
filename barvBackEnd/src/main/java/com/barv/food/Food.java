@@ -39,10 +39,10 @@ public class Food {
     )
     @EqualsAndHashCode.Exclude private Long Id;
     private String name;
-    private int carbohydrates;
-    private int protein;
-    private int fats;
-    private int calories;
+    private double carbohydrates;
+    private double protein;
+    private double fats;
+    private double calories;
     //Weight in grams
-    private int weight;
+    private double weight;
 }
