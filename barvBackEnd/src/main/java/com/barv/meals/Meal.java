@@ -37,4 +37,6 @@ public class Meal {
     private double carbohydrates;
     private double fats;
     private MealType type;
+    @OneToMany
+    private List<Food> foods;
 }
