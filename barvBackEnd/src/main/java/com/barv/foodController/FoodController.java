@@ -39,7 +39,6 @@ public class FoodController {
     @GetMapping(path = "/{foodId}")
     public Food getFoodWithId(@PathVariable("foodId") Long foodId) throws FoodNotFoundException {
         return foodService.getFoodById(foodId);
-
     }
 
     /**

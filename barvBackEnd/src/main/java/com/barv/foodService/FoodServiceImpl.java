@@ -4,6 +4,8 @@ import com.barv.exception.FoodAlreadyInDatabaseException;
 import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
+import com.barv.meals.Meal;
+import com.barv.meals.MealType;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,16 +51,25 @@ public class FoodServiceImpl implements FoodService {
         foodRepository.save(food);
         return food;
     }
-    public void createTable(String tableName, String column1, String column2) {
-        String url = "jdbc:mysql://localhost:3306/mydatabase";
-        String username = "myusername";
-        String password = "mypassword";
+
+    /**
+     * Create new table into the database.
+     * @param tableName where is meal type and how many calories.
+     * @param mealType that determines into which ...
+     */
+    public void createTable(String tableName, MealType mealType) {
+        String url = "jdbc:postgresql://barv-hornet-8737.8nj.cockroachlabs.cloud:26257/defaultdb";
+        String username = "rainrhni";
+        String password = "1PPDl4WIKqOnWCtShGoRqg";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n"
                 + " id int NOT NULL AUTO_INCREMENT,\n"
-                + " " + column1 + " varchar(255),\n"
-                + " " + column2 + " varchar(255),\n"
+                + " " + "calories" + " varchar(255),\n"
+                + " " + "protein" + " varchar(255),\n"
+                + " " + "carbohydrates" + " varchar(255),\n"
+                + " " + "fats" + " varchar(255),\n"
+                + " " + mealType + " varchar(255),\n"
                 + " PRIMARY KEY (id)\n"
                 + ");";
 

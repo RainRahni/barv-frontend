@@ -1,40 +1,33 @@
 package com.barv.meals;
 
-import com.barv.food.Food;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Meal {
+public class MealFoods {
     @Id
     @SequenceGenerator(
-            name = "meal_sequence",
-            sequenceName = "meal_sequence",
+            name = "meal_foods_sequence",
+            sequenceName = "meal_foods_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "meal_sequence"
+            generator = "meal_foods_sequence"
     )
+    private Long mealFoodsId;
     private Long mealId;
-    private String name;
-    private double calories;
-    private double protein;
-    private double carbohydrates;
-    private double fats;
-    private MealType type;
+    private Long foodId;
+    private int weight;
 }
