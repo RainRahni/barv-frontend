@@ -1,6 +1,7 @@
 package com.barv.meals;
 
 import com.barv.food.Food;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,6 +38,8 @@ public class Meal {
     private double carbohydrates;
     private double fats;
     private MealType type;
-    @OneToMany
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
     private List<Food> foods;
 }

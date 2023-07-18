@@ -44,5 +44,5 @@ public class Food {
     private double fats;
     private double calories;
     //Weight in grams
-    private double weight;
+    private int weight;
 }

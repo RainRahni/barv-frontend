@@ -1,5 +1,6 @@
 package com.barv.foodController;
 
+import com.barv.exception.FoodAlreadyInDatabaseException;
 import com.barv.foodService.MealServiceImpl;
 import com.barv.meals.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class MealController {
     @Autowired
     public MealController(MealServiceImpl mealServiceImpl) { this.mealServiceImpl = mealServiceImpl; }
     @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @PostMapping
-    public Meal addMeal(@RequestBody Meal meal) {
+    @PostMapping("/addMeal")
+    public Meal addMeal(@RequestBody Meal meal) throws FoodAlreadyInDatabaseException {
         return mealServiceImpl.addMeal(meal);
     }
 }

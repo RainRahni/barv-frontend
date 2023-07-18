@@ -1,9 +1,12 @@
 package com.barv.meals;
 
+import com.barv.food.Food;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +30,11 @@ public class MealFoods {
             generator = "meal_foods_sequence"
     )
     private Long mealFoodsId;
-    private Long mealId;
-    private Long foodId;
+    @ManyToOne
+    @JoinColumn(name = "meal_id")
+    private Meal meal;
+    @ManyToOne
+    @JoinColumn(name = "food_id")
+    private Food food;
     private int weight;
 }
