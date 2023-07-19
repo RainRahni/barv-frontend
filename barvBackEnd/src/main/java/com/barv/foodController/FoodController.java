@@ -1,8 +1,9 @@
-package com.barv.food;
+package com.barv.foodController;
 
-import com.barv.firebase.FirebaseService;
-import com.barv.firebase.FoodFB;
-import jakarta.transaction.Transactional;
+import com.barv.exception.FoodAlreadyInDatabaseException;
+import com.barv.exception.FoodNotFoundException;
+import com.barv.food.Food;
+import com.barv.foodService.FoodServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,24 +13,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(path = "api/v1/food" )
 public class FoodController {
-    private final FoodService foodService;
+    private final FoodServiceImpl foodService;
 
     /**
      * Constructor for food controller.
      * @param foodService where will all the methods be at.
      */
     @Autowired
-    public FoodController(FoodService foodService) {
+    public FoodController(FoodServiceImpl foodService) {
         this.foodService = foodService;
     }
 
@@ -38,9 +37,8 @@ public class FoodController {
      * @param foodId id which food to
      */
     @GetMapping(path = "/{foodId}")
-    public Optional<Food> getFoodWithId(@PathVariable("foodId") Long foodId) {
+    public Food getFoodWithId(@PathVariable("foodId") Long foodId) throws FoodNotFoundException {
         return foodService.getFoodById(foodId);
-
     }
 
     /**
@@ -50,7 +48,7 @@ public class FoodController {
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping(path = "/allFoods")
     public List<Food> getAllFoods() {
-        return foodService.findAll();
+        return foodService.findAllFoods();
     }
 
     /**
@@ -60,7 +58,7 @@ public class FoodController {
      */
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping("/addFood")
-    public String addNewFood(@RequestBody Food food) {
+    public Food addNewFood(@RequestBody Food food) throws FoodAlreadyInDatabaseException {
         return foodService.addFood(food);
     }
 
@@ -70,7 +68,7 @@ public class FoodController {
      * @return whether deleting was successful or not.
      */
     @DeleteMapping(path = "/del{foodId}")
-    public String deleteFood(@PathVariable("foodId") Long foodId) {
+    public String deleteFood(@PathVariable("foodId") Long foodId) throws FoodNotFoundException {
         return foodService.removeFood(foodId);
     }
 
@@ -82,7 +80,7 @@ public class FoodController {
      */
     @PutMapping(path = "/upt{foodId}")
     public String updateFoodDetails(@PathVariable("foodId") Long foodId,
-                           @RequestBody Food food) {
+                           @RequestBody Food food) throws FoodAlreadyInDatabaseException, FoodNotFoundException {
         return foodService.updateFood(foodId, food);
     }
 }

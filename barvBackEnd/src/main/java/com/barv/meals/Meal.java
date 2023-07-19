@@ -1,48 +1,45 @@
-package com.barv.food;
+package com.barv.meals;
 
-
-import jakarta.persistence.Column;
+import com.barv.food.Food;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.Objects;
+import java.util.List;
 
-
-@Entity
-@Table
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
-@EqualsAndHashCode
+@AllArgsConstructor
 @Builder
-public class Food {
+public class Meal {
     @Id
     @SequenceGenerator(
-            name = "food_sequence",
-            sequenceName = "food_sequence",
+            name = "meal_sequence",
+            sequenceName = "meal_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "food_sequence"
+            generator = "meal_sequence"
     )
-    @EqualsAndHashCode.Exclude private Long Id;
+    private Long mealId;
     private String name;
-    private double carbohydrates;
-    private double protein;
-    private double fats;
     private double calories;
-    //Weight in grams
-    private int weight;
+    private double protein;
+    private double carbohydrates;
+    private double fats;
+    private MealType type;
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    private List<Food> foods;
 }
