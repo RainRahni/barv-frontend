@@ -63,17 +63,38 @@ function openPopup() {
     popup.classList.add("open-popup");
     
 }
-//Remove popup from the screen.
+
+//Remove food popup from the screen.
 function closePopup() {
     popup.classList.remove("open-popup");
     const inputs = document.querySelectorAll(".input");
     let data = {};
     getInputValues(inputs, data);
-    sendDataToBackEnd(data);
+    sendDataToBackEnd(data, "addFood");
     //addFoodInformationRow(data);
     changeTableVisibility(true);
+}
+//Add and remove meal popup from screen
+let mealPopup = document.getElementById("mealpopup");
+function openMealPopup() {
+    mealPopup.classList.add("open-popup"); 
+}
+    const inputs = document.querySelectorAll(".input");
+    let data = {};
+    getInputValues(inputs, data);
+    sendDataToBackEnd(data, "addMeal");
+    changeTableVisibility(true);
+
+//Get meal time from user and assign it.
+function chosenMeal(meal){
+    let mealTime = "";
+    mealPopup.classList.remove("open-popup");
+    mealTime = meal;
+    const checkMark = document.getElementById("checkmark");
+    checkMark.style.visibility="visible";
 
 }
+
 //Assign each value from text box to its key and put it into object.
 const getInputValues = (inputs, data) => {
     inputs.forEach(input => {
@@ -82,8 +103,8 @@ const getInputValues = (inputs, data) => {
     });
 }
 //Send data to backend.
-const sendDataToBackEnd = (data) => {
-    fetch('http://localhost:8080/api/v1/food/addFood', {
+const sendDataToBackEnd = (data, url) => {
+    fetch('http://localhost:8080/api/v1/${url}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

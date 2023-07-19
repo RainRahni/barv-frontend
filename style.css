@@ -67,9 +67,33 @@ body{
     margin-left: 27%;
     margin-top: 5%;
 }
+.mealStartInfo {
+    display: flex;
+    flex-direction: row;
+}
+.meal {
+    width: 40%;
+    height: 16%;
+    margin: 10px;
+}
 #dayy{
     float: left;
     width: 200px;
+}
+#chooseMealTime {
+    height: 10%;
+    margin-top: 1%;
+}
+#checkmark {
+    margin-top: 0.68%;
+    margin-left: 30%;
+    visibility: hidden;
+    border: none;
+    background-color: white;
+}
+#checkmark:hover {
+    background-color: rgb(204, 248, 211);
+    border-radius: 10%;
 }
 .caloriesleftsofar{
     float: left;
@@ -107,12 +131,42 @@ body{
     padding: 10px 60px;
     margin-top: 10px;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 .popup{
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 120px;
+    border-radius: 6px;
+    border-color: #050505;
+    border-style: solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color : #171717;
+    transition: transform 0.4s;
+    visibility: hidden;
+    background: #fff;
+    justify-content: center;
+}
+#addmealbtn {
+    border: none;
+    background-color: white;
+    margin-top: 1%;
+}
+#addmealbtn:hover {
+    background-color: rgb(211, 211, 211);
+    border-radius: 5%;
+}
+.mealpopup{
     display: flex;
     flex-wrap: wrap;
     width: 300px;

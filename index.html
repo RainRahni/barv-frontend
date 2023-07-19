@@ -36,7 +36,18 @@
                         <a href="#">Link 3</a>
                     </div>
                 </div>   
-                
+                <button type="submit" id="addmealbtn" onclick="openMealPopup()"><img src="plusSign.png"></button>
+            <div class="mealStartInfo">
+                <form class="mealpopup" id="mealpopup">
+                    <h2 id="chooseMealTime">Choose meal time!</h2>
+                    <button type="button" class="meal" onclick="chosenMeal('breakfast')">Breakfast</button>
+                    <button type="button" class="meal" onclick="chosenMeal('pre-lunch')">Pre-Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('lunch')">Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('pre-dinner')">Pre-Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('dinner')">Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('snack')">Snack</button>
+                </form>
+            </div>
             </div>   
             <div class="tblebtn">
                 <table id="tble">
@@ -52,6 +63,7 @@
                     </tbody>
                 </table>
                 <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
+                <button type="submit" id="checkmark"><img src="greenCheckMark.png"></button>
             </div>
             <div class="foodInformation" id="foods">
                 <form class="popup" id="popup">
