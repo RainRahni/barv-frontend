@@ -1,5 +1,5 @@
 package com.barv.meals;
 
 public enum MealType {
-    BREAKFAST, LUNCH, DINNER
+    BREAKFAST, PRE_LUNCH, LUNCH, PRE_DINNER, DINNER, SNACK
 }
