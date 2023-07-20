@@ -12,20 +12,7 @@ window.addEventListener('load', () => {
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
 });
-/**document.querySelector("#btnoke").addEventListener("click", () => {
-    fetch('http://localhost:8080/api/v1/food/allFoods')
-    .then(response => response.json()
-    .then(data => {
-        let tbody = document.querySelector("#tableFoods");
-        data.forEach(item => {
-        let row = document.createElement("tr");
-        let cell = document.createElement("td");
-        cell.textContent = item;
-        row.appendChild(cell);
-        tbody.appendChild(row);
-        });
-    }))
-})*/
+
 // Display what weekday it currently is
 const currentDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -70,23 +57,32 @@ function closePopup() {
     const inputs = document.querySelectorAll(".input");
     let data = {};
     getInputValues(inputs, data);
-    sendDataToBackEnd(data, "addFood");
+    sendDataToBackEnd(data, "food/addFood").then(() => {
+        const dataTwo = retrieveFoods().then((data) => {
+            const entries = Object.entries(data);
+            return entries[entries.length - 1];
+        })
+        generateSingleRow(dataTwo);
+    });
     //addFoodInformationRow(data);
     changeTableVisibility(true);
+
 }
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealpopup");
 function openMealPopup() {
     mealPopup.classList.add("open-popup"); 
 }
-    const inputs = document.querySelectorAll(".input");
+/**
+ *     const inputs = document.querySelectorAll(".input");
     let data = {};
     getInputValues(inputs, data);
     sendDataToBackEnd(data, "addMeal");
     changeTableVisibility(true);
+ */
 
 //Get meal time from user and assign it.
-function chosenMeal(meal){
+function chosenMeal(meal) {
     let mealTime = "";
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
@@ -104,7 +100,7 @@ const getInputValues = (inputs, data) => {
 }
 //Send data to backend.
 const sendDataToBackEnd = (data, url) => {
-    fetch('http://localhost:8080/api/v1/${url}', {
+    return fetch(`http://localhost:8080/api/v1/${url}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -131,6 +127,7 @@ const addFoodInformationRow = (data) => {
         row.appendChild(cell);
     });
     const table = document.getElementById('foods');
+    
     table.appendChild(row);
 }
 //Change visibility of table.
@@ -164,6 +161,26 @@ const generateRows = (foodsInDb) => {
         document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
     });
 }
-
+//Generate 1 row to table.
+const generateSingleRow = (foodToAdd) => {
+    foodToAdd.then(m => {
+            const row = document.createElement("tr");
+            const { name, calories, carbohydrates, protein, fats, weight } = m[1];
+            const values = [name, weight, calories, carbohydrates, protein, fats];
+            let cals = m[1]["calories"];
+            totalCalories += cals;
+            caloriesLeft -= cals;
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            const table = document.getElementById("tableFoods");
+            const btn = document.getElementById("btny");
+            table.appendChild(row);
+        document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
+        document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
+    });
+}
 
 
