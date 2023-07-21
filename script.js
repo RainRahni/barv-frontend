@@ -57,14 +57,15 @@ function closePopup() {
     const inputs = document.querySelectorAll(".input");
     let data = {};
     getInputValues(inputs, data);
-    sendDataToBackEnd(data, "food/addFood").then(() => {
+    /**sendDataToBackEnd(data, "food/addFood").then(() => {
         const dataTwo = retrieveFoods().then((data) => {
             const entries = Object.entries(data);
             return entries[entries.length - 1];
         })
         generateSingleRow(dataTwo);
-    });
-    //addFoodInformationRow(data);
+    });*/
+    const entries = Object.entries(data);
+    generateSingleRow(entries);
     changeTableVisibility(true);
 
 }
@@ -73,13 +74,6 @@ let mealPopup = document.getElementById("mealpopup");
 function openMealPopup() {
     mealPopup.classList.add("open-popup"); 
 }
-/**
- *     const inputs = document.querySelectorAll(".input");
-    let data = {};
-    getInputValues(inputs, data);
-    sendDataToBackEnd(data, "addMeal");
-    changeTableVisibility(true);
- */
 
 //Get meal time from user and assign it.
 function chosenMeal(meal) {
@@ -88,7 +82,9 @@ function chosenMeal(meal) {
     mealTime = meal;
     const checkMark = document.getElementById("checkmark");
     checkMark.style.visibility="visible";
-
+    const table = document.getElementById("tableFoods");
+    table.innerHTML = "";
+    resetTotalMacros();
 }
 
 //Assign each value from text box to its key and put it into object.
@@ -117,26 +113,22 @@ const retrieveFoods = async () => {
     });
     return await response.json();
 }
-
-//Add new row of food.
-const addFoodInformationRow = (data) => {
-    const row = document.createElement("div");
-    Object.values(data).forEach(value => {
-        const cell = document.createElement("div");
-        cell.textContent = value;
-        row.appendChild(cell);
-    });
-    const table = document.getElementById('foods');
-    
-    table.appendChild(row);
-}
 //Change visibility of table.
 const changeTableVisibility = (boolean) => {
     const table = document.getElementById("tableFoods");
     boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
 }
+const resetTotalMacros = () => {
+    document.getElementById("protFoot").innerHTML = "";
+    document.getElementById("calFoot").innerHTML = "";
+    document.getElementById("fatsFoot").innerHTML = "";
+    document.getElementById("carbFoot").innerHTML = "";
+}
 var totalCalories = 0;
 var caloriesLeft = 3000;
+let totalFats = 0;
+var totalProtein = 0;
+var totalCarbs = 0;
 
 //Generate rows into table
 const generateRows = (foodsInDb) => {
@@ -156,18 +148,20 @@ const generateRows = (foodsInDb) => {
             const table = document.getElementById("tableFoods");
             const btn = document.getElementById("btny");
             table.appendChild(row);
+            totalFats += values[5];
+            totalCarbs += values[3];
+            totalProtein += values[4];
         });
-        document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
-        document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
+        addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
 }
-//Generate 1 row to table.
+/**Generate 1 row to table.
 const generateSingleRow = (foodToAdd) => {
     foodToAdd.then(m => {
             const row = document.createElement("tr");
-            const { name, calories, carbohydrates, protein, fats, weight } = m[1];
+            const { name, calories, carbohydrates, protein, fats, weight } = foodToAdd[1];
             const values = [name, weight, calories, carbohydrates, protein, fats];
-            let cals = m[1]["calories"];
+            let cals = foodToAdd[1]["calories"];
             totalCalories += cals;
             caloriesLeft -= cals;
             values.forEach(value => {
@@ -175,12 +169,51 @@ const generateSingleRow = (foodToAdd) => {
                 cell.textContent = value;
                 row.appendChild(cell);
             });
+            totalFats += values[5];
+            totalCarbs += values[3];
+            totalProtein += values[4];
             const table = document.getElementById("tableFoods");
             const btn = document.getElementById("btny");
             table.appendChild(row);
-        document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
-        document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
+            addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
+}*/
+const generateSingleRow = (foodToAdd) => {
+    console.log(foodToAdd);
+    //foodToAdd.then(m => {
+        const row = document.createElement("tr");
+        for (i = 0; i < 6; i++) {
+            const cell = document.createElement("td");
+            cell.textContent = foodToAdd[i][1];
+            row.appendChild(cell);
+        }
+            /**const row = document.createElement("tr");
+            const { name, calories, carbohydrates, protein, fats, weight } = foodToAdd[0];
+            const values = [name, weight, calories, carbohydrates, protein, fats];
+            let cals = foodToAdd[5]["calories"];
+            totalCalories += cals;
+            caloriesLeft -= cals;
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });*/
+            //totalFats += values[5];
+            //totalCarbs += values[3];
+            //totalProtein += values[4];
+            const table = document.getElementById("tableFoods");
+            table.appendChild(row);
+            //addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
+    //});
 }
+//Add values to footer in the table.
+const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft) => {
+    document.getElementById("caloriessofar").innerHTML += " " + totalCalories;
+    document.getElementById("caloriesleft").innerHTML += " " + caloriesLeft;
+    document.getElementById("calFoot").innerHTML += " " + totalCalories;
+    document.getElementById("protFoot").innerHTML += " " + totalProtein;
+    document.getElementById("fatsFoot").innerHTML += " " + totalFats;
+    document.getElementById("carbFoot").innerHTML += " " + totalCarbs;
+};
 
 

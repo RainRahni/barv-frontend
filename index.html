@@ -51,8 +51,8 @@
             </div>   
             <div class="tblebtn">
                 <table id="tble">
-                    <tbody id="tableFoods">
-                        <tr>
+                    <thead>
+                        <tr class="headers">
                             <th>Name</th>
                             <th>Weight</th>
                             <th>Calories</th>
@@ -60,7 +60,19 @@
                             <th>Protein</th>
                             <th>Fats</th>
                         </tr>
+                    </thead>
+                    <tbody id="tableFoods">
                     </tbody>
+                    <tfoot id="foodFoot">
+                        <tr>
+                            <td style="font-weight: bold;">In total</td>
+                            <td style="font-weight: bold;">--</td>
+                            <td id="calFoot" style="font-weight: bold;"></td>
+                            <td id="carbFoot" style="font-weight: bold;"></td>
+                            <td id="protFoot" style="font-weight: bold;"></td>
+                            <td id="fatsFoot" style="font-weight: bold;"></td>
+                        </tr>
+                    </tfoot>
                 </table>
                 <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
                 <button type="submit" id="checkmark"><img src="greenCheckMark.png"></button>
