@@ -40,12 +40,12 @@
             <div class="mealStartInfo">
                 <form class="mealpopup" id="mealpopup">
                     <h2 id="chooseMealTime">Choose meal time!</h2>
-                    <button type="button" class="meal" onclick="chosenMeal('breakfast')">Breakfast</button>
-                    <button type="button" class="meal" onclick="chosenMeal('pre-lunch')">Pre-Lunch</button>
-                    <button type="button" class="meal" onclick="chosenMeal('lunch')">Lunch</button>
-                    <button type="button" class="meal" onclick="chosenMeal('pre-dinner')">Pre-Dinner</button>
-                    <button type="button" class="meal" onclick="chosenMeal('dinner')">Dinner</button>
-                    <button type="button" class="meal" onclick="chosenMeal('snack')">Snack</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Breakfast')">Breakfast</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Pre-lunch')">Pre-Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Lunch')">Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Pre-dinner')">Pre-Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Dinner')">Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Snack')">Snack</button>
                 </form>
             </div>
             </div>   
@@ -75,7 +75,7 @@
                     </tfoot>
                 </table>
                 <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
-                <button type="submit" id="checkmark"><img src="greenCheckMark.png"></button>
+                <button type="submit" id="checkmark"><img src="greenCheckMark.png" onclick="constructMealAndSend()"></button>
             </div>
             <div class="foodInformation" id="foods">
                 <form class="popup" id="popup">

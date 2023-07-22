@@ -50,7 +50,7 @@ function openPopup() {
     popup.classList.add("open-popup");
     
 }
-
+const mealData = [];
 //Remove food popup from the screen.
 function closePopup() {
     popup.classList.remove("open-popup");
@@ -66,18 +66,32 @@ function closePopup() {
     });*/
     const entries = Object.entries(data);
     generateSingleRow(entries);
+    mealData.push(data);
     changeTableVisibility(true);
 
+}
+
+//Construct meal class and send it to database
+const constructMealAndSend = () => {
+    let meal = {};
+    let nameOfMeal = mealTime + "-" + totalCalories;
+    Object.assign(meal, {name : nameOfMeal});
+    Object.assign(meal, {calories : totalCalories});
+    Object.assign(meal, {protein : totalProtein});
+    Object.assign(meal, {carbohydrates : totalCarbs});
+    Object.assign(meal, {fats : totalFats});
+    Object.assign(meal, {type : mealTime.toUpperCase()});
+    Object.assign(meal, {foods : mealData});
+    sendDataToBackEnd(meal, "meal/addMeal");
 }
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealpopup");
 function openMealPopup() {
     mealPopup.classList.add("open-popup"); 
 }
-
+let mealTime = "";
 //Get meal time from user and assign it.
 function chosenMeal(meal) {
-    let mealTime = "";
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
     const checkMark = document.getElementById("checkmark");
@@ -183,7 +197,6 @@ const generateSingleRow = (foodToAdd) => {
     });
 }*/
 const generateSingleRow = (foodToAdd) => {
-    console.log(foodToAdd);
     const row = document.createElement("tr");                 
     for (i = 0; i < 6; i++) {
         const cell = document.createElement("td");
@@ -203,7 +216,6 @@ const generateSingleRow = (foodToAdd) => {
         } else {
             cell.textContent = value;
         }
-        
         row.appendChild(cell);
         }
             /**const row = document.createElement("tr");
