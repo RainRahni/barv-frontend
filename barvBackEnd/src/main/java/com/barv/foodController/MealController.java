@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "api/v1/meal" )
 public class MealController {
+    @Autowired
     private final MealServiceImpl mealServiceImpl;
     @Autowired
     public MealController(MealServiceImpl mealServiceImpl) { this.mealServiceImpl = mealServiceImpl; }

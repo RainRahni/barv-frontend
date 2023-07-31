@@ -42,8 +42,9 @@ public class MealServiceImpl implements MealService {
             mealFoods.setMeal(meal);
             mealFoods.setFood(food);
             mealFoods.setWeight(food.getWeight());
+            mealRepository.save(meal);
             mealFoodsService.addMealFood(mealFoods);
         }
-        return mealRepository.save(meal);
+        return meal;
     }
 }

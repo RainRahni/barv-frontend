@@ -15,7 +15,7 @@ public class MealFoodsServiceImpl implements MealFoodsService {
     }
     @Override
     public MealFoods addMealFood(MealFoods mealFoods) throws FoodAlreadyInDatabaseException {
-        if (!mealFoodsRepository.existsById(mealFoods.getMealFoodsId())) {
+        if (mealFoods.getMealFoodsId() == null || !mealFoodsRepository.existsById(mealFoods.getMealFoodsId())) {
             mealFoodsRepository.save(mealFoods);
         }
         throw new FoodAlreadyInDatabaseException();

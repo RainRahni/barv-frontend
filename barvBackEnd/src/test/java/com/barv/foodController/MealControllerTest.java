@@ -2,6 +2,7 @@ package com.barv.foodController;
 
 import com.barv.exception.FoodAlreadyInDatabaseException;
 import com.barv.food.Food;
+import com.barv.foodRepository.FoodRepository;
 import com.barv.foodRepository.MealRepository;
 import com.barv.foodService.FoodService;
 import com.barv.foodService.FoodServiceImpl;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -39,6 +41,10 @@ class MealControllerTest {
     private FoodServiceImpl foodService;
     @MockBean
     private MealFoodsServiceImpl mealFoodsService;
+    @MockBean
+    private MealRepository mealRepository;
+    @MockBean
+    private FoodRepository foodRepository;
     private Meal meal;
     private Food foodOne;
     private Food foodTwo;
@@ -155,7 +161,18 @@ class MealControllerTest {
                         "    ]\n" +
                         "}\n"))
                 .andExpect(status().isOk());
-        mockMvc.perform(get("/api/v1/meal/"));
+        Optional<Food> foodOneOptional = foodRepository.findById(1L);
+        assertTrue(foodOneOptional.isPresent());
+        assertEquals(foodOne, foodOneOptional.get());
+
+        Optional<Food> foodTwoOptional = foodRepository.findById(2L);
+        assertTrue(foodTwoOptional.isPresent());
+        assertEquals(foodTwo, foodTwoOptional.get());
+
+        Optional<Meal> mealOptional = mealRepository.findById(1L);
+        assertTrue(mealOptional.isPresent());
+        assertEquals(meal, mealOptional.get());
+
 
 
     }
