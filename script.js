@@ -82,6 +82,7 @@ const constructMealAndSend = () => {
     Object.assign(meal, {fats : totalFats});
     Object.assign(meal, {type : mealTime.toUpperCase()});
     Object.assign(meal, {foods : mealData});
+    console.log(meal);
     sendDataToBackEnd(meal, "meal/addMeal");
 }
 //Add and remove meal popup from screen
