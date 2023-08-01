@@ -6,6 +6,7 @@ import com.barv.foodRepository.FoodRepository;
 import com.barv.foodRepository.MealRepository;
 import com.barv.meals.Meal;
 import com.barv.meals.MealFoods;
+import com.barv.meals.MealType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,8 @@ public class MealServiceImpl implements MealService {
     @Override
     public Meal addMeal(Meal meal) throws FoodAlreadyInDatabaseException {
         List<Food> foodsList = meal.getFoods();
+        mealRepository.save(meal);
+
         for (Food food : foodsList) {
             Optional<Food> foodInDatabase = foodRepository.findByNameAndWeight(food.getName(), food.getWeight());
             if (foodInDatabase.isEmpty()) {
@@ -42,7 +45,6 @@ public class MealServiceImpl implements MealService {
             mealFoods.setMeal(meal);
             mealFoods.setFood(food);
             mealFoods.setWeight(food.getWeight());
-            mealRepository.save(meal);
             mealFoodsService.addMealFood(mealFoods);
         }
         return meal;

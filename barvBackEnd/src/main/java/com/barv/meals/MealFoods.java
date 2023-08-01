@@ -1,6 +1,7 @@
 package com.barv.meals;
 
 import com.barv.food.Food;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,9 +30,10 @@ public class MealFoods {
             strategy = GenerationType.SEQUENCE,
             generator = "meal_foods_sequence"
     )
+    @Column(name = "Meal_foods_id")
     private Long mealFoodsId;
     @ManyToOne
-    @JoinColumn(name = "meal_id")
+    @JoinColumn(name = "meal_meal_id")
     private Meal meal;
     @ManyToOne
     @JoinColumn(name = "food_id")
