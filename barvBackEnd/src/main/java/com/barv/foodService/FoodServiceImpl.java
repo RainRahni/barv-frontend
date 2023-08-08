@@ -121,7 +121,7 @@ public class FoodServiceImpl implements FoodService {
             existingFood.setName(food.getName());
             existingFood.setProtein(food.getProtein());
             existingFood.setFats(food.getFats());
-            existingFood.setWeight(food.getWeight());
+            existingFood.setWeightInGrams(food.getWeightInGrams());
             existingFood.setCarbohydrates(food.getCarbohydrates());
             existingFood.setCalories(food.getCalories());
             return "Successfully changed food`s details!";

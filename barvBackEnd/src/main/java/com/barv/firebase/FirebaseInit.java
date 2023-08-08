@@ -18,7 +18,7 @@ public class FirebaseInit {
         try {
             FileInputStream serviceAccount =
                     new FileInputStream
-                            ("barvBackEnd/src/main/resources/barv-9d9ab-firebase-adminsdk-9ku5g-ed4308ff9d.json");
+                            ("barvBackEnd/src/main/resources/barv-9d9ab-firebase-adminsdk-9ku5g-be9fdebca1.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
