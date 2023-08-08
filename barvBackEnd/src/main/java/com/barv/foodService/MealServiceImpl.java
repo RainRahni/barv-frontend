@@ -56,6 +56,15 @@ public class MealServiceImpl implements MealService {
         }
         return meal;
     }
+
+    @Override
+    public List<String> getExistingNextMealNames(String mealTime) {
+        MealType correspondingMealType = MealType.valueOf(mealTime);
+        List<Meal> mealsWithTypeInDatabase =
+                mealRepository.findByType(correspondingMealType);
+        return mealsWithTypeInDatabase.stream().map(Meal::getName).toList();
+    }
+
     public Meal updateMeal(Long idOfMealToUpdate, Meal newMealFields) {
         Meal meal = mealRepository.findById(idOfMealToUpdate).get();
         meal.setName(newMealFields.getName());
