@@ -1,7 +1,5 @@
 package com.barv.food;
 
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.util.Objects;
-
+import java.math.BigInteger;
 
 @Entity
 @Table
@@ -43,6 +38,5 @@ public class Food {
     private double protein;
     private double fats;
     private double calories;
-    //Weight in grams
-    private int weight;
+    private int weightInGrams;
 }

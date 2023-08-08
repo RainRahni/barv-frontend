@@ -1,8 +1,10 @@
 package com.barv.meals;
 
 import com.barv.food.Food;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,22 +23,23 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MealFoods {
     @Id
+    @Column(name = "id")
     @SequenceGenerator(
             name = "meal_foods_sequence",
             sequenceName = "meal_foods_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            strategy = GenerationType.IDENTITY,
             generator = "meal_foods_sequence"
     )
-    @Column(name = "Meal_foods_id")
-    private Long mealFoodsId;
+    private Long id;
     @ManyToOne
-    @JoinColumn(name = "meal_meal_id")
+    @JoinColumn(name = "meal_id")
     private Meal meal;
     @ManyToOne
-    @JoinColumn(name = "food_id")
+    @JoinColumn(name = "foods_id")
     private Food food;
-    private int weight;
+    private String name;
+    private Integer weight;
 }
