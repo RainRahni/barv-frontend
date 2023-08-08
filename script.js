@@ -1,6 +1,4 @@
-//const { response } = require("express");
 
-//const { send } = require("express/lib/response");
 window.addEventListener('load', () => {
     const data = retrieveFoods()
     .then((resolvedValue) => {
@@ -11,6 +9,12 @@ window.addEventListener('load', () => {
         console.log(m[0][1])}))
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
+    const datas = getExistingNextMealNamesFromDatabase("BREAKFAST")
+    .then((resolvedValue) => {
+        console.log(Object.entries(resolvedValue));
+        return Object.entries(resolvedValue);
+    });
+    createAnchorElementForMealDropdown(datas);
 });
 
 // Display what weekday it currently is
@@ -98,6 +102,7 @@ function chosenMeal(meal) {
     const checkMark = document.getElementById("checkmark");
     checkMark.style.visibility="visible";
     const table = document.getElementById("tableFoods");
+    
     table.innerHTML = "";
     resetTotalMacros();
 }
@@ -150,7 +155,6 @@ var caloriesLeft = 3000;
 let totalFats = 0;
 var totalProtein = 0;
 var totalCarbs = 0;
-var totalWeight = 0;
 
 //Generate rows into table
 const generateRows = (foodsInDb) => {
@@ -172,7 +176,6 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
-            totalWeight += values[2];
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
@@ -214,5 +217,24 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
     document.getElementById("fatsFoot").innerHTML = totalFats;
     document.getElementById("carbFoot").innerHTML = totalCarbs;
 }
+const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/mealtime=${nextMealTime}`, {
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    return await response.json();
+}
 
+const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
+    mealNamesToDisplayList.then(n => {
+        n.forEach(name => {
+            const meal = document.createElement("a");
+            const dropdownDiv = document.getElementById("mealDropdown");
+            meal.innerHTML = name[1];
+            meal.href = "#";
+            dropdownDiv.appendChild(meal);
+        })
+    })
+}
 
