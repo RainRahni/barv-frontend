@@ -106,6 +106,7 @@ function chosenMeal(meal) {
 const getInputValues = (inputs, data) => {
     inputs.forEach(input => {
         data[input.name] = input.value;
+        console.log(input.name);
         input.value = "";
     });
 }
@@ -149,14 +150,15 @@ var caloriesLeft = 3000;
 let totalFats = 0;
 var totalProtein = 0;
 var totalCarbs = 0;
+var totalWeight = 0;
 
 //Generate rows into table
 const generateRows = (foodsInDb) => {
     foodsInDb.then(m => {
         m.forEach(food => {
             const row = document.createElement("tr");
-            const { name, calories, carbohydrates, protein, fats, weight } = food[1];
-            const values = [name, weight, calories, carbohydrates, protein, fats];
+            const { name, calories, carbohydrates, protein, fats, weightInGrams } = food[1];
+            const values = [name, weightInGrams, calories, carbohydrates, protein, fats];
             let cals = food[1]["calories"];
             totalCalories += cals;
             caloriesLeft -= cals;
@@ -170,33 +172,11 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
+            totalWeight += values[2];
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
 }
-/**Generate 1 row to table.
-const generateSingleRow = (foodToAdd) => {
-    foodToAdd.then(m => {
-            const row = document.createElement("tr");
-            const { name, calories, carbohydrates, protein, fats, weight } = foodToAdd[1];
-            const values = [name, weight, calories, carbohydrates, protein, fats];
-            let cals = foodToAdd[1]["calories"];
-            totalCalories += cals;
-            caloriesLeft -= cals;
-            values.forEach(value => {
-                const cell = document.createElement("td");
-                cell.textContent = value;
-                row.appendChild(cell);
-            });
-            totalFats += values[5];
-            totalCarbs += values[3];
-            totalProtein += values[4];
-            const table = document.getElementById("tableFoods");
-            const btn = document.getElementById("btny");
-            table.appendChild(row);
-            addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
-    });
-}*/
 const generateSingleRow = (foodToAdd) => {
     const row = document.createElement("tr");                 
     for (i = 0; i < 6; i++) {
@@ -209,7 +189,8 @@ const generateSingleRow = (foodToAdd) => {
             fats: (value) => { totalFats += value; },
             protein: (value) => { totalProtein += value; },
             carbohydrates: (value) => { totalCarbs += value; },
-            calories: (value) => { totalCalories += value; }
+            calories: (value) => { totalCalories += value; },
+            weight: (value) => {totalWeight += value} 
         };
         if (keyToVariableMap.hasOwnProperty(foodToAdd[i][0])) {
             keyToVariableMap[foodToAdd[i][0]](value);
@@ -219,20 +200,6 @@ const generateSingleRow = (foodToAdd) => {
         }
         row.appendChild(cell);
         }
-            /**const row = document.createElement("tr");
-            const { name, calories, carbohydrates, protein, fats, weight } = foodToAdd[0];
-            const values = [name, weight, calories, carbohydrates, protein, fats];
-            let cals = foodToAdd[5]["calories"];
-            totalCalories += cals;
-            caloriesLeft -= cals;
-            values.forEach(value => {
-                const cell = document.createElement("td");
-                cell.textContent = value;
-                row.appendChild(cell);
-            });*/
-            //totalFats += values[5];
-            //totalCarbs += values[3];
-            //totalProtein += values[4];
             const table = document.getElementById("tableFoods");
             table.appendChild(row);
             addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
