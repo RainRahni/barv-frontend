@@ -9,18 +9,16 @@ window.addEventListener('load', () => {
         console.log(m[0][1])}))
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
-    const datas = getExistingNextMealNamesFromDatabase("BREAKFAST")
+    const datas = getExistingNextMealNamesFromDatabase("LUNCH")
     .then((resolvedValue) => {
         console.log(Object.entries(resolvedValue));
         return Object.entries(resolvedValue);
     });
     createAnchorElementForMealDropdown(datas);
-
-    //generateRows(datas);
 });
-const clearTableAndDisplayMealFoods = () => {
+const clearTableAndDisplayMealFoods = (specificMealName) => {
     eraseAllRowsFromScreen();
-    const data = getMealWithNameFromDatabase("Breakfast-1")
+    const data = getMealWithNameFromDatabase(specificMealName)
     .then((resolvedValue) => {
         console.log(Object.entries(resolvedValue)[7][1]);
         return Object.entries(resolvedValue)[7][1];
@@ -95,8 +93,9 @@ const constructMealAndSend = () => {
     Object.assign(meal, {fats : totalFats});
     Object.assign(meal, {type : mealTime.toUpperCase()});
     Object.assign(meal, {foods : mealData});
-    console.log(meal);
     sendDataToBackEnd(meal, "meal/addMeal");
+    let checkMark = document.getElementById("checkmark");
+    checkMark.style.visibility = "hidden";
 }
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealpopup");
@@ -184,7 +183,6 @@ const generateRows = (foodsInDb) => {
             console.log("tots:" + totalCalories);
             console.log("cals:" + cals); 
             totalCalories += cals;
-
             caloriesLeft -= cals;
             console.log(values);
             values.forEach(value => {
@@ -254,7 +252,7 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
             const dropdownDiv = document.getElementById("mealDropdown");
             meal.innerHTML = name[1];
             meal.href = "#";
-            meal.onclick= clearTableAndDisplayMealFoods;
+            meal.onclick= () =>clearTableAndDisplayMealFoods(name[1]);
             dropdownDiv.appendChild(meal);
         })
     })
