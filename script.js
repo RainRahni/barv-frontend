@@ -108,6 +108,7 @@ function chosenMeal(meal) {
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
     const checkMark = document.getElementById("checkmark");
+    const deleteButton = document.getElementById("deleteButton");
     checkMark.style.visibility="visible";
     eraseAllRowsFromScreen();
     resetTotalMacrosAndCalories();
@@ -195,6 +196,7 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
+
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
@@ -252,7 +254,7 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
             const dropdownDiv = document.getElementById("mealDropdown");
             meal.innerHTML = name[1];
             meal.href = "#";
-            meal.onclick= () =>clearTableAndDisplayMealFoods(name[1]);
+            meal.onclick= () => clearTableAndDisplayMealFoods(name[1]);
             dropdownDiv.appendChild(meal);
         })
     })
