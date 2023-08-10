@@ -3,11 +3,6 @@
 <head>
     <title>BARV</title>
     <link rel="stylesheet" href="style.css">
-    <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
-            var auto_refresh = setInterval(function () {
-                    $('#tableFoods').load('index.html').fadeIn("slow");
-                }, 1000);
-    </script>
     <script defer src="script.js"></script>
 </head>
 <body>
@@ -85,9 +80,11 @@
                 </form>
             </div>
             </div>
-            <div class="caloriesleftsofar">
-                <h2 id="caloriessofar">CALORIES SO FAR:</h2>
-                <h2 id="caloriesleft">CALORIES LEFT:</h2>
+            <div class="calsLeftSoFar">
+                <h2 id="calsSoFarText">CALORIES SO FAR:</h2>
+                <h2 id="caloriesleftsofarNumber"></h2>
+                <h2 id="calsLeftText">CALORIES LEFT:</h2>
+                <h2 id="caloriesleftNumber"></h2>
             </div>
             <div class="foods">
             </div>
