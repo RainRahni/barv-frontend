@@ -134,6 +134,14 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+#deleteButton {
+    margin-left: 9.5%;
+    background-color: white;
+    border: white;
+}
+#deleteButton:hover {
+    background-color: rgb(245, 188, 188);
+}
 .popup{
     display: flex;
     flex-wrap: wrap;

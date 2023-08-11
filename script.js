@@ -224,6 +224,8 @@ const generateSingleRow = (foodToAdd) => {
         }
         row.appendChild(cell);
         }
+        const rowDeleteButton = createDeleteButton();
+        row.appendChild(rowDeleteButton);
         const table = document.getElementById("tableFoods");
         table.appendChild(row);
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
@@ -259,4 +261,12 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
         })
     })
 }
-
+const createDeleteButton = () => {
+    const deleteButton = document.createElement("button");
+    const deleteButtonImage = document.createElement("img");
+    deleteButtonImage.src = "transparentLetterX.png";
+    deleteButton.type = "submit";
+    deleteButton.id = "deleteButton"
+    deleteButton.appendChild(deleteButtonImage);
+    return deleteButton;
+}
