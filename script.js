@@ -108,7 +108,6 @@ function chosenMeal(meal) {
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
     const checkMark = document.getElementById("checkmark");
-    const deleteButton = document.getElementById("deleteButton");
     checkMark.style.visibility="visible";
     eraseAllRowsFromScreen();
     resetTotalMacrosAndCalories();
@@ -196,13 +195,13 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
-
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
 }
 const generateSingleRow = (foodToAdd) => {
-    const row = document.createElement("tr");                 
+    const row = document.createElement("tr");
+    let rowName = "";     
     for (i = 0; i < 6; i++) {
         const cell = document.createElement("td");
         var value = foodToAdd[i][1];
@@ -214,20 +213,23 @@ const generateSingleRow = (foodToAdd) => {
             protein: (value) => { totalProtein += value; },
             carbohydrates: (value) => { totalCarbs += value; },
             calories: (value) => { totalCalories += value; },
-            weight: (value) => {totalWeight += value} 
         };
         if (keyToVariableMap.hasOwnProperty(foodToAdd[i][0])) {
             keyToVariableMap[foodToAdd[i][0]](value);
             cell.textContent = value;
         } else {
             cell.textContent = value;
+            if (i == 0) {
+                rowName = value;
+            }
         }
         row.appendChild(cell);
-        }
-        const rowDeleteButton = createDeleteButton();
+    }
+        const rowDeleteButton = createDeleteButton(rowName);
         row.appendChild(rowDeleteButton);
         const table = document.getElementById("tableFoods");
         table.appendChild(row);
+        //console.log(row.getElementsByTagName("td")[0].innerHTML); //name of the food.
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     //});
 }
@@ -261,12 +263,30 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
         })
     })
 }
-const createDeleteButton = () => {
+const createDeleteButton = (nameOfTheFoodInRow) => {
     const deleteButton = document.createElement("button");
     const deleteButtonImage = document.createElement("img");
     deleteButtonImage.src = "transparentLetterX.png";
     deleteButton.type = "submit";
     deleteButton.id = "deleteButton"
+    deleteButton.value = nameOfTheFoodInRow;
+    deleteButton.onclick = () => deleteVisualRowFromTable(deleteButton.value);
     deleteButton.appendChild(deleteButtonImage);
     return deleteButton;
+}
+
+const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
+    const table = document.getElementById("tableFoods");
+    const foodRowsInTheTable = table.getElementsByTagName("tr"); 
+    for (i = 0; i < foodRowsInTheTable.length; i++ ) {
+        const rowElement = foodRowsInTheTable[i];
+        const nameOfTheFoodInTable = rowElement.childNodes[0].innerHTML;
+        console.log(rowElement);
+        console.log(nameOfTheButtonRowFood);
+        console.log(nameOfTheFoodInTable);
+        if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
+            rowElement.remove();
+            break;
+        }
+    }
 }
