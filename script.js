@@ -286,7 +286,18 @@ const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
         console.log(nameOfTheFoodInTable);
         if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
             rowElement.remove();
+            removeMacroElementValuesFromTotal(rowElement);
             break;
         }
     }
+}
+const removeMacroElementValuesFromTotal = (rowElement) => {
+    const foodMacros = rowElement.childNodes;
+    totalCarbs -= parseInt(foodMacros[2].innerHTML);
+    totalProtein -= parseInt(foodMacros[3].innerHTML);
+    totalFats -= parseInt(foodMacros[4].innerHTML);
+    totalCalories -= parseInt(foodMacros[5].innerHTML);
+    
+    addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
+    console.log(foodMacros);
 }
