@@ -3,12 +3,8 @@
 <head>
     <title>BARV</title>
     <link rel="stylesheet" href="style.css">
-    <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
-            var auto_refresh = setInterval(function () {
-                    $('#tableFoods').load('index.html').fadeIn("slow");
-                }, 1000);
-    </script>
     <script defer src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="wholepage">
@@ -30,11 +26,7 @@
                     <button class="dropbtn">
                         <h2 id="nextmealdisplay"></h2>
                     </button>
-                    <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
+                    <div class="dropdown-content" id="mealDropdown"></div>
                 </div>   
                 <button type="submit" id="addmealbtn" onclick="openMealPopup()"><img src="plusSign.png"></button>
             <div class="mealStartInfo">
@@ -49,7 +41,7 @@
                 </form>
             </div>
             </div>   
-            <div class="tblebtn">
+            <div id="tblebtn">
                 <table id="tble">
                     <thead>
                         <tr class="headers">
@@ -89,9 +81,11 @@
                 </form>
             </div>
             </div>
-            <div class="caloriesleftsofar">
-                <h2 id="caloriessofar">CALORIES SO FAR:</h2>
-                <h2 id="caloriesleft">CALORIES LEFT:</h2>
+            <div class="calsLeftSoFar">
+                <h2 id="calsSoFarText">CALORIES SO FAR:</h2>
+                <h2 id="caloriesleftsofarNumber"></h2>
+                <h2 id="calsLeftText">CALORIES LEFT:</h2>
+                <h2 id="caloriesleftNumber"></h2>
             </div>
             <div class="foods">
             </div>

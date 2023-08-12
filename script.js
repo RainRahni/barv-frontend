@@ -1,6 +1,4 @@
-//const { response } = require("express");
 
-//const { send } = require("express/lib/response");
 window.addEventListener('load', () => {
     const data = retrieveFoods()
     .then((resolvedValue) => {
@@ -11,8 +9,28 @@ window.addEventListener('load', () => {
         console.log(m[0][1])}))
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
+    const datas = getExistingNextMealNamesFromDatabase("LUNCH")
+    .then((resolvedValue) => {
+        console.log(Object.entries(resolvedValue));
+        return Object.entries(resolvedValue);
+    });
+    createAnchorElementForMealDropdown(datas);
 });
-
+const clearTableAndDisplayMealFoods = (specificMealName) => {
+    eraseAllRowsFromScreen();
+    const data = getMealWithNameFromDatabase(specificMealName)
+    .then((resolvedValue) => {
+        console.log(Object.entries(resolvedValue)[7][1]);
+        return Object.entries(resolvedValue)[7][1];
+    });
+    resetTotalMacrosAndCalories();
+    generateRows(data);
+    
+}
+const eraseAllRowsFromScreen = () => {
+    const table = document.getElementById("tableFoods");
+    table.innerHTML = "";
+}
 // Display what weekday it currently is
 const currentDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -57,13 +75,6 @@ function closePopup() {
     const inputs = document.querySelectorAll(".input");
     let data = {};
     getInputValues(inputs, data);
-    /**sendDataToBackEnd(data, "food/addFood").then(() => {
-        const dataTwo = retrieveFoods().then((data) => {
-            const entries = Object.entries(data);
-            return entries[entries.length - 1];
-        })
-        generateSingleRow(dataTwo);
-    });*/
     const entries = Object.entries(data);
     generateSingleRow(entries);
     mealData.push(data);
@@ -82,8 +93,9 @@ const constructMealAndSend = () => {
     Object.assign(meal, {fats : totalFats});
     Object.assign(meal, {type : mealTime.toUpperCase()});
     Object.assign(meal, {foods : mealData});
-    console.log(meal);
     sendDataToBackEnd(meal, "meal/addMeal");
+    let checkMark = document.getElementById("checkmark");
+    checkMark.style.visibility = "hidden";
 }
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealpopup");
@@ -97,11 +109,18 @@ function chosenMeal(meal) {
     mealTime = meal;
     const checkMark = document.getElementById("checkmark");
     checkMark.style.visibility="visible";
-    const table = document.getElementById("tableFoods");
-    table.innerHTML = "";
-    resetTotalMacros();
+    eraseAllRowsFromScreen();
+    resetTotalMacrosAndCalories();
 }
 
+const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/name=${nameOfTheMeal}`, {
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    return await response.json();
+}
 //Assign each value from text box to its key and put it into object.
 const getInputValues = (inputs, data) => {
     inputs.forEach(input => {
@@ -134,11 +153,13 @@ const changeTableVisibility = (boolean) => {
     const table = document.getElementById("tableFoods");
     boolean ? table.style.visibility = "visible" : table.style.visibility = "hidden";
 }
-const resetTotalMacros = () => {
+const resetTotalMacrosAndCalories = () => {
     document.getElementById("protFoot").innerHTML = 0;
     document.getElementById("calFoot").innerHTML = 0;
     document.getElementById("fatsFoot").innerHTML = 0;
     document.getElementById("carbFoot").innerHTML = 0;
+    document.getElementById("caloriesleftsofarNumber").innerHTML = 0;
+    document.getElementById("caloriesleftNumber").innerHTML = 3000;
     totalCalories = 0;
     totalCarbs = 0;
     totalFats = 0;
@@ -150,18 +171,20 @@ var caloriesLeft = 3000;
 let totalFats = 0;
 var totalProtein = 0;
 var totalCarbs = 0;
-var totalWeight = 0;
 
 //Generate rows into table
 const generateRows = (foodsInDb) => {
     foodsInDb.then(m => {
         m.forEach(food => {
             const row = document.createElement("tr");
-            const { name, calories, carbohydrates, protein, fats, weightInGrams } = food[1];
+            const { name, calories, carbohydrates, protein, fats, weightInGrams } = food;
             const values = [name, weightInGrams, calories, carbohydrates, protein, fats];
-            let cals = food[1]["calories"];
+            let cals = food["calories"];
+            console.log("tots:" + totalCalories);
+            console.log("cals:" + cals); 
             totalCalories += cals;
             caloriesLeft -= cals;
+            console.log(values);
             values.forEach(value => {
                 const cell = document.createElement("td");
                 cell.textContent = value;
@@ -172,13 +195,13 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
-            totalWeight += values[2];
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
 }
 const generateSingleRow = (foodToAdd) => {
-    const row = document.createElement("tr");                 
+    const row = document.createElement("tr");
+    let rowName = "";     
     for (i = 0; i < 6; i++) {
         const cell = document.createElement("td");
         var value = foodToAdd[i][1];
@@ -190,29 +213,91 @@ const generateSingleRow = (foodToAdd) => {
             protein: (value) => { totalProtein += value; },
             carbohydrates: (value) => { totalCarbs += value; },
             calories: (value) => { totalCalories += value; },
-            weight: (value) => {totalWeight += value} 
         };
         if (keyToVariableMap.hasOwnProperty(foodToAdd[i][0])) {
             keyToVariableMap[foodToAdd[i][0]](value);
             cell.textContent = value;
         } else {
             cell.textContent = value;
+            if (i == 0) {
+                rowName = value;
+            }
         }
         row.appendChild(cell);
-        }
-            const table = document.getElementById("tableFoods");
-            table.appendChild(row);
-            addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
+    }
+        const rowDeleteButton = createDeleteButton(rowName);
+        row.appendChild(rowDeleteButton);
+        const table = document.getElementById("tableFoods");
+        table.appendChild(row);
+        //console.log(row.getElementsByTagName("td")[0].innerHTML); //name of the food.
+        addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     //});
 }
 //Add values to footer in the table.
 const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft) => {
-    document.getElementById("caloriessofar").innerHTML += totalCalories;
-    document.getElementById("caloriesleft").innerHTML += caloriesLeft;
+    document.getElementById("caloriesleftsofarNumber").innerHTML = totalCalories;
+    document.getElementById("caloriesleftNumber").innerHTML = caloriesLeft;
     document.getElementById("calFoot").innerHTML = totalCalories;
     document.getElementById("protFoot").innerHTML = totalProtein;
     document.getElementById("fatsFoot").innerHTML = totalFats;
     document.getElementById("carbFoot").innerHTML = totalCarbs;
 }
+const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/mealtime=${nextMealTime}`, {
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    return await response.json();
+}
 
+const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
+    mealNamesToDisplayList.then(n => {
+        n.forEach(name => {
+            const meal = document.createElement("a");
+            const dropdownDiv = document.getElementById("mealDropdown");
+            meal.innerHTML = name[1];
+            meal.href = "#";
+            meal.onclick= () => clearTableAndDisplayMealFoods(name[1]);
+            dropdownDiv.appendChild(meal);
+        })
+    })
+}
+const createDeleteButton = (nameOfTheFoodInRow) => {
+    const deleteButton = document.createElement("button");
+    const deleteButtonImage = document.createElement("img");
+    deleteButtonImage.src = "transparentLetterX.png";
+    deleteButton.type = "submit";
+    deleteButton.id = "deleteButton"
+    deleteButton.value = nameOfTheFoodInRow;
+    deleteButton.onclick = () => deleteVisualRowFromTable(deleteButton.value);
+    deleteButton.appendChild(deleteButtonImage);
+    return deleteButton;
+}
 
+const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
+    const table = document.getElementById("tableFoods");
+    const foodRowsInTheTable = table.getElementsByTagName("tr"); 
+    for (i = 0; i < foodRowsInTheTable.length; i++ ) {
+        const rowElement = foodRowsInTheTable[i];
+        const nameOfTheFoodInTable = rowElement.childNodes[0].innerHTML;
+        console.log(rowElement);
+        console.log(nameOfTheButtonRowFood);
+        console.log(nameOfTheFoodInTable);
+        if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
+            rowElement.remove();
+            removeMacroElementValuesFromTotal(rowElement);
+            break;
+        }
+    }
+}
+const removeMacroElementValuesFromTotal = (rowElement) => {
+    const foodMacros = rowElement.childNodes;
+    totalCarbs -= parseInt(foodMacros[2].innerHTML);
+    totalProtein -= parseInt(foodMacros[3].innerHTML);
+    totalFats -= parseInt(foodMacros[4].innerHTML);
+    totalCalories -= parseInt(foodMacros[5].innerHTML);
+    
+    addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
+    console.log(foodMacros);
+}
