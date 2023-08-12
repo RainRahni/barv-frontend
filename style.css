@@ -201,6 +201,12 @@ input::-webkit-inner-spin-button {
 table, th, td {
     border: 1px solid black;
 }
+@media only screen and (max-width: 620px) {
+    /* For mobile phones: */
+    .menu, .main, .right {
+      width: 100%;
+    }
+  }
 table{
     margin-top: 75px;
     position: relative;
