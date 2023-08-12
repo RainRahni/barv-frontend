@@ -1,6 +1,7 @@
 package com.barv.foodController;
 
 import com.barv.exception.FoodAlreadyInDatabaseException;
+import com.barv.exception.MealNotFoundException;
 import com.barv.foodService.MealServiceImpl;
 import com.barv.meals.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class MealController {
     @GetMapping("/mealtime={mealTime}")
     public List<String> getExistingNextMealNames(@PathVariable("mealTime") String mealTime) {
         return mealServiceImpl.getExistingNextMealNames(mealTime);
+    }
+    @GetMapping("/name={mealName}")
+    public Meal getMealWithGivenName(@PathVariable("mealName") String mealName) throws MealNotFoundException {
+        return mealServiceImpl.getMealWithGivenName(mealName);
     }
 }

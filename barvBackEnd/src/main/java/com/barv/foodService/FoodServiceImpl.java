@@ -126,6 +126,6 @@ public class FoodServiceImpl implements FoodService {
             existingFood.setCalories(food.getCalories());
             return "Successfully changed food`s details!";
         }
-        throw new FoodAlreadyInDatabaseException();
+        throw new FoodAlreadyInDatabaseException("Food objects are equal already!");
     }
 }
