@@ -1,6 +1,7 @@
 package com.barv.foodService;
 
 import com.barv.exception.FoodAlreadyInDatabaseException;
+import com.barv.exception.MealNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
 import com.barv.foodRepository.MealRepository;
@@ -56,16 +57,21 @@ public class MealServiceImpl implements MealService {
         }
         return meal;
     }
-    public Meal updateMeal(Long idOfMealToUpdate, Meal newMealFields) {
-        Meal meal = mealRepository.findById(idOfMealToUpdate).get();
-        meal.setName(newMealFields.getName());
-        meal.setFats(newMealFields.getFats());
-        meal.setFoods(newMealFields.getFoods());
-        meal.setType(newMealFields.getType());
-        meal.setCalories(newMealFields.getCalories());
-        meal.setCarbohydrates(newMealFields.getCarbohydrates());
-        meal.setProtein(newMealFields.getProtein());
-        return meal;
+
+    @Override
+    public List<String> getExistingNextMealNames(String mealTime) {
+        MealType correspondingMealType = MealType.valueOf(mealTime);
+        List<Meal> mealsWithTypeInDatabase =
+                mealRepository.findByType(correspondingMealType);
+        return mealsWithTypeInDatabase.stream().map(Meal::getName).toList();
+    }
+
+    @Override
+    public Meal getMealWithGivenName(String mealName) throws MealNotFoundException {
+        if (mealRepository.existsByName(mealName)) {
+            return mealRepository.findByName(mealName);
+        }
+        throw new MealNotFoundException("No meal with given name found!");
     }
 
 }
