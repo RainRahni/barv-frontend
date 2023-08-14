@@ -61,7 +61,7 @@ const displayNextMeal = () => {
         return "Dinner";
     }
 };
-document.getElementById("nextmealdisplay").innerHTML = displayNextMeal()
+document.getElementById("nextmealdisplay").innerHTML = displayNextMeal();
 //Open popup
 let popup = document.getElementById("popup");
 function openPopup() {
@@ -229,6 +229,8 @@ const generateSingleRow = (foodToAdd) => {
         row.appendChild(rowDeleteButton);
         const table = document.getElementById("tableFoods");
         table.appendChild(row);
+        const btn = document.getElementById("btny");
+        btn.style.marginTop -= 10;
         //console.log(row.getElementsByTagName("td")[0].innerHTML); //name of the food.
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     //});

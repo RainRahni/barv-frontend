@@ -8,15 +8,6 @@
 </head>
 <body>
     <div class="wholepage">
-        <div class="whytitle">
-            <h1 class="whytitletext">WHY?</h1>
-        </div>
-        <div class="whyblock">
-                <img src="why_abs_pic.PNG">
-            <div>
-                <h1 class="else">Blank</h1>
-            </div>
-        </div>
         <div class="caloriesfood">
             <div class="time">
                 <h2 id="dayy">DAY:</h2>
@@ -29,17 +20,12 @@
                     <div class="dropdown-content" id="mealDropdown"></div>
                 </div>   
                 <button type="submit" id="addmealbtn" onclick="openMealPopup()"><img src="plusSign.png"></button>
-            <div class="mealStartInfo">
-                <form class="mealpopup" id="mealpopup">
-                    <h2 id="chooseMealTime">Choose meal time!</h2>
-                    <button type="button" class="meal" onclick="chosenMeal('Breakfast')">Breakfast</button>
-                    <button type="button" class="meal" onclick="chosenMeal('Pre_lunch')">Pre-Lunch</button>
-                    <button type="button" class="meal" onclick="chosenMeal('Lunch')">Lunch</button>
-                    <button type="button" class="meal" onclick="chosenMeal('Pre_dinner')">Pre-Dinner</button>
-                    <button type="button" class="meal" onclick="chosenMeal('Dinner')">Dinner</button>
-                    <button type="button" class="meal" onclick="chosenMeal('Snack')">Snack</button>
-                </form>
             </div>
+            <div class="calsLeftSoFar">
+                <h2 id="calsSoFarText">CALORIES SO FAR:</h2>
+                <h2 id="caloriesleftsofarNumber"></h2>
+                <h2 id="calsLeftText">CALORIES LEFT:</h2>
+                <h2 id="caloriesleftNumber"></h2>
             </div>   
             <div id="tblebtn">
                 <table id="tble">
@@ -80,12 +66,17 @@
                     <button type="button" onclick="closePopup()" id="btnoke"> OK</button>
                 </form>
             </div>
+            <div class="mealStartInfo">
+                <form class="mealpopup" id="mealpopup">
+                    <h2 id="chooseMealTime">Choose meal time!</h2>
+                    <button type="button" class="meal" onclick="chosenMeal('Breakfast')">Breakfast</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Pre_lunch')">Pre-Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Lunch')">Lunch</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Pre_dinner')">Pre-Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Dinner')">Dinner</button>
+                    <button type="button" class="meal" onclick="chosenMeal('Snack')">Snack</button>
+                </form>
             </div>
-            <div class="calsLeftSoFar">
-                <h2 id="calsSoFarText">CALORIES SO FAR:</h2>
-                <h2 id="caloriesleftsofarNumber"></h2>
-                <h2 id="calsLeftText">CALORIES LEFT:</h2>
-                <h2 id="caloriesleftNumber"></h2>
             </div>
             <div class="foods">
             </div>
