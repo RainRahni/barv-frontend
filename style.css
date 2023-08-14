@@ -12,6 +12,22 @@ body{
     width: 36%;
 }
 
+#dayy{
+    float: left;
+    width: 11%;
+}
+
+#weekday{
+    float: left;
+    width: 30%;
+    margin-left: 1%;
+}
+
+#nextmeal{
+    margin-left: 2%;
+    width: 30%;
+}
+
 .dropbtn {
     color:black;
     background-color:white;
@@ -49,6 +65,51 @@ body{
     margin-left: 27%;
     margin-top: 5%;
 }
+
+#addmealbtn {
+    border: none;
+    background-color: white;
+
+}
+
+#addmealbtn:hover {
+    background-color: rgb(211, 211, 211);
+    border-radius: 5%;
+}
+
+.calsLeftSoFar {
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    margin-top: auto;
+    margin-left: 10%;
+    width: 60%;
+}
+
+#calsLeftText {
+    margin-left: -10%;
+}
+
+#caloriesleftsofarNumber{
+    width: 20%;
+}
+
+#caloriesleftNumber {
+    width: 20%;
+}
+
+table {
+    position: relative;
+    float: left;
+    margin-left: 10%;
+    width: 37%;
+    visibility: visible;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
 .mealStartInfo {
     display: flex;
     flex-direction: row;
@@ -58,14 +119,12 @@ body{
     height: 16%;
     margin: 3%;
 }
-#dayy{
-    float: left;
-    width: 11%;
-}
+
 #chooseMealTime {
     height: 10%;
     margin-top: 1%;
 }
+
 #checkmark {
     margin-top: 17%;
     margin-left: -12%;
@@ -75,40 +134,13 @@ body{
     border: none;
     background-color: white;
 }
+
 #checkmark:hover {
     background-color: rgb(204, 248, 211);
     border-radius: 10%;
 }
-.calsLeftSoFar {
-    margin-left: 10%;
-    display: inline-block;
-    width: 130%;
-}
-#weekday{
-    float: left;
-    width: 30%;
-    margin-left: 1%;
-}
-#nextmeal{
-    margin-left: 2%;
-    width: 30%;
-}
-#calsLeftText {
-    margin-left: 70%;
-    margin-top: 10%;
-}
-#calsSoFarText {
-    margin-top: 2.5%;
-}
 
-#caloriesleftsofarNumber{
-    margin-left: 16%;
-    margin-top: -3.2%;
-}
-#caloriesleftNumber {
-    margin-left: 35.3%;
-    margin-top: -3.3%;
-}
+
 
 .btn{
     position: absolute;
@@ -150,15 +182,7 @@ input::-webkit-inner-spin-button {
     background: #fff;
     justify-content: center;
 }
-#addmealbtn {
-    border: none;
-    background-color: white;
 
-}
-#addmealbtn:hover {
-    background-color: rgb(211, 211, 211);
-    border-radius: 5%;
-}
 .mealpopup{
     display: flex;
     flex-wrap: wrap;
@@ -186,20 +210,10 @@ input::-webkit-inner-spin-button {
     width: 40%;
     margin: 3%;
 }
-table, th, td {
-    border: 1px solid black;
-}
+
 @media only screen and (max-width: 620px) {
     /* For mobile phones: */
     .menu, .main, .right {
       width: 100%;
     }
   }
-table{
-    margin-top: 15%;
-    position: relative;
-    float: left;
-    margin-left: 10%;
-    width: 37%;
-    visibility: visible;
-}
