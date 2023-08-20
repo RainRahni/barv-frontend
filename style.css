@@ -1,41 +1,39 @@
-.whytitle{
-    position: relative;
-    left: 73%;
-    font-weight: bold;
-    padding-top: 50px;
-    width: 10px;
-}
-.else{
-    float: right;
-    font-weight: bold; 
-    padding-left: 100px;
-}
-.whyblock{
-    display: flex;
-    position: relative;
-    width: 40%;
-    float: right;
-    align-items: center;
-    }
 body{
-    margin: 10;
     font-family: 'Times New Roman';
 }
+
 .time{
     display: flex;
     flex-direction: row;
     clear: both;
     float: left;
-    margin-left: 5%;
-    margin-top: -23%;
+    margin-left: 10%;
+    padding: -3%;
+    width: 36%;
 }
+
+#dayy{
+    float: left;
+    width: 11%;
+}
+
+#weekday{
+    float: left;
+    width: 30%;
+    margin-left: 1%;
+}
+
+#nextmeal{
+    margin-left: 2%;
+    width: 30%;
+}
+
 .dropbtn {
-    margin-top: -2%;
     color:black;
     background-color:white;
     border: none;
-    height: 10px;
-    font-size: 17px;
+    height: 10%;
+    font-size: 100%;
     font-weight:bolder;
 }
 
@@ -67,6 +65,51 @@ body{
     margin-left: 27%;
     margin-top: 5%;
 }
+
+#addmealbtn {
+    border: none;
+    background-color: white;
+
+}
+
+#addmealbtn:hover {
+    background-color: rgb(211, 211, 211);
+    border-radius: 5%;
+}
+
+.calsLeftSoFar {
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    margin-top: auto;
+    margin-left: 10%;
+    width: 60%;
+}
+
+#calsLeftText {
+    margin-left: -10%;
+}
+
+#caloriesleftsofarNumber{
+    width: 20%;
+}
+
+#caloriesleftNumber {
+    width: 20%;
+}
+
+table {
+    position: absolute;
+    float: left;
+    margin-left: 10%;
+    width: 37%;
+    visibility: visible;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
 .mealStartInfo {
     display: flex;
     flex-direction: row;
@@ -74,70 +117,56 @@ body{
 .meal {
     width: 40%;
     height: 16%;
-    margin: 10px;
+    margin: 3%;
 }
-#dayy{
-    float: left;
-    width: 200px;
-}
+
 #chooseMealTime {
     height: 10%;
     margin-top: 1%;
 }
+
 #checkmark {
-    margin-top: 0.68%;
-    margin-left: 30%;
-    visibility: hidden;
+    margin-left: 85%;
     border: none;
     background-color: white;
 }
+
 #checkmark:hover {
     background-color: rgb(204, 248, 211);
     border-radius: 10%;
 }
-.calsLeftSoFar {
-    margin-top: -16.5%;
-    margin-left: 5%;
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 20%;
+    width: 18%;
+    height: 10;
 }
-#weekday{
-    margin-left: -20%;
-    float: left;
-    width: 200px;
-}
-#nextmeal{
-    margin-left: -5%;
-}
-#calsLeftText {
-    margin-left: 21%;
-    margin-top: -3.2%;
-}
-#caloriesleftsofarNumber{
-    margin-left: 16.5%;
-    margin-top: -3.2%;
-}
-#caloriesleftNumber {
-    margin-left: 35.3%;
-    margin-top: -3.2%;
-}
-#nextmealdisplay{
-    margin-left: 1%;
-}
-.btn{
-    margin-left: 17.6%;
+#btny{
     position: absolute;
     padding: 10px 60px;
-    margin-top: 10px;
+    display: flex;
 }
 
+#tblebtn {
+    display: flex;
+    justify-content: left;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 #deleteButton {
     margin-left: 9.5%;
     background-color: white;
     border: white;
+    height: 11%;
+}
+#tble button {
+    position: relative;
 }
 #deleteButton:hover {
     background-color: rgb(245, 188, 188);
@@ -145,8 +174,8 @@ input::-webkit-inner-spin-button {
 .popup{
     display: flex;
     flex-wrap: wrap;
-    width: 300px;
-    height: 120px;
+    width: 21%;
+    height: 17%;
     border-radius: 6px;
     border-color: #050505;
     border-style: solid;
@@ -155,27 +184,19 @@ input::-webkit-inner-spin-button {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 30px 30px;
+    padding: 0 1% 2%;
     color : #171717;
     transition: transform 0.4s;
     visibility: hidden;
     background: #fff;
     justify-content: center;
 }
-#addmealbtn {
-    border: none;
-    background-color: white;
-    margin-top: 1%;
-}
-#addmealbtn:hover {
-    background-color: rgb(211, 211, 211);
-    border-radius: 5%;
-}
+
 .mealpopup{
     display: flex;
     flex-wrap: wrap;
-    width: 300px;
-    height: 120px;
+    width: 21%;
+    height: 17%;
     border-radius: 6px;
     border-color: #050505;
     border-style: solid;
@@ -184,7 +205,7 @@ input::-webkit-inner-spin-button {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 30px 30px;
+    padding: 0 1% 2%;
     color : #171717;
     transition: transform 0.4s;
     visibility: hidden;
@@ -196,21 +217,12 @@ input::-webkit-inner-spin-button {
 }
 .input{
     width: 40%;
-    margin: 10px;
+    margin: 3%;
 }
-table, th, td {
-    border: 1px solid black;
-}
+
 @media only screen and (max-width: 620px) {
     /* For mobile phones: */
     .menu, .main, .right {
       width: 100%;
     }
   }
-table{
-    margin-top: 75px;
-    position: relative;
-    margin-left: 75px;
-    width: 565px;
-    visibility: visible;
-}
