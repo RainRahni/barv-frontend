@@ -27,10 +27,12 @@ public class MealController {
     public Meal addMeal(@RequestBody Meal meal) throws FoodAlreadyInDatabaseException {
         return mealServiceImpl.addMeal(meal);
     }
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/mealtime={mealTime}")
     public List<String> getExistingNextMealNames(@PathVariable("mealTime") String mealTime) {
         return mealServiceImpl.getExistingNextMealNames(mealTime);
     }
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/name={mealName}")
     public Meal getMealWithGivenName(@PathVariable("mealName") String mealName) throws MealNotFoundException {
         return mealServiceImpl.getMealWithGivenName(mealName);
