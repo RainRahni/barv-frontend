@@ -160,10 +160,11 @@ input::-webkit-inner-spin-button {
 }
 
 #deleteButton {
+    position: absolute;
     margin-left: 9.5%;
+    margin-top: -10%;
     background-color: white;
     border: white;
-    height: 11%;
 }
 #tble button {
     position: relative;

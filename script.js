@@ -203,7 +203,7 @@ const generateRows = (foodsInDb) => {
 }
 const generateSingleRow = (foodToAdd) => {
     const row = document.createElement("tr");
-    let rowName = "";     
+    let rowName = "";    
     for (i = 0; i < 6; i++) {
         const cell = document.createElement("td");
         var value = foodToAdd[i][1];
@@ -225,17 +225,22 @@ const generateSingleRow = (foodToAdd) => {
                 rowName = value;
             }
         }
+        if (i == 5) {
+            const div = document.createElement("div");
+            const rowDeleteButton = createDeleteButton(rowName);
+            rowDeleteButton.style.right = -55 + "px";
+            div.style.position = "relative";
+            div.appendChild(rowDeleteButton);
+            cell.appendChild(div);
+        }
         row.appendChild(cell);
     }
-        const rowDeleteButton = createDeleteButton(rowName);
-        row.appendChild(rowDeleteButton);
-        const table = document.getElementById("tableFoods");
-        table.appendChild(row);
-        const addButton = document.getElementById("btny");
-        const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
-        addButton.style.marginTop = currentMarginTop + 2 + "%";
-        addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
-    //});
+    const table = document.getElementById("tableFoods"); 
+    table.appendChild(row);
+    const addButton = document.getElementById("btny");
+    const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
+    addButton.style.marginTop = currentMarginTop + 2 + "%";
+    addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
 }
 //Add values to footer in the table.
 const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft) => {
