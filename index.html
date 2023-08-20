@@ -52,8 +52,9 @@
                         </tr>
                     </tfoot>
                 </table>
-                <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
-                <button type="submit" id="checkmark"><img src="greenCheckMark.png" onclick="constructMealAndSend()"></button>
+                <div class="buttons" id="but">
+                    <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
+                </div>
             </div>
             <div class="foodInformation" id="foods">
                 <form class="popup" id="popup">
@@ -77,8 +78,6 @@
                     <button type="button" class="meal" onclick="chosenMeal('Snack')">Snack</button>
                 </form>
             </div>
-            </div>
-            <div class="foods">
             </div>
         </div>
     </div>

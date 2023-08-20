@@ -79,7 +79,6 @@ function closePopup() {
     generateSingleRow(entries);
     mealData.push(data);
     changeTableVisibility(true);
-
 }
 
 //Construct meal class and send it to database
@@ -94,8 +93,6 @@ const constructMealAndSend = () => {
     Object.assign(meal, {type : mealTime.toUpperCase()});
     Object.assign(meal, {foods : mealData});
     sendDataToBackEnd(meal, "meal/addMeal");
-    let checkMark = document.getElementById("checkmark");
-    checkMark.style.visibility = "hidden";
 }
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealpopup");
@@ -107,8 +104,10 @@ let mealTime = "";
 function chosenMeal(meal) {
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
-    const checkMark = document.getElementById("checkmark");
-    checkMark.style.visibility="visible";
+    const addButton = document.getElementById("btny");
+    const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
+    addButton.style.marginTop = 0 + "%";
+    createCheckMarkButton();
     eraseAllRowsFromScreen();
     resetTotalMacrosAndCalories();
 }
@@ -195,6 +194,9 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
+            const addButton = document.getElementById("btny");
+            const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
+            addButton.style.marginTop = currentMarginTop + 2 + "%";
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
@@ -229,9 +231,9 @@ const generateSingleRow = (foodToAdd) => {
         row.appendChild(rowDeleteButton);
         const table = document.getElementById("tableFoods");
         table.appendChild(row);
-        const btn = document.getElementById("btny");
-        btn.style.marginTop -= 10;
-        //console.log(row.getElementsByTagName("td")[0].innerHTML); //name of the food.
+        const addButton = document.getElementById("btny");
+        const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
+        addButton.style.marginTop = currentMarginTop + 2 + "%";
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     //});
 }
@@ -277,6 +279,18 @@ const createDeleteButton = (nameOfTheFoodInRow) => {
     return deleteButton;
 }
 
+const createCheckMarkButton = () => {
+    const buttons = document.getElementById("but");
+    const checkMark = document.createElement("button");
+    const checkMarkImage = document.createElement("img");
+    checkMarkImage.src = "greenCheckMark.png";
+    checkMark.type = "submit";
+    checkMark.id = "checkmark";
+    checkMark.onclick = () => constructMealAndSend();
+    checkMark.appendChild(checkMarkImage);
+    buttons.appendChild(checkMark);
+    return checkMark;
+}
 const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
     const table = document.getElementById("tableFoods");
     const foodRowsInTheTable = table.getElementsByTagName("tr"); 
@@ -289,6 +303,9 @@ const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
         if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
             rowElement.remove();
             removeMacroElementValuesFromTotal(rowElement);
+            const addButton = document.getElementById("btny");
+            const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
+            addButton.style.marginTop = currentMarginTop - 2 + "%";
             break;
         }
     }
