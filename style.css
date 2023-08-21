@@ -224,6 +224,6 @@ input::-webkit-inner-spin-button {
 @media only screen and (max-width: 620px) {
     /* For mobile phones: */
     .wholepage {
-      width: 100%;
+      width: 150%;
     }
   }
