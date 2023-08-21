@@ -220,3 +220,10 @@ input::-webkit-inner-spin-button {
     width: 40%;
     margin: 3%;
 }
+
+@media only screen and (max-width: 620px) {
+    /* For mobile phones: */
+    .wholepage {
+      width: 100%;
+    }
+  }
