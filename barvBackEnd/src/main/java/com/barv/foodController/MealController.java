@@ -22,7 +22,7 @@ public class MealController {
     private final MealServiceImpl mealServiceImpl;
     @Autowired
     public MealController(MealServiceImpl mealServiceImpl) { this.mealServiceImpl = mealServiceImpl; }
-    @CrossOrigin(origins = "http://127.0.0.1:5500/")
+    @CrossOrigin(origins = "http://127.0.0.1:5500/", originPatterns = "https://rainrahni.github.io/barv/")
     @PostMapping("/addMeal")
     public Meal addMeal(@RequestBody Meal meal) throws FoodAlreadyInDatabaseException {
         return mealServiceImpl.addMeal(meal);
