@@ -221,9 +221,13 @@ input::-webkit-inner-spin-button {
     margin: 3%;
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 1334px) {
     /* For mobile phones: */
     body {
       width: 150%;
+      height: 150%;
+    }
+    .dropdown-content {
+        margin-left: 150%;
     }
 }
