@@ -221,10 +221,13 @@ input::-webkit-inner-spin-button {
     margin: 3%;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1334px) {
     /* For mobile phones: */
     body {
       width: 150%;
       height: 150%;
+    }
+    #mealDropdown {
+        margin-left: 150%;
     }
 }
