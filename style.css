@@ -227,7 +227,7 @@ input::-webkit-inner-spin-button {
       width: 150%;
       height: 150%;
     }
-    #mealDropdown {
+    .dropdown-content {
         margin-left: 150%;
     }
 }
