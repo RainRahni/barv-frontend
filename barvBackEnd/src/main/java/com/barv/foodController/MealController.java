@@ -22,17 +22,17 @@ public class MealController {
     private final MealServiceImpl mealServiceImpl;
     @Autowired
     public MealController(MealServiceImpl mealServiceImpl) { this.mealServiceImpl = mealServiceImpl; }
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "http://127.0.0.1:5500/", originPatterns = "https://rainrahni.github.io/barv/")
     @PostMapping("/addMeal")
     public Meal addMeal(@RequestBody Meal meal) throws FoodAlreadyInDatabaseException {
         return mealServiceImpl.addMeal(meal);
     }
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "http://127.0.0.1:5500/", originPatterns = "https://rainrahni.github.io/barv/")
     @GetMapping("/mealtime={mealTime}")
     public List<String> getExistingNextMealNames(@PathVariable("mealTime") String mealTime) {
         return mealServiceImpl.getExistingNextMealNames(mealTime);
     }
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "http://127.0.0.1:5500/")
     @GetMapping("/name={mealName}")
     public Meal getMealWithGivenName(@PathVariable("mealName") String mealName) throws MealNotFoundException {
         return mealServiceImpl.getMealWithGivenName(mealName);
