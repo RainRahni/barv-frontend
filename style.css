@@ -230,4 +230,7 @@ input::-webkit-inner-spin-button {
     .dropdown-content {
         margin-left: 150%;
     }
+    #checkmark {
+        top: 50%;
+    }
 }
