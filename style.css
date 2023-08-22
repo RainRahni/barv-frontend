@@ -225,5 +225,6 @@ input::-webkit-inner-spin-button {
     /* For mobile phones: */
     body {
       width: 150%;
+      height: 150%;
     }
 }
