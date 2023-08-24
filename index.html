@@ -9,18 +9,22 @@
     
 </head>
 <body>
-    <div class="wholepage">
-        <div class="caloriesfood">
+    <div id="wholepage" class="grid">
+        <div class="timeContainer">
             <div class="time">
                 <h2 id="dayy">DAY:</h2>
+            </div>
+            <div class="time">
                 <h2 id="weekday"></h2>
+            </div>
+            <div class="time">
                 <h2 id="nextmeal">NEXT MEAL:</h2>  
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <h2 id="nextmealdisplay"></h2>
-                    </button>
-                    <div class="dropdown-content" id="mealDropdown"></div>
-                </div>   
+            </div>
+            <div class="dropdown time">
+                <button class="dropbtn">
+                    <h2 id="nextmealdisplay"></h2>
+                </button>
+                <div class="dropdown-content" id="mealDropdown"></div>
                 <button type="submit" id="addmealbtn" onclick="openMealPopup()"><img src="plusSign.png"></button>
             </div> 
         </div> 
