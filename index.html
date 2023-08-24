@@ -4,59 +4,75 @@
     <title>BARV</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=(), user-id=() " />
+    
 </head>
 <body>
-    <div class="wholepage">
-        <div class="caloriesfood">
+    <div id="wholepage" class="grid">
+        <div class="timeContainer">
             <div class="time">
                 <h2 id="dayy">DAY:</h2>
+            </div>
+            <div class="time">
                 <h2 id="weekday"></h2>
+            </div>
+            <div class="time">
                 <h2 id="nextmeal">NEXT MEAL:</h2>  
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <h2 id="nextmealdisplay"></h2>
-                    </button>
-                    <div class="dropdown-content" id="mealDropdown"></div>
-                </div>   
+            </div>
+            <div class="dropdown time">
+                <button class="dropbtn">
+                    <h2 id="nextmealdisplay"></h2>
+                </button>
+                <div class="dropdown-content" id="mealDropdown"></div>
                 <button type="submit" id="addmealbtn" onclick="openMealPopup()"><img src="plusSign.png"></button>
+            </div> 
+        </div> 
+        <div class="caloriesContainer">
+            <div class="caloriesDisplay">
+                <h2 id="calsSoFarText">CALORIES SO FAR:</h2> 
             </div>
-            <div class="calsLeftSoFar">
-                <h2 id="calsSoFarText">CALORIES SO FAR:</h2>
+            <div class="caloriesDisplay">
                 <h2 id="caloriesleftsofarNumber"></h2>
-                <h2 id="calsLeftText">CALORIES LEFT:</h2>
-                <h2 id="caloriesleftNumber"></h2>
-            </div>   
-            <div id="tblebtn">
-                <table id="tble">
-                    <thead>
-                        <tr class="headers">
-                            <th>Name</th>
-                            <th>Weight</th>
-                            <th>Calories</th>
-                            <th>Carbohydrates</th>
-                            <th>Protein</th>
-                            <th>Fats</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableFoods">
-                    </tbody>
-                    <tfoot id="foodFoot">
-                        <tr>
-                            <td style="font-weight: bold;">In total</td>
-                            <td style="font-weight: bold;">--</td>
-                            <td id="calFoot" style="font-weight: bold;"></td>
-                            <td id="carbFoot" style="font-weight: bold;"></td>
-                            <td id="protFoot" style="font-weight: bold;"></td>
-                            <td id="fatsFoot" style="font-weight: bold;"></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="buttons" id="but">
-                    <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
-                </div>
             </div>
-            <div class="foodInformation" id="foods">
+            <div class="caloriesDisplay">
+                <h2 id="calsLeftText">CALORIES LEFT:</h2> 
+            </div>
+            <div class="caloriesDisplay">
+                <h2 id="caloriesleftNumber"></h2> 
+            </div>
+        </div>
+        <div id="tblebtn">
+            <table id="tble">
+                <thead>
+                    <tr class="headers">
+                        <th>Name</th>
+                        <th>Weight</th>
+                        <th>Calories</th>
+                        <th>Carbohydrates</th>
+                        <th>Protein</th>
+                        <th>Fats</th>
+                    </tr>
+                </thead>
+                <tbody id="tableFoods">
+                </tbody>
+                <tfoot id="foodFoot">
+                    <tr>
+                        <td style="font-weight: bold;">In total</td>
+                        <td style="font-weight: bold;">--</td>
+                        <td id="calFoot" style="font-weight: bold;"></td>
+                        <td id="carbFoot" style="font-weight: bold;"></td>
+                        <td id="protFoot" style="font-weight: bold;"></td>
+                        <td id="fatsFoot" style="font-weight: bold;"></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="buttons" id="but">
+                <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
+            </div>
+        </div>
+        <div id="popups">
+            <div id="foodPopup">
                 <form class="popup" id="popup">
                     <input type="text" class="input" name="name" placeholder="Name">
                     <input type="number" class="input" name="weightInGrams" placeholder="Weight">
@@ -67,8 +83,8 @@
                     <button type="button" onclick="closePopup()" id="btnoke"> OK</button>
                 </form>
             </div>
-            <div class="mealStartInfo">
-                <form class="mealpopup" id="mealpopup">
+            <div id="mealPopups">
+                <form class="mealPopup" id="mealPopup">
                     <h2 id="chooseMealTime">Choose meal time!</h2>
                     <button type="button" class="meal" onclick="chosenMeal('Breakfast')">Breakfast</button>
                     <button type="button" class="meal" onclick="chosenMeal('Pre_lunch')">Pre-Lunch</button>
@@ -77,7 +93,6 @@
                     <button type="button" class="meal" onclick="chosenMeal('Dinner')">Dinner</button>
                     <button type="button" class="meal" onclick="chosenMeal('Snack')">Snack</button>
                 </form>
-            </div>
             </div>
         </div>
     </div>

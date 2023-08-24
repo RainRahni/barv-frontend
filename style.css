@@ -2,30 +2,17 @@ body{
     font-family: 'Times New Roman';
 }
 
-.time{
+.grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr;
+}
+
+.timeContainer {
     display: flex;
-    flex-direction: row;
-    clear: both;
-    float: left;
-    margin-left: 10%;
-    padding: -3%;
-    width: 36%;
 }
 
-#dayy{
-    float: left;
-    width: 11%;
-}
-
-#weekday{
-    float: left;
-    width: 30%;
-    margin-left: 1%;
-}
-
-#nextmeal{
-    margin-left: 2%;
-    width: 30%;
+.time {
+    padding-left: 1.5em;
 }
 
 .dropbtn {
@@ -35,10 +22,6 @@ body{
     height: 10%;
     font-size: 100%;
     font-weight:bolder;
-}
-
-.dropdown {
-    position: relative;
 }
 
 .dropdown-content {
@@ -59,17 +42,33 @@ body{
 
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block}  
-.foodInformation{
+#foodPopup {
     display: flex;
     flex-direction: row;
     margin-left: 27%;
     margin-top: 5%;
 }
 
+.caloriesContainer {
+    display: flex;
+}
+
+.caloriesDisplay {
+    padding-left: 1.5em;
+}
+
+table, th, td {
+    border: 1px solid black;
+    table-layout: auto;
+}
+
+#tblebtn {
+    margin-left: 1.5em;
+}
+
 #addmealbtn {
     border: none;
     background-color: white;
-
 }
 
 #addmealbtn:hover {
@@ -77,82 +76,11 @@ body{
     border-radius: 5%;
 }
 
-.calsLeftSoFar {
-    display: flex;
-    flex-direction: row;
-    clear: both;
-    margin-top: auto;
-    margin-left: 10%;
-    width: 60%;
-}
-
-#calsLeftText {
-    margin-left: -10%;
-}
-
-#caloriesleftsofarNumber{
-    width: 20%;
-}
-
-#caloriesleftNumber {
-    width: 20%;
-}
-
-table {
-    position: absolute;
-    float: left;
-    margin-left: 10%;
-    width: 37%;
-    visibility: visible;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-.mealStartInfo {
-    display: flex;
-    flex-direction: row;
-}
-.meal {
-    width: 40%;
-    height: 16%;
-    margin: 3%;
-}
-
-#chooseMealTime {
-    height: 10%;
-    margin-top: 1%;
-}
-
-#checkmark {
-    margin-left: 85%;
-    border: none;
-    background-color: white;
-}
-
 #checkmark:hover {
     background-color: rgb(204, 248, 211);
     border-radius: 10%;
 }
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 5%;
-    margin-left: 20%;
-    width: 18%;
-    height: 10;
-}
-#btny{
-    position: absolute;
-    padding: 10px 60px;
-    display: flex;
-}
 
-#tblebtn {
-    display: flex;
-    justify-content: left;
-}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -166,9 +94,7 @@ input::-webkit-inner-spin-button {
     background-color: white;
     border: white;
 }
-#tble button {
-    position: relative;
-}
+
 #deleteButton:hover {
     background-color: rgb(245, 188, 188);
 }
@@ -193,7 +119,11 @@ input::-webkit-inner-spin-button {
     justify-content: center;
 }
 
-.mealpopup{
+.meal {
+    width: 40%;
+    margin: 2%;
+}
+.mealPopup{
     display: flex;
     flex-wrap: wrap;
     width: 21%;
@@ -206,7 +136,7 @@ input::-webkit-inner-spin-button {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 1% 2%;
+    padding: 0 1% 3.5%;
     color : #171717;
     transition: transform 0.4s;
     visibility: hidden;
@@ -221,13 +151,3 @@ input::-webkit-inner-spin-button {
     margin: 3%;
 }
 
-@media only screen and (max-width: 1334px) {
-    /* For mobile phones: */
-    body {
-      width: 150%;
-      height: 150%;
-    }
-    .dropdown-content {
-        margin-left: 150%;
-    }
-}

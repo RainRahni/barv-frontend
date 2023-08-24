@@ -95,8 +95,9 @@ const constructMealAndSend = () => {
     sendDataToBackEnd(meal, "meal/addMeal");
 }
 //Add and remove meal popup from screen
-let mealPopup = document.getElementById("mealpopup");
+let mealPopup = document.getElementById("mealPopup");
 function openMealPopup() {
+    console.log(mealPopup);
     mealPopup.classList.add("open-popup"); 
 }
 let mealTime = "";
@@ -194,9 +195,6 @@ const generateRows = (foodsInDb) => {
             totalFats += values[5];
             totalCarbs += values[3];
             totalProtein += values[4];
-            const addButton = document.getElementById("btny");
-            const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
-            addButton.style.marginTop = currentMarginTop + 2 + "%";
         });
         addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
     });
@@ -237,9 +235,6 @@ const generateSingleRow = (foodToAdd) => {
     }
     const table = document.getElementById("tableFoods"); 
     table.appendChild(row);
-    const addButton = document.getElementById("btny");
-    const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
-    addButton.style.marginTop = currentMarginTop + 2 + "%";
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
 }
 //Add values to footer in the table.
@@ -308,9 +303,6 @@ const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
         if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
             rowElement.remove();
             removeMacroElementValuesFromTotal(rowElement);
-            const addButton = document.getElementById("btny");
-            const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
-            addButton.style.marginTop = currentMarginTop - 2 + "%";
             break;
         }
     }
