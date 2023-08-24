@@ -2,7 +2,17 @@ body{
     font-family: 'Times New Roman';
 }
 
+<<<<<<< Updated upstream
 .time{
+=======
+.grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr;
+
+}
+
+.timeContainer {
+>>>>>>> Stashed changes
     display: flex;
     flex-direction: row;
     clear: both;
@@ -12,6 +22,7 @@ body{
     width: 36%;
 }
 
+<<<<<<< Updated upstream
 #dayy{
     float: left;
     width: 11%;
@@ -28,6 +39,12 @@ body{
     width: 30%;
 }
 
+=======
+.time {
+    padding-left: 1.5em;
+}
+
+>>>>>>> Stashed changes
 .dropbtn {
     color:black;
     background-color:white;
@@ -37,10 +54,13 @@ body{
     font-weight:bolder;
 }
 
+<<<<<<< Updated upstream
 .dropdown {
     position: relative;
 }
 
+=======
+>>>>>>> Stashed changes
 .dropdown-content {
     display: none;
     position: absolute;
@@ -59,11 +79,28 @@ body{
 
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block}  
-.foodInformation{
+#foodPopup {
     display: flex;
     flex-direction: row;
     margin-left: 27%;
     margin-top: 5%;
+}
+
+.caloriesContainer {
+    display: flex;
+}
+
+.caloriesDisplay {
+    padding-left: 1.5em;
+}
+
+table, th, td {
+    border: 1px solid black;
+    table-layout: auto;
+}
+
+#tblebtn {
+    margin-left: 1.5em;
 }
 
 #addmealbtn {
@@ -77,6 +114,7 @@ body{
     border-radius: 5%;
 }
 
+<<<<<<< Updated upstream
 .calsLeftSoFar {
     display: flex;
     flex-direction: row;
@@ -131,6 +169,8 @@ table, th, td {
     background-color: white;
 }
 
+=======
+>>>>>>> Stashed changes
 #checkmark:hover {
     background-color: rgb(204, 248, 211);
     border-radius: 10%;
@@ -149,10 +189,13 @@ table, th, td {
     display: flex;
 }
 
+<<<<<<< Updated upstream
 #tblebtn {
     display: flex;
     justify-content: left;
 }
+=======
+>>>>>>> Stashed changes
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -193,7 +236,11 @@ input::-webkit-inner-spin-button {
     justify-content: center;
 }
 
-.mealpopup{
+.meal {
+    width: 40%;
+    margin: 2%;
+}
+.mealPopup{
     display: flex;
     flex-wrap: wrap;
     width: 21%;
@@ -206,7 +253,7 @@ input::-webkit-inner-spin-button {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 1% 2%;
+    padding: 0 1% 3.5%;
     color : #171717;
     transition: transform 0.4s;
     visibility: hidden;
