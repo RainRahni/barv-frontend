@@ -311,6 +311,8 @@ const removeMacroElementValuesFromTotal = (rowElement) => {
 }
 
 const editMeal = () => {
+    const editButton = document.getElementById("editPencil");
+    editButton.style.backgroundColor = "white";
     deleteCheckmarkAndAddButton();
     createAddFoodButton();
     createCheckMarkButton();
