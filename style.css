@@ -77,7 +77,7 @@ table, th, td {
 }
 
 #checkmark:hover {
-    background-color: rgb(204, 248, 211);
+    background-color: rgb(156, 206, 164);
     border-radius: 10%;
 }
 
@@ -89,8 +89,7 @@ input::-webkit-inner-spin-button {
 
 #deleteButton {
     position: absolute;
-    margin-left: 9.5%;
-    margin-top: -10%;
+    margin-top: -30%;
     background-color: white;
     border: white;
 }

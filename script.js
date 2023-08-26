@@ -9,7 +9,7 @@ window.addEventListener('load', () => {
         console.log(m[0][1])}))
     data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
     generateRows(data);
-    const datas = getExistingNextMealNamesFromDatabase("LUNCH")
+    const datas = getExistingNextMealNamesFromDatabase(displayNextMeal())
     .then((resolvedValue) => {
         console.log(Object.entries(resolvedValue));
         return Object.entries(resolvedValue);
@@ -54,11 +54,11 @@ const displayTimeOfMeal = () =>{
 //Display next meal.
 const displayNextMeal = () => {
     if (displayTimeOfMeal() == "8:20"){
-        return "Breakfast";
+        return "BREAKFAST";
     }else if (displayTimeOfMeal() == "13:00"){
-        return "Lunch";
+        return "LUNCH";
     }else{
-        return "Dinner";
+        return "DINNER";
     }
 };
 document.getElementById("nextmealdisplay").innerHTML = displayNextMeal();
@@ -114,7 +114,7 @@ function chosenMeal(meal) {
 }
 
 const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
-    const response = await fetch(`http://localhost:8080/api/v1/meal/name=${nameOfTheMeal}`, {
+    const response = await fetch(`http://192.168.1.166:8080/api/v1/meal/name=${nameOfTheMeal}`, {
         headers: {
             'Accept': 'application/json'
         }
@@ -141,7 +141,7 @@ const sendDataToBackEnd = (data, url) => {
 } 
 //Retrieve all foods from database.
 const retrieveFoods = async () => {
-    const response = await fetch('http://localhost:8080/api/v1/food/allFoods', {
+    const response = await fetch('http://192.168.1.166:8080/api/v1/food/allFoods', {
         headers: {
             'Accept': 'application/json'
         }
@@ -226,7 +226,8 @@ const generateSingleRow = (foodToAdd) => {
         if (i == 5) {
             const div = document.createElement("div");
             const rowDeleteButton = createDeleteButton(rowName);
-            rowDeleteButton.style.right = -55 + "px";
+            rowDeleteButton.style.right = -40 + "px";
+            console.log("margintop" + row.style.top);
             div.style.position = "relative";
             div.appendChild(rowDeleteButton);
             cell.appendChild(div);
@@ -247,7 +248,7 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
     document.getElementById("carbFoot").innerHTML = totalCarbs;
 }
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
-    const response = await fetch(`http://localhost:8080/api/v1/meal/mealtime=${nextMealTime}`, {
+    const response = await fetch(`http://192.168.1.166:8080/api/v1/meal/mealtime=${nextMealTime}`, {
         headers: {
             'Accept': 'application/json'
         }
