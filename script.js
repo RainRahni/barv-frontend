@@ -2,7 +2,6 @@
 window.addEventListener('load', () => {
     const datas = getExistingNextMealNamesFromDatabase(displayNextMeal())
     .then((resolvedValue) => {
-        console.log(Object.entries(resolvedValue));
         return Object.entries(resolvedValue);
     });
     createAnchorElementForMealDropdown(datas);
@@ -11,11 +10,12 @@ const clearTableAndDisplayMealFoods = (specificMealName) => {
     eraseAllRowsFromScreen();
     const data = getMealWithNameFromDatabase(specificMealName)
     .then((resolvedValue) => {
-        console.log(Object.entries(resolvedValue)[7][1]);
         return Object.entries(resolvedValue)[7][1];
     });
     resetTotalMacrosAndCalories();
     generateRows(data);
+    console.log("generate multiple");
+    console.log(data);
     
 }
 const eraseAllRowsFromScreen = () => {
@@ -170,16 +170,22 @@ const generateRows = (foodsInDb) => {
             const { name, calories, carbohydrates, protein, fats, weightInGrams } = food;
             const values = [name, weightInGrams, calories, carbohydrates, protein, fats];
             let cals = food["calories"];
-            console.log("tots:" + totalCalories);
-            console.log("cals:" + cals); 
+            let rowName = food["name"];
             totalCalories += cals;
             caloriesLeft -= cals;
-            console.log(values);
             values.forEach(value => {
                 const cell = document.createElement("td");
                 cell.textContent = value;
                 row.appendChild(cell);
             });
+            /**const cell = document.createElement("td");
+            const div = document.createElement("div");
+            const rowDeleteButton = createDeleteButton(rowName);
+            rowDeleteButton.style.right = -40 + "px";
+            div.style.position = "relative";
+            div.appendChild(rowDeleteButton);
+            cell.appendChild(div);  
+            row.appendChild(cell);  */        
             const table = document.getElementById("tableFoods");
             table.appendChild(row);
             totalFats += values[5];
@@ -190,6 +196,7 @@ const generateRows = (foodsInDb) => {
     });
 }
 const generateSingleRow = (foodToAdd) => {
+    console.log(foodToAdd);
     const row = document.createElement("tr");
     let rowName = "";    
     for (i = 0; i < 6; i++) {
@@ -217,7 +224,6 @@ const generateSingleRow = (foodToAdd) => {
             const div = document.createElement("div");
             const rowDeleteButton = createDeleteButton(rowName);
             rowDeleteButton.style.right = -40 + "px";
-            console.log("margintop" + row.style.top);
             div.style.position = "relative";
             div.appendChild(rowDeleteButton);
             cell.appendChild(div);
@@ -336,3 +342,4 @@ const deleteCheckmarkAndAddButton = () => {
         buttons.removeChild(buttons.lastChild);
     }
 }
+
