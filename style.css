@@ -81,12 +81,26 @@ table, th, td {
     border-radius: 10%;
 }
 
+#addFoodButton {
+    padding: 10px 50px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+#but {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin-left: 5%;
+}
+#checkmark {
+    background-color: white;
+    border: none;
+}
 #deleteButton {
     position: absolute;
     margin-top: -30%;

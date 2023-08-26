@@ -1,14 +1,5 @@
 
 window.addEventListener('load', () => {
-    const data = retrieveFoods()
-    .then((resolvedValue) => {
-        console.log(Object.entries(resolvedValue));
-        return Object.entries(resolvedValue);
-    });
-    console.log(data.then(m => {
-        console.log(m[0][1])}))
-    data.length != 0 ? changeTableVisibility(true) : changeTableVisibility(false);
-    generateRows(data);
     const datas = getExistingNextMealNamesFromDatabase(displayNextMeal())
     .then((resolvedValue) => {
         console.log(Object.entries(resolvedValue));
@@ -105,12 +96,11 @@ let mealTime = "";
 function chosenMeal(meal) {
     mealPopup.classList.remove("open-popup");
     mealTime = meal;
-    const addButton = document.getElementById("btny");
-    const currentMarginTop = parseInt(addButton.style.marginTop) || 0;
-    addButton.style.marginTop = 0 + "%";
-    createCheckMarkButton();
     eraseAllRowsFromScreen();
     resetTotalMacrosAndCalories();
+    deleteCheckmarkAndAddButton();
+    createAddFoodButton();
+    createCheckMarkButton();
 }
 
 const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
@@ -287,6 +277,7 @@ const createCheckMarkButton = () => {
     checkMarkImage.src = "greenCheckMark.png";
     checkMark.type = "submit";
     checkMark.id = "checkmark";
+    checkMark.className= "editButton";
     checkMark.onclick = () => constructMealAndSend();
     checkMark.appendChild(checkMarkImage);
     buttons.appendChild(checkMark);
@@ -317,4 +308,29 @@ const removeMacroElementValuesFromTotal = (rowElement) => {
     
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
     console.log(foodMacros);
+}
+
+const editMeal = () => {
+    deleteCheckmarkAndAddButton();
+    createAddFoodButton();
+    createCheckMarkButton();
+}
+
+const createAddFoodButton = () => {
+    const buttons = document.getElementById("but");
+    const addFoodButton = document.createElement("button");
+    addFoodButton.type = "submit";
+    addFoodButton.id = "addFoodButton";
+    addFoodButton.className = "editButton";
+    addFoodButton.innerHTML = "Add Food";
+    addFoodButton.onclick = () => openPopup();
+    buttons.appendChild(addFoodButton);
+    return addFoodButton;
+}
+
+const deleteCheckmarkAndAddButton = () => {
+    const buttons = document.getElementById("but");
+    while(buttons.firstChild) {
+        buttons.removeChild(buttons.lastChild);
+    }
 }

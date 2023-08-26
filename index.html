@@ -52,7 +52,9 @@
                         <th>Carbohydrates</th>
                         <th>Protein</th>
                         <th style="display: flex; flex-direction: row;">Fats 
-                            <div style="position: relative;right: -40px;"><button type="submit" id="editButton" ><img src="editPencil.png"></button></div>
+                            <div style="position: relative;right: -40px;">
+                                <button type="submit" id="editPencil" onClick="editMeal()"><img src="editPencil.png"></button>
+                            </div>
                         </th>
                     </tr>
                 </thead>
@@ -69,8 +71,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <div class="buttons" id="but">
-                <button type="submit" class="btn" id="btny"onclick="openPopup()">Add Food</button>
+            <div id="but">
             </div>
         </div>
         <div id="popups">
