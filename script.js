@@ -104,7 +104,7 @@ function chosenMeal(meal) {
 }
 
 const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
-    const response = await fetch(`https://rainrahni.github.io/barv/api/v1/meal/name=${nameOfTheMeal}`, {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/name=${nameOfTheMeal}`, {
         headers: {
             'Accept': 'application/json'
         }
@@ -121,7 +121,7 @@ const getInputValues = (inputs, data) => {
 }
 //Send data to backend.
 const sendDataToBackEnd = (data, url) => {
-    return fetch(`https://rainrahni.github.io/barv/api/v1/${url}`, {
+    return fetch(`http://localhost:8080/api/v1/${url}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
