@@ -26,7 +26,7 @@ public class MealController {
     public Meal addMeal(@RequestBody Meal meal) throws FoodAlreadyInDatabaseException {
         return mealServiceImpl.addMeal(meal);
     }
-    @CrossOrigin(origins = "https://rainrahni.github.io/barv/")
+
     @GetMapping("/mealtime={mealTime}")
     public List<String> getExistingNextMealNames(@PathVariable("mealTime") String mealTime) {
         return mealServiceImpl.getExistingNextMealNames(mealTime);
