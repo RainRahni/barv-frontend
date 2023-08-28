@@ -50,7 +50,7 @@ const displayNextMeal = () => {
         return "LUNCH";
     }else{
         return "DINNER";
-    }
+    }   
 };
 document.getElementById("nextmealdisplay").innerHTML = displayNextMeal();
 //Open popup
@@ -104,7 +104,7 @@ function chosenMeal(meal) {
 }
 
 const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
-    const response = await fetch(`http://192.168.1.166:8080/api/v1/meal/name=${nameOfTheMeal}`, {
+    const response = await fetch(`https://rainrahni.github.io/barv/api/v1/meal/name=${nameOfTheMeal}`, {
         headers: {
             'Accept': 'application/json'
         }
@@ -121,7 +121,7 @@ const getInputValues = (inputs, data) => {
 }
 //Send data to backend.
 const sendDataToBackEnd = (data, url) => {
-    return fetch(`http://localhost:8080/api/v1/${url}`, {
+    return fetch(`https://rainrahni.github.io/barv/api/v1/${url}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ const sendDataToBackEnd = (data, url) => {
 } 
 //Retrieve all foods from database.
 const retrieveFoods = async () => {
-    const response = await fetch('http://192.168.1.166:8080/api/v1/food/allFoods', {
+    const response = await fetch('https://rainrahni.github.io/barv//api/v1/food/allFoods', {
         headers: {
             'Accept': 'application/json'
         }
@@ -178,14 +178,14 @@ const generateRows = (foodsInDb) => {
                 cell.textContent = value;
                 row.appendChild(cell);
             });
-            /**const cell = document.createElement("td");
+            const cell = document.createElement("td");
             const div = document.createElement("div");
             const rowDeleteButton = createDeleteButton(rowName);
             rowDeleteButton.style.right = -40 + "px";
             div.style.position = "relative";
             div.appendChild(rowDeleteButton);
             cell.appendChild(div);  
-            row.appendChild(cell);  */        
+            row.appendChild(cell);     
             const table = document.getElementById("tableFoods");
             table.appendChild(row);
             totalFats += values[5];
@@ -244,7 +244,7 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
     document.getElementById("carbFoot").innerHTML = totalCarbs;
 }
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
-    const response = await fetch(`http://192.168.1.166:8080/api/v1/meal/mealtime=${nextMealTime}`, {
+    const response = await fetch(`https://rainrahni.github.io/barv/api/v1/meal/mealtime=${nextMealTime}`, {
         headers: {
             'Accept': 'application/json'
         }
