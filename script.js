@@ -243,6 +243,7 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
     document.getElementById("fatsFoot").innerHTML = totalFats;
     document.getElementById("carbFoot").innerHTML = totalCarbs;
 }
+
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
     const response = await fetch(`https://rainrahni.github.io/barv/api/v1/meal/mealtime=${nextMealTime}`, {
         headers: {
