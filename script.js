@@ -1,11 +1,11 @@
-
 window.addEventListener('load', () => {
-    const datas = getExistingNextMealNamesFromDatabase(displayNextMeal())
+    const datas = getExistingNextMealNamesFromDatabase(getNextMealTime())
     .then((resolvedValue) => {
         return Object.entries(resolvedValue);
     });
     createAnchorElementForMealDropdown(datas);
 });
+
 const clearTableAndDisplayMealFoods = (specificMealName) => {
     eraseAllRowsFromScreen();
     const data = getMealWithNameFromDatabase(specificMealName)
@@ -18,20 +18,16 @@ const clearTableAndDisplayMealFoods = (specificMealName) => {
     console.log(data);
     
 }
-const eraseAllRowsFromScreen = () => {
-    const table = document.getElementById("tableFoods");
-    table.innerHTML = "";
-}
-// Display what weekday it currently is
-const currentDay = () => {
+
+const getCurrentWeekDay = () => {
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const d = new Date();
     return weekdays[d.getDay()].toUpperCase();
 };
-document.getElementById("weekday").innerHTML = currentDay();
-// Display the time of the next meal
-// 13.00 lõuna, õhtu 18:00-22.00, hommik 7:45-9.00
-const displayTimeOfMeal = () =>{
+
+document.getElementById("weekday").innerHTML = getCurrentWeekDay();
+
+const getCurrentTime = () =>{
     const timeRightNow = new Date();
     let hours = timeRightNow.getHours()
     if (13 >= hours && hours > 8){
@@ -42,38 +38,51 @@ const displayTimeOfMeal = () =>{
         return "8:20";
     }
 };
-//Display next meal.
-const displayNextMeal = () => {
-    if (displayTimeOfMeal() == "8:20"){
+
+const getNextMealTime = () => {
+    if (getCurrentTime() == "8:20"){
         return "BREAKFAST";
-    }else if (displayTimeOfMeal() == "13:00"){
+    }else if (getCurrentTime() == "13:00"){
         return "LUNCH";
     }else{
         return "DINNER";
     }   
 };
-document.getElementById("nextmealdisplay").innerHTML = displayNextMeal();
-//Open popup
+
+document.getElementById("nextmealdisplay").innerHTML = getNextMealTime();
+
 let popup = document.getElementById("popup");
-function openPopup() {
+function openAddFoodPopup() {
     popup.classList.add("open-popup");
-    
 }
+
 const mealData = [];
-//Remove food popup from the screen.
-function closePopup() {
+
+function closeAddFoodPopup() {
     popup.classList.remove("open-popup");
+}
+
+//Both visually and functionally
+const addFoodToMeal = () => {
     const inputs = document.querySelectorAll(".input");
-    let data = {};
-    getInputValues(inputs, data);
+    const data = getInputValuesFromFood(inputs);
     const entries = Object.entries(data);
     generateSingleRow(entries);
     mealData.push(data);
-    changeTableVisibility(true);
 }
 
-//Construct meal class and send it to database
-const constructMealAndSend = () => {
+const eraseAllRowsFromScreen = () => {
+    const table = document.getElementById("tableFoods");
+    table.innerHTML = "";
+}
+
+const sendMeal = () => {
+    changeEditButtonColor(false);
+    const meal = constructMeal(); 
+    sendDataToBackEnd(meal, "meal/addMeal");
+}
+
+const constructMeal = () => {
     let meal = {};
     let nameOfMeal = mealTime + "-" + totalCalories;
     Object.assign(meal, {name : nameOfMeal});
@@ -83,8 +92,17 @@ const constructMealAndSend = () => {
     Object.assign(meal, {fats : totalFats});
     Object.assign(meal, {type : mealTime.toUpperCase()});
     Object.assign(meal, {foods : mealData});
-    sendDataToBackEnd(meal, "meal/addMeal");
+    return meal;
 }
+
+const changeEditButtonColor = (wantsToEdit) => {
+    const editButton = document.getElementById("editPencil");
+    if (wantsToEdit) {
+        editButton.style.backgroundColor = "white";
+    } else {
+        editButton.style.backgroundColor = "grey";
+    }
+} 
 //Add and remove meal popup from screen
 let mealPopup = document.getElementById("mealPopup");
 function openMealPopup() {
@@ -111,13 +129,15 @@ const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
     });
     return await response.json();
 }
-//Assign each value from text box to its key and put it into object.
-const getInputValues = (inputs, data) => {
-    inputs.forEach(input => {
+
+const getInputValuesFromFood = (foodInputs) => {
+    let data = {};
+    foodInputs.forEach(input => {
         data[input.name] = input.value;
         console.log(input.name);
         input.value = "";
     });
+    return data;
 }
 //Send data to backend.
 const sendDataToBackEnd = (data, url) => {
@@ -316,10 +336,14 @@ const removeMacroElementValuesFromTotal = (rowElement) => {
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
     console.log(foodMacros);
 }
+let editPencilClicked = false;
 
 const editMeal = () => {
-    const editButton = document.getElementById("editPencil");
-    editButton.style.backgroundColor = "white";
+    if (editPencilClicked) {
+        return;
+    }
+    editPencilClicked = true;
+    changeEditButtonColor(editPencilClicked);
     deleteCheckmarkAndAddButton();
     createAddFoodButton();
     createCheckMarkButton();
@@ -332,7 +356,7 @@ const createAddFoodButton = () => {
     addFoodButton.id = "addFoodButton";
     addFoodButton.className = "editButton";
     addFoodButton.innerHTML = "Add Food";
-    addFoodButton.onclick = () => openPopup();
+    addFoodButton.onclick = () => openAddFoodPopup();
     buttons.appendChild(addFoodButton);
     return addFoodButton;
 }

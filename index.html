@@ -53,7 +53,7 @@
                         <th>Protein</th>
                         <th style="display: flex; flex-direction: row;">Fats 
                             <div style="position: relative;right: -40px;">
-                                <button type="submit" id="editPencil" onClick="editMeal()"><img src="editPencil.png"></button>
+                                <button type="submit" id="editPencil" onClick="editMeal()" style="background-color: grey;"><img src="editPencil.png"></button>
                             </div>
                         </th>
                     </tr>
@@ -83,7 +83,7 @@
                     <input type="number" class="input" name="protein" placeholder="Protein">
                     <input type="number" class="input" name="fats" placeholder="Fats">
                     <input type="number" class="input" name="calories" placeholder="Calories">
-                    <button type="button" onclick="closePopup()" id="btnoke"> OK</button>
+                    <button type="button" onclick="closeAddFoodPopup(); addFoodToMeal()" id="btnoke"> OK</button>
                 </form>
             </div>
             <div id="mealPopups">
