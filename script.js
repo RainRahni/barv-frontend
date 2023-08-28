@@ -79,7 +79,7 @@ const eraseAllRowsFromScreen = () => {
 const sendMeal = () => {
     changeEditButtonColor(false);
     const meal = constructMeal(); 
-    sendDataToBackEnd(meal, "meal/addMeal");
+    saveMealToDatabase(meal, "meal/addMeal");
 }
 
 const constructMeal = () => {
@@ -140,8 +140,8 @@ const getInputValuesFromFood = (foodInputs) => {
     return data;
 }
 //Send data to backend.
-const sendDataToBackEnd = (data, url) => {
-    return fetch(`http://localhost:8080/api/v1/${url}`, {
+const saveMealToDatabase = (data, url) => {
+    return fetch(`http://localhost:8080/api/v1/meal/addMeal`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -305,7 +305,7 @@ const createCheckMarkButton = () => {
     checkMark.type = "submit";
     checkMark.id = "checkmark";
     checkMark.className= "editButton";
-    checkMark.onclick = () => constructMealAndSend();
+    checkMark.onclick = () => sendMeal();
     checkMark.appendChild(checkMarkImage);
     buttons.appendChild(checkMark);
     return checkMark;
