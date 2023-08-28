@@ -131,7 +131,7 @@ const sendDataToBackEnd = (data, url) => {
 } 
 //Retrieve all foods from database.
 const retrieveFoods = async () => {
-    const response = await fetch('https://rainrahni.github.io/barv//api/v1/food/allFoods', {
+    const response = await fetch('https://rainrahni.github.io/barv/api/v1/food/allFoods', {
         headers: {
             'Accept': 'application/json'
         }
