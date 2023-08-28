@@ -245,7 +245,7 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
 }
 
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
-    const response = await fetch(`https://rainrahni.github.io/barv/api/v1/meal/mealtime=${nextMealTime}`, {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/mealtime=${nextMealTime}`, {
         headers: {
             'Accept': 'application/json'
         }
