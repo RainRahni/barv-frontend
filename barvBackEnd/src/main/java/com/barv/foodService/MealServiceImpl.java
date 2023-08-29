@@ -60,7 +60,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public Meal getMealWithGivenName(String mealName) throws MealNotFoundException {
         if (mealRepository.existsByName(mealName)) {
-            return mealRepository.findByName(mealName);
+            return mealRepository.findByName(mealName).get(0);
         }
         throw new MealNotFoundException("No meal with given name found!");
     }

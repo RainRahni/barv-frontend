@@ -80,6 +80,7 @@ const eraseAllRowsFromScreen = () => {
 }
 
 const saveOrUpdateMealWhetherEditClicked = () => {
+    removeOnlyDeleteButtons();
     deleteCheckmarkAndAddButton();
     const meal = constructMeal(); 
     if (editPencilClicked) {
@@ -91,15 +92,11 @@ const saveOrUpdateMealWhetherEditClicked = () => {
 }
 
 const updateMealInDatabase = (newMeal, currentMeal) => {
-    console.log(JSON.stringify(currentMeal) + "current");
-    console.log(JSON.stringify(newMeal) + "new");
-
     return fetch(`http://localhost:8080/api/v1/meal/updateMeal`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-
         body: JSON.stringify({currentMeal, newMeal})
     });
 }
@@ -338,9 +335,6 @@ const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
     for (i = 0; i < foodRowsInTheTable.length; i++ ) {
         const rowElement = foodRowsInTheTable[i];
         const nameOfTheFoodInTable = rowElement.childNodes[0].innerHTML;
-        console.log(rowElement);
-        console.log(nameOfTheButtonRowFood);
-        console.log(nameOfTheFoodInTable);
         if (nameOfTheFoodInTable.toUpperCase() === nameOfTheButtonRowFood.toUpperCase()) {
             rowElement.remove();
             removeMacroElementValuesFromTotal(rowElement);
@@ -389,3 +383,9 @@ const deleteCheckmarkAndAddButton = () => {
     }
 }
 
+const removeOnlyDeleteButtons = () => {
+    const deleteButtons = document.querySelectorAll("#deleteButton");
+    deleteButtons.forEach(button => {
+        button.remove();
+    })
+}
