@@ -18,6 +18,7 @@ import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode
 public class Meal {
     @Id
     @Column(name = "id")
@@ -39,7 +41,7 @@ public class Meal {
             strategy = GenerationType.SEQUENCE,
             generator = "meal_sequence"
     )
-    private Long mealId;
+    @EqualsAndHashCode.Exclude private Long mealId;
     private String name;
     private double calories;
     private double protein;
@@ -49,4 +51,11 @@ public class Meal {
     private MealType type;
     @OneToMany
     private List<Food> foods;
+    public void addFoodsToList(List<Food> foodsToAdd) {
+        for (Food food: foodsToAdd) {
+            if (!foods.contains(food)) {
+                foods.add(food);
+            }
+        }
+    }
 }

@@ -8,12 +8,9 @@ import com.barv.foodRepository.MealRepository;
 import com.barv.meals.Meal;
 import com.barv.meals.MealFoods;
 import com.barv.meals.MealType;
-import jakarta.transaction.Transactional;
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,16 +34,10 @@ public class MealServiceImpl implements MealService {
      */
     @Override
     public Meal addMeal(Meal meal) throws FoodAlreadyInDatabaseException {
-        List<Food> foodsList = meal.getFoods();
-        for (Food food : foodsList) {
-            Optional<Food> foodInDatabase =
-                    foodRepository.findByNameAndWeightInGrams(food.getName(), food.getWeightInGrams());
-            if (foodInDatabase.isEmpty()) {
-                foodService.addFood(food);
-            }
-        }
+        saveNewFoodsForMeal(meal.getFoods());
         mealRepository.save(meal);
         mealFoodsService.deleteMealFoodsWithNullValues();
+        List<Food> foodsList = meal.getFoods();
         for (Food food: foodsList) {
             MealFoods mealFoods = new MealFoods();
             mealFoods.setMeal(meal);
@@ -72,6 +63,40 @@ public class MealServiceImpl implements MealService {
             return mealRepository.findByName(mealName);
         }
         throw new MealNotFoundException("No meal with given name found!");
+    }
+
+    @Override
+    public Meal updateExistingMeal(Meal currentMeal, Meal newMeal) throws FoodAlreadyInDatabaseException {
+        Meal mealFromDatabase = mealRepository.findById(currentMeal.getMealId()).get();
+        if (currentMeal.equals(newMeal)) {
+            throw new FoodAlreadyInDatabaseException("Both meals are exactly the same!");
+        }
+        Meal updatedMeal = updateAttributesOfMeal(mealFromDatabase, newMeal);
+        List<Food> foods = newMeal.getFoods();
+        saveNewFoodsForMeal(foods);
+        updatedMeal.addFoodsToList(foods);
+        mealRepository.save(updatedMeal);
+        return updatedMeal;
+    }
+
+    private Meal updateAttributesOfMeal(Meal currentMeal, Meal newMeal) {
+        currentMeal.setName(newMeal.getName());
+        currentMeal.setCalories(newMeal.getCalories());
+        currentMeal.setCarbohydrates(newMeal.getCarbohydrates());
+        currentMeal.setFats(newMeal.getFats());
+        currentMeal.setProtein(newMeal.getProtein());
+        currentMeal.setType(newMeal.getType());
+        return currentMeal;
+    }
+
+    private void saveNewFoodsForMeal(List<Food> foodsToSave) throws FoodAlreadyInDatabaseException {
+        for (Food food : foodsToSave) {
+            Optional<Food> foodInDatabase =
+                    foodRepository.findByNameAndWeightInGrams(food.getName(), food.getWeightInGrams());
+            if (foodInDatabase.isEmpty()) {
+                foodService.addFood(food);
+            }
+        }
     }
 
 }

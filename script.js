@@ -6,17 +6,20 @@ window.addEventListener('load', () => {
     createAnchorElementForMealDropdown(datas);
 });
 
+let editPencilClicked = false;
+
+let currentMeal;
+
 const clearTableAndDisplayMealFoods = (specificMealName) => {
     eraseAllRowsFromScreen();
-    const data = getMealWithNameFromDatabase(specificMealName)
+    mealTime = specificMealName.split("-")[0];
+    const meal = getMealWithNameFromDatabase(specificMealName)
     .then((resolvedValue) => {
+        currentMeal = resolvedValue;
         return Object.entries(resolvedValue)[7][1];
     });
     resetTotalMacrosAndCalories();
-    generateRows(data);
-    console.log("generate multiple");
-    console.log(data);
-    
+    generateRows(meal);
 }
 
 const getCurrentWeekDay = () => {
@@ -76,10 +79,29 @@ const eraseAllRowsFromScreen = () => {
     table.innerHTML = "";
 }
 
-const sendMeal = () => {
-    changeEditButtonColor(false);
+const saveOrUpdateMealWhetherEditClicked = () => {
+    deleteCheckmarkAndAddButton();
     const meal = constructMeal(); 
-    saveMealToDatabase(meal, "meal/addMeal");
+    if (editPencilClicked) {
+        changeEditButtonColor(false);
+        updateMealInDatabase(meal, currentMeal);
+    } else {
+        saveMealToDatabase(meal, "meal/addMeal")
+    }
+}
+
+const updateMealInDatabase = (newMeal, currentMeal) => {
+    console.log(JSON.stringify(currentMeal) + "current");
+    console.log(JSON.stringify(newMeal) + "new");
+
+    return fetch(`http://localhost:8080/api/v1/meal/updateMeal`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({currentMeal, newMeal})
+    });
 }
 
 const constructMeal = () => {
@@ -280,7 +302,7 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
             const dropdownDiv = document.getElementById("mealDropdown");
             meal.innerHTML = name[1];
             meal.href = "#";
-            meal.onclick= () => clearTableAndDisplayMealFoods(name[1]);
+            meal.onclick = () => clearTableAndDisplayMealFoods(name[1]);
             dropdownDiv.appendChild(meal);
         })
     })
@@ -305,7 +327,7 @@ const createCheckMarkButton = () => {
     checkMark.type = "submit";
     checkMark.id = "checkmark";
     checkMark.className= "editButton";
-    checkMark.onclick = () => sendMeal();
+    checkMark.onclick = () => saveOrUpdateMealWhetherEditClicked();
     checkMark.appendChild(checkMarkImage);
     buttons.appendChild(checkMark);
     return checkMark;
@@ -336,7 +358,6 @@ const removeMacroElementValuesFromTotal = (rowElement) => {
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
     console.log(foodMacros);
 }
-let editPencilClicked = false;
 
 const editMeal = () => {
     if (editPencilClicked) {

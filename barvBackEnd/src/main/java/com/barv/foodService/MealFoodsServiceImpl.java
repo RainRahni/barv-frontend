@@ -23,7 +23,6 @@ public class MealFoodsServiceImpl implements MealFoodsService {
             mealFoodsRepository.save(mealFoods);
         }
         return mealFoods;
-        //throw new FoodAlreadyInDatabaseException();
     }
 
     @Override

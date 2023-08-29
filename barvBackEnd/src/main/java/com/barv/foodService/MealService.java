@@ -14,4 +14,6 @@ public interface MealService {
     List<String> getExistingNextMealNames(String mealTime);
 
     Meal getMealWithGivenName(String mealName) throws MealNotFoundException;
+
+    Meal updateExistingMeal(Meal currentMeal, Meal newMeal) throws FoodAlreadyInDatabaseException;
 }

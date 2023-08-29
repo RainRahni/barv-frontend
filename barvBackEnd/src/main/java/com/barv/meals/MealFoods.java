@@ -37,7 +37,7 @@ public class MealFoods {
     @ManyToOne
     @JoinColumn(name = "meal_id")
     private Meal meal;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "foods_id")
     private Food food;
     private String name;
