@@ -80,7 +80,7 @@ const eraseAllRowsFromScreen = () => {
 }
 
 const requireEveryInput = () => {
-    let inputsHaveValues = checkInputs();
+    let inputsHaveValues = checkInputsCorrectValues();
     if (inputsHaveValues) {
         closeAddFoodPopup();
         addFoodToMeal();
@@ -398,12 +398,14 @@ const removeOnlyDeleteButtons = () => {
     })
 }
 
-const checkInputs = () => {
+const checkInputsCorrectValues = () => {
     const inputs = document.querySelectorAll('.input');
     const inputsSize = inputs.length;
     for (i = 0; i < inputsSize; i++) {
         let input = inputs[i];
-        if (input.value == null || input.value == "") {
+        if (input.value == null 
+            || input.value == "" 
+            || (input.type == "text" && !isNaN(+input.value))) {
             return false;
         }
     }
