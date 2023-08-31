@@ -79,6 +79,13 @@ const eraseAllRowsFromScreen = () => {
     table.innerHTML = "";
 }
 
+const requireEveryInput = () => {
+    let b = checkInputs();
+    if (b) {
+        closeAddFoodPopup();
+        addFoodToMeal();
+    }
+}
 const saveOrUpdateMealWhetherEditClicked = () => {
     removeOnlyDeleteButtons();
     deleteCheckmarkAndAddButton();
@@ -389,3 +396,15 @@ const removeOnlyDeleteButtons = () => {
         button.remove();
     })
 }
+
+const checkInputs = () => {
+    const inputs = document.querySelectorAll('.input');
+    const inputsSize = inputs.length;
+    for (i = 0; i < inputsSize; i++) {
+        let input = inputs[i];
+        if (input.value == null || input.value == "") {
+            return false;
+        }
+    }
+    return true;
+};
