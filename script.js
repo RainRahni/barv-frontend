@@ -312,6 +312,7 @@ const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
         })
     })
 }
+
 const createDeleteButton = (nameOfTheFoodInRow) => {
     const deleteButton = document.createElement("button");
     const deleteButtonImage = document.createElement("img");
@@ -337,6 +338,7 @@ const createCheckMarkButton = () => {
     buttons.appendChild(checkMark);
     return checkMark;
 }
+
 const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
     const table = document.getElementById("tableFoods");
     const foodRowsInTheTable = table.getElementsByTagName("tr"); 
@@ -350,12 +352,14 @@ const deleteVisualRowFromTable = (nameOfTheButtonRowFood) => {
         }
     }
 }
+
 const removeMacroElementValuesFromTotal = (rowElement) => {
     const foodMacros = rowElement.childNodes;
-    totalCarbs -= parseInt(foodMacros[2].innerHTML);
-    totalProtein -= parseInt(foodMacros[3].innerHTML);
-    totalFats -= parseInt(foodMacros[4].innerHTML);
-    totalCalories -= parseInt(foodMacros[5].innerHTML);
+    console.log(foodMacros[5]);
+    totalCalories -= parseInt(foodMacros[2].innerHTML);
+    totalCarbs -= parseInt(foodMacros[3].innerHTML);
+    totalProtein -= parseInt(foodMacros[4].innerHTML);
+    totalFats -= parseInt(foodMacros[5].innerHTML);
     
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, 3000 - totalCalories);
     console.log(foodMacros);
