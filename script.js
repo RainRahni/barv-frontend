@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const datas = getExistingNextMealNamesFromDatabase(getNextMealTime())
+    const datas = getExistingNextMealNamesFromDatabase("LUNCH") //getNextMealTime()
     .then((resolvedValue) => {
         return Object.entries(resolvedValue);
     });
@@ -203,6 +203,7 @@ const resetTotalMacrosAndCalories = () => {
     totalProtein = 0;
     caloriesLeft = 3000;
 }
+
 var totalCalories = 0;
 var caloriesLeft = 3000;
 let totalFats = 0;
@@ -283,12 +284,12 @@ const generateSingleRow = (foodToAdd) => {
 }
 //Add values to footer in the table.
 const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft) => {
-    document.getElementById("caloriesleftsofarNumber").innerHTML = totalCalories;
+    document.getElementById("caloriesleftsofarNumber").innerHTML = Math.floor(totalCalories * 100) / 100;
     document.getElementById("caloriesleftNumber").innerHTML = caloriesLeft;
-    document.getElementById("calFoot").innerHTML = totalCalories;
-    document.getElementById("protFoot").innerHTML = totalProtein;
-    document.getElementById("fatsFoot").innerHTML = totalFats;
-    document.getElementById("carbFoot").innerHTML = totalCarbs;
+    document.getElementById("calFoot").innerHTML = Math.floor(totalCalories * 100) / 100;
+    document.getElementById("protFoot").innerHTML = Math.floor(totalProtein * 100) / 100;
+    document.getElementById("fatsFoot").innerHTML = Math.floor(totalFats * 100) / 100;
+    document.getElementById("carbFoot").innerHTML = Math.floor(totalCarbs * 100) / 100;
 }
 
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
