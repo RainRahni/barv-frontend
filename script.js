@@ -80,8 +80,8 @@ const eraseAllRowsFromScreen = () => {
 }
 
 const requireEveryInput = () => {
-    let b = checkInputs();
-    if (b) {
+    let inputsHaveValues = checkInputs();
+    if (inputsHaveValues) {
         closeAddFoodPopup();
         addFoodToMeal();
     }
