@@ -93,6 +93,7 @@ const saveOrUpdateMealWhetherEditClicked = () => {
     if (editPencilClicked) {
         changeEditButtonColor(false);
         updateMealInDatabase(meal, currentMeal);
+        editPencilClicked = false;
     } else {
         saveMealToDatabase(meal, "meal/addMeal")
     }
@@ -242,7 +243,6 @@ const generateRows = (foodsInDb) => {
     });
 }
 const generateSingleRow = (foodToAdd) => {
-    console.log(foodToAdd);
     const row = document.createElement("tr");
     let rowName = "";    
     for (i = 0; i < 6; i++) {
@@ -259,6 +259,7 @@ const generateSingleRow = (foodToAdd) => {
         };
         if (keyToVariableMap.hasOwnProperty(foodToAdd[i][0])) {
             keyToVariableMap[foodToAdd[i][0]](value);
+            console.log(keyToVariableMap[foodToAdd[i][0]]);
             cell.textContent = value;
         } else {
             cell.textContent = value;
