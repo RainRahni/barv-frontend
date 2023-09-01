@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    const datas = getExistingNextMealNamesFromDatabase("LUNCH") //getNextMealTime()
+    const datas = getExistingNextMealNamesFromDatabase(getNextMealTime())
     .then((resolvedValue) => {
         return Object.entries(resolvedValue);
     });
