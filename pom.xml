@@ -91,10 +91,11 @@
 				<configuration>
 					<excludes>
 						<exclude>
-							<groupId>org.projectlombok</groupId>
+							<groupId>projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<mainClass>com.example.MyApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
