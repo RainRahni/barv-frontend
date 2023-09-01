@@ -20,6 +20,7 @@ const clearTableAndDisplayMealFoods = (specificMealName) => {
     });
     resetTotalMacrosAndCalories();
     generateRows(meal);
+    return meal;
 }
 
 const getCurrentWeekDay = () => {
@@ -204,6 +205,7 @@ const resetTotalMacrosAndCalories = () => {
     caloriesLeft = 3000;
 }
 
+var totalRows = 0
 var totalCalories = 0;
 var caloriesLeft = 3000;
 let totalFats = 0;
@@ -213,6 +215,7 @@ var totalCarbs = 0;
 //Generate rows into table
 const generateRows = (foodsInDb) => {
     foodsInDb.then(m => {
+        totalRows = m.length
         m.forEach(food => {
             const row = document.createElement("tr");
             const { name, calories, carbohydrates, protein, fats, weightInGrams } = food;
@@ -226,14 +229,7 @@ const generateRows = (foodsInDb) => {
                 cell.textContent = value;
                 row.appendChild(cell);
             });
-            const cell = document.createElement("td");
-            const div = document.createElement("div");
-            const rowDeleteButton = createDeleteButton(rowName);
-            rowDeleteButton.style.right = -40 + "px";
-            div.style.position = "relative";
-            div.appendChild(rowDeleteButton);
-            cell.appendChild(div);  
-            row.appendChild(cell);     
+                
             const table = document.getElementById("tableFoods");
             table.appendChild(row);
             totalFats += values[5];
@@ -282,7 +278,7 @@ const generateSingleRow = (foodToAdd) => {
     table.appendChild(row);
     addToMacros(totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft);
 }
-//Add values to footer in the table.
+
 const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, caloriesLeft) => {
     document.getElementById("caloriesleftsofarNumber").innerHTML = Math.floor(totalCalories * 100) / 100;
     document.getElementById("caloriesleftNumber").innerHTML = caloriesLeft;
@@ -301,6 +297,24 @@ const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
     return await response.json();
 }
 
+const displayAllDeleteButtons = () => {
+    const table = document.getElementById("tableFoods"); 
+    for (i = 0; i < totalRows; i++) {
+        row = table.getElementsByTagName("tr")[i];
+        const deleteDiv = displayDeleteButtonNextToRow(row);
+        table.rows[i].cells[5].appendChild(deleteDiv);
+    }
+}
+const displayDeleteButtonNextToRow = (row) => {
+    const table = document.getElementById("tableFoods");
+    const div = document.createElement("div");
+    let foodName = row.getElementsByTagName("td")[0].innerHTML;
+    const rowDeleteButton = createDeleteButton(foodName);
+    rowDeleteButton.style.right = -40 + "px";
+    div.style.position = "relative";
+    div.appendChild(rowDeleteButton);
+    return div;
+}
 const createAnchorElementForMealDropdown = (mealNamesToDisplayList) => {
     mealNamesToDisplayList.then(n => {
         n.forEach(name => {
@@ -370,6 +384,7 @@ const editMeal = () => {
     if (editPencilClicked) {
         return;
     }
+    displayAllDeleteButtons();
     editPencilClicked = true;
     changeEditButtonColor(editPencilClicked);
     deleteCheckmarkAndAddButton();
