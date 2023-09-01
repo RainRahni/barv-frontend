@@ -6,6 +6,8 @@ window.addEventListener('load', () => {
     createAnchorElementForMealDropdown(datas);
 });
 
+
+
 let editPencilClicked = false;
 
 let currentMeal;
@@ -179,7 +181,7 @@ const saveMealToDatabase = (data, url) => {
 } 
 //Retrieve all foods from database.
 const retrieveFoods = async () => {
-    const response = await fetch('https://rainrahni.github.io/barv/api/v1/food/allFoods', {
+    const response = await fetch('http://localhost:8080/api/v1/food/allFoods', {
         headers: {
             'Accept': 'application/json'
         }

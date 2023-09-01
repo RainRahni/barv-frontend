@@ -45,7 +45,6 @@ public class FoodController {
      * Get all foods in database.
      * @return list of foods in database.
      */
-    @CrossOrigin(origins = "http://127.0.0.1:5500", originPatterns = "http://192.168.1.166:5500")
     @GetMapping(path = "/allFoods")
     public List<Food> getAllFoods() {
         return foodService.findAllFoods();
