@@ -1,16 +1,12 @@
-name: Deploy to Render
+name: Render Spring POC hook example
+
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  
+  
 jobs:
-  build:
+  deploy-app:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build and push Docker image
-        uses: renderinc/render-deploy-action@v1
-        with:
-          service_name: barvback
-          dockerfile_path: target/barvBackEnd-1.0-SNAPSHOT.jar
+      - run: curl ${{secrets.RENDER_DEPLOY_HOOK}}
