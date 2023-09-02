@@ -1,4 +1,4 @@
-name: Render Spring POC hook example
+name: barvback
 
 on:
   workflow_dispatch:
