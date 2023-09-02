@@ -96,7 +96,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-					<mainClass>com.example.MyApplication</mainClass>
+					<mainClass>com.barv.BarvBackEndApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

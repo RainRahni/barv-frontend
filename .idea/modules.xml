@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/barv.iml" filepath="$PROJECT_DIR$/.idea/barv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/barvBackEnd.iml" filepath="$PROJECT_DIR$/barvBackEnd.iml" />
     </modules>
   </component>
 </project>
