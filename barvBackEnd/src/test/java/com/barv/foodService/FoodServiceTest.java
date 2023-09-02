@@ -1,9 +1,10 @@
-package java.com.barv.foodService;
+package com.barv.foodService;
 
 import com.barv.exception.FoodAlreadyInDatabaseException;
 import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
+import com.barv.foodService.FoodService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -30,7 +31,7 @@ class FoodServiceTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .Id(1L)
                 .build();
