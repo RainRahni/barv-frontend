@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Print contents of /tmp/
-        run:  ls -la /tmp/
+        run:  pwd ls -la
       - name: Checkout repository
         uses: actions/checkout@v3
 
