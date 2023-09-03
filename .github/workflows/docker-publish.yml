@@ -31,8 +31,8 @@ jobs:
       id-token: write
 
     steps:
-      - name: Print contents of /tmp/buildkit-mount300792122/
-        run:  ls -la /tmp/buildkit-mount300792122/
+      - name: Print contents of /tmp/
+        run:  ls -la /tmp/
       - name: Checkout repository
         uses: actions/checkout@v3
 
