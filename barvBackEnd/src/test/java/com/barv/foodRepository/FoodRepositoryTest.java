@@ -23,7 +23,7 @@ class FoodRepositoryTest {
                     .fats(13)
                     .carbohydrates(15)
                     .calories(100)
-                    .weight(100)
+                    .weightInGrams(100)
                     .build();
 
         entityManager.persist(food);

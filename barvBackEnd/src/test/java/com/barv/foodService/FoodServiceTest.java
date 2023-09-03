@@ -30,7 +30,7 @@ class FoodServiceTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .Id(1L)
                 .build();
