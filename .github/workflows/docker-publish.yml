@@ -71,8 +71,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
         
-      - name: Print contents of working directory
-        run: ls -la
+      - name: Print contents of barvBackEnd directory
+        run: ls -la ./barvBackEnd
+
 
 
       - name: Build with Maven
