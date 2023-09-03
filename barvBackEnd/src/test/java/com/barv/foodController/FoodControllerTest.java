@@ -38,7 +38,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .Id(1L)
                 .build();
@@ -50,7 +50,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .build();
         Mockito.when(foodService.addFood(inputFood)).thenReturn(food);
@@ -74,7 +74,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .build();
         Mockito.doThrow(new FoodAlreadyInDatabaseException()).when(foodService).addFood(inputFood);
@@ -115,7 +115,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .build();
         Mockito.when(foodService.updateFood(100L, inputFood)).thenThrow(FoodNotFoundException.class);
@@ -130,7 +130,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .build();
         Mockito.when(foodService.updateFood(1L, inputFood)).thenThrow(FoodAlreadyInDatabaseException.class);
@@ -152,7 +152,7 @@ class FoodControllerTest {
                 .protein(12)
                 .calories(12)
                 .fats(12)
-                .weight(12)
+                .weightInGrams(12)
                 .carbohydrates(15)
                 .build();
         Mockito.when(foodService.updateFood(1L, inputFood)).thenReturn("Successfully changed food`s details!");

@@ -59,7 +59,7 @@ class MealControllerTest {
                 .fats(2)
                 .name("testOne")
                 .carbohydrates(12)
-                .weight(9)
+                .weightInGrams(9)
                 .calories(200)
                 .Id(1L)
                 .build();
@@ -68,7 +68,7 @@ class MealControllerTest {
                 .fats(2)
                 .name("testTwo")
                 .carbohydrates(12)
-                .weight(9)
+                .weightInGrams(9)
                 .calories(200)
                 .Id(2L)
                 .build();
@@ -90,7 +90,7 @@ class MealControllerTest {
                     .fats(2)
                     .name("testOne")
                     .carbohydrates(12)
-                    .weight(9)
+                    .weightInGrams(9)
                     .calories(200)
                     .Id(1L)
                     .build();
@@ -99,7 +99,7 @@ class MealControllerTest {
                     .fats(2)
                     .name("testTwo")
                     .carbohydrates(12)
-                    .weight(9)
+                    .weightInGrams(9)
                     .calories(200)
                     .Id(2L)
                     .build();
@@ -116,12 +116,12 @@ class MealControllerTest {
         mealFoodsOne = MealFoods.builder()
                 .food(foodOne)
                 .meal(meal)
-                .weight(foodOne.getWeight())
+                .weight(foodOne.getWeightInGrams())
                 .build();
         mealFoodsTwo = MealFoods.builder()
                 .food(foodTwo)
                 .meal(meal)
-                .weight(foodOne.getWeight())
+                .weight(foodOne.getWeightInGrams())
                 .build();
         Mockito.when(foodService.addFood(foodOne)).thenReturn(foodOne);
         Mockito.when(foodService.addFood(foodTwo)).thenReturn(foodTwo);
