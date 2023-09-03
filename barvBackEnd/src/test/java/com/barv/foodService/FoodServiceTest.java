@@ -4,6 +4,7 @@ import com.barv.exception.FoodAlreadyInDatabaseException;
 import com.barv.exception.FoodNotFoundException;
 import com.barv.food.Food;
 import com.barv.foodRepository.FoodRepository;
+import com.barv.foodService.FoodService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
