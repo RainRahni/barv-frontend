@@ -34,7 +34,7 @@ class MealServiceTest {
                 .fats(2)
                 .name("testOne")
                 .carbohydrates(12)
-                .weight(9)
+                .weightInGrams(9)
                 .calories(200)
                 .Id(1L)
                 .build();
@@ -43,7 +43,7 @@ class MealServiceTest {
                 .fats(2)
                 .name("testTwo")
                 .carbohydrates(12)
-                .weight(9)
+                .weightInGrams(9)
                 .calories(200)
                 .Id(2L)
                 .build();
