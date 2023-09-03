@@ -65,6 +65,8 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
+      - name: Print Maven version information
+        run: mvn -v
 
       - name: Build with Maven
         run: mvn -B package --file ./barvBackEnd/pom.xml
