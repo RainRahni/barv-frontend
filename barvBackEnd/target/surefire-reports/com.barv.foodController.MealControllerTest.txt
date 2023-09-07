@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.barv.foodController.MealControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.915 s <<< FAILURE! - in com.barv.foodController.MealControllerTest
-com.barv.foodController.MealControllerTest.whenNothingInDatabase_thenAddFoodMealMealFoodsToDatabase  Time elapsed: 0.068 s  <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.467 s <<< FAILURE! - in com.barv.foodController.MealControllerTest
+com.barv.foodController.MealControllerTest.whenNothingInDatabase_thenAddFoodMealMealFoodsToDatabase  Time elapsed: 0.06 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

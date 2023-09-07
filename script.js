@@ -103,7 +103,7 @@ const saveOrUpdateMealWhetherEditClicked = () => {
 }
 
 const updateMealInDatabase = (newMeal, currentMeal) => {
-    return fetch(`https://barv-c0bd982df4e1.herokuapp.com/api/v1/meal/updateMeal`, {
+    return fetch(`http://localhost:8080/api/v1/meal/updateMeal`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -152,7 +152,7 @@ function chosenMeal(meal) {
 }
 
 const getMealWithNameFromDatabase = async (nameOfTheMeal) => {
-    const response = await fetch(`hhttps://barv-c0bd982df4e1.herokuapp.com/api/v1/meal/name=${nameOfTheMeal}`, {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/name=${nameOfTheMeal}`, {
         headers: {
             'Accept': 'application/json'
         }
@@ -171,7 +171,7 @@ const getInputValuesFromFood = (foodInputs) => {
 }
 //Send data to backend.
 const saveMealToDatabase = (data, url) => {
-    return fetch(`https://barv-c0bd982df4e1.herokuapp.com/v1/meal/addMeal`, {
+    return fetch(`http://localhost:8080/v1/meal/addMeal`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

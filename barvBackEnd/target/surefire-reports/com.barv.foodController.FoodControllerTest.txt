@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.barv.foodController.FoodControllerTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.411 s <<< FAILURE! - in com.barv.foodController.FoodControllerTest
-com.barv.foodController.FoodControllerTest.whenUpdatingFoodWithValidObject_thenChangeDetails  Time elapsed: 0.029 s  <<< FAILURE!
+Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.562 s <<< FAILURE! - in com.barv.foodController.FoodControllerTest
+com.barv.foodController.FoodControllerTest.whenUpdatingFoodWithValidObject_thenChangeDetails  Time elapsed: 0.017 s  <<< FAILURE!
 java.lang.AssertionError: Range for response status value 404 expected:<SUCCESSFUL> but was:<CLIENT_ERROR>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
