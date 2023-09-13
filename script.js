@@ -291,7 +291,7 @@ const addToMacros = (totalCarbs, totalFats, totalProtein, totalCalories, calorie
 }
 
 const getExistingNextMealNamesFromDatabase = async (nextMealTime) => {
-    const response = await fetch(`https://barv-c0bd982df4e1.herokuapp.com/api/v1/meal/mealtime=${nextMealTime}`, {
+    const response = await fetch(`http://localhost:8080/api/v1/meal/mealtime=${nextMealTime}`, {
         headers: {
             'Accept': 'application/json'
         }
