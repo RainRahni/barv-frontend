@@ -170,13 +170,13 @@ const getInputValuesFromFood = (foodInputs) => {
     return data;
 }
 //Send data to backend.
-const saveMealToDatabase = (data, url) => {
-    return fetch(`http://localhost:8080/v1/meal/addMeal`, {
+const saveMealToDatabase = (data) => {
+    return fetch(`http://localhost:8080/api/v1/meal/addMeal`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data)  
     });
 } 
 //Retrieve all foods from database.
