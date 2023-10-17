@@ -1,0 +1,3 @@
+[submodule "barv-backend"]
+	path = barv-backend
+	url = https://github.com/RainRahni/barv-backend
