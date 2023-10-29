@@ -98,7 +98,7 @@ const saveOrUpdateMealWhetherEditClicked = () => {
         updateMealInDatabase(meal, currentMeal);
         editPencilClicked = false;
     } else {
-        saveMealToDatabase(meal, "meal/addMeal")
+        saveMealToDatabase("meal/addMeal")
     }
 }
 
