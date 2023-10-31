@@ -1,4 +1,5 @@
 window.addEventListener('load', () => {
+    alert("Links for both back-and frontend are in the head element. Just use inspect element! ")
     const datas = getExistingNextMealNamesFromDatabase(getNextMealTime())
     .then((resolvedValue) => {
         return Object.entries(resolvedValue);
