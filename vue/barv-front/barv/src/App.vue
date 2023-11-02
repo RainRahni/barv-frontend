@@ -1,10 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import MealInformation from "@/components/MealInformation.vue";
+import FoodView from "@/views/FoodView.vue";
 </script>
 
 <template>
-  <header>
+  <!--<header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -16,7 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
+-->
   <RouterView />
 </template>
 

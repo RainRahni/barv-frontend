@@ -1,4 +1,5 @@
 <template>
+  <MealInformation />
   <div class="food">
     <h1>This is an food page</h1>
   </div>
@@ -14,4 +15,5 @@
 }
 </style>
 <script setup>
+import MealInformation from "@/App.vue";
 </script>
