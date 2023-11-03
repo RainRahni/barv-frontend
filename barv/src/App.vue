@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import MealInformation from "@/components/MealInformation.vue";
-import FoodView from "@/views/FoodView.vue";
+import MealInformation from "@/components/informatingMeal.vue";
+import FoodView from "@/views/MealView.vue";
 </script>
 
 <template>
@@ -13,14 +13,14 @@ import FoodView from "@/views/FoodView.vue";
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+  </nav>
     </div>
-  </header>
--->
+  </header> <RouterView />-->
   <RouterView />
 </template>
+
 
 <style scoped>
 header {
