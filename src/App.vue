@@ -1,8 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import MealInformation from "@/components/informatingMeal.vue";
-import FoodView from "@/views/MealView.vue";
+
 </script>
 
 <template>
