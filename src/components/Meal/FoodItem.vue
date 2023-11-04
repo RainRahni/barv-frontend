@@ -8,44 +8,44 @@ export default defineComponent({
 
 </script>
 <template>
-  <div class="item">
-    <i>
-      <slot name="icon"></slot>
-    </i>
-    <div class="details">
-      <h3>
-        <slot name="name"></slot>
-      </h3>
-      <h3>
-        <slot name="calories"></slot>
-      </h3>
-      <h3>
-        <slot name="carbs"></slot>
-      </h3>
-      <h3>
-        <slot name="protein"></slot>
-      </h3>
-      <h3>
-        <slot name="fat"></slot>
-      </h3>
-      <h3>
-        <slot name="weight"></slot>
-      </h3>
-    </div>
-  </div>
+  <el-row>
+    <el-col class="name">
+      <el-card>
+        Kiivi
+      </el-card>
+    </el-col>
+    <el-col class="calories">
+      <el-card>
+        100
+      </el-card>
+    </el-col>
+    <el-col class="carbs">
+      <el-card>
+        14
+      </el-card>
+    </el-col>
+    <el-col class="protein">
+      <el-card>
+        5
+      </el-card>
+    </el-col>
+    <el-col class="fats">
+      <el-card>
+        4
+      </el-card>
+    </el-col>
+    <el-col class="weight">
+      <el-card>
+        100
+      </el-card>
+    </el-col>
+
+  </el-row>
 </template>
 
 <style scoped>
-.item {
-  margin-top: 2rem;
-  display: flex;
-  position: relative;
-}
 
-.details {
-  flex: 1;
-  margin-left: 1rem;
-}
+
 
 i {
   display: flex;
@@ -62,12 +62,20 @@ h3 {
   margin-bottom: 0.4rem;
   color: var(--color-heading);
 }
+el-row {
+  background-size: cover;
+  background-color: white;
+  color:black;
+  font-size: 1.5rem;
+}
 
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
     padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
   }
+
+
 
   i {
     top: calc(50% - 25px);
