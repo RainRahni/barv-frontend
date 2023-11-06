@@ -1,51 +1,45 @@
 <script>
-import {defineComponent} from "vue";
-import WelcomeItem from "@/components/WelcomeItem.vue";
+export default {
+  props: {
+    name: String,
+    calories: Number,
+    carbs: Number,
+    fats: Number,
+    protein: Number,
+    weight: Number
+  }
+}
 
-export default defineComponent({
-  components: {WelcomeItem}
-})
 
 </script>
 <template>
-  <el-row>
-    <el-col class="name">
-      <el-card>
-        Kiivi
-      </el-card>
-    </el-col>
-    <el-col class="calories">
-      <el-card>
-        100
-      </el-card>
-    </el-col>
-    <el-col class="carbs">
-      <el-card>
-        14
-      </el-card>
-    </el-col>
-    <el-col class="protein">
-      <el-card>
-        5
-      </el-card>
-    </el-col>
-    <el-col class="fats">
-      <el-card>
-        4
-      </el-card>
-    </el-col>
-    <el-col class="weight">
-      <el-card>
-        100
-      </el-card>
-    </el-col>
-
-  </el-row>
+  <div class="containerOne">
+    <div class="row borderless">
+      <div class="col card lastCol">{{ name }}</div>
+      <div class="col card middle">{{ calories }}</div>
+      <div class="col card middle">{{ carbs }}</div>
+      <div class="col card middle">{{ fats }}</div>
+      <div class="col card middle">{{ protein }}</div>
+      <div class="col card firstCol">{{ weight }}</div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-
-
+.col {
+  width: 75px;
+  border: none;
+  color: black;
+}
+.lastCol {
+  border-radius: 5px 0px 0px 5px;
+}
+.firstCol {
+  border-radius: 0px 5px 5px 0px;
+}
+.middle {
+  border-radius: 0px 0px 0px 0px;
+}
 
 i {
   display: flex;
@@ -62,13 +56,10 @@ h3 {
   margin-bottom: 0.4rem;
   color: var(--color-heading);
 }
-el-row {
-  background-size: cover;
-  background-color: white;
-  color:black;
-  font-size: 1.5rem;
+.row {
+  display: flex;
+  width: 120%;
 }
-
 @media (min-width: 1024px) {
   .item {
     margin-top: 0;
