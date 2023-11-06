@@ -14,7 +14,7 @@ export default {
 </script>
 <template>
   <div class="containerOne">
-    <div class="row borderless">
+    <div class="row">
       <div class="col card lastCol">{{ name }}</div>
       <div class="col card middle">{{ calories }}</div>
       <div class="col card middle">{{ carbs }}</div>
@@ -30,16 +30,9 @@ export default {
   width: 75px;
   border: none;
   color: black;
-}
-.lastCol {
-  border-radius: 5px 0px 0px 5px;
-}
-.firstCol {
-  border-radius: 0px 5px 5px 0px;
-}
-.middle {
   border-radius: 0px 0px 0px 0px;
 }
+
 
 i {
   display: flex;

@@ -10,15 +10,15 @@ export default defineComponent({
 </script>
 <template>
   <div class="containerTwo">
-    <div class="row">
-      <div class="col card lastCol">Name</div>
+    <div class="row fa">
+      <div class="col card firstCol">Name</div>
       <div class="col card middle">Calories</div>
       <div class="col card middle">Carbs</div>
       <div class="col card middle">Fats</div>
       <div class="col card middle">Protein</div>
-      <div class="col card firstCol">Weight</div>
+      <div class="col card lastCol">Weight</div>
     </div>
-    <FoodItem name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
   </div>
 
 </template>
@@ -29,14 +29,20 @@ export default defineComponent({
   width: 75px;
   border: none;
   color: black;
-}
-.lastCol {
-  border-radius: 5px 0px 0px 5px;
+  background-color: #c9c8c8;
 }
 .firstCol {
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px 0px 0px 0px;
 }
+.lastCol {
+  border-radius: 0px 5px 0px 0px;
+}
+
 .middle {
   border-radius: 0px 0px 0px 0px;
 }
+.row {
+  width: 120%;
+}
+
 </style>
