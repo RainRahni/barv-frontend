@@ -37,12 +37,14 @@ export default defineComponent({
 .lastCol {
   border-radius: 0px 5px 0px 0px;
 }
-
 .middle {
   border-radius: 0px 0px 0px 0px;
 }
 .row {
   width: 120%;
+}
+.containerTwo {
+  display: grid;
 }
 
 </style>
