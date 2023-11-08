@@ -1,10 +1,29 @@
-# This is repo of my own individual project. WIP.
+# barv
 
-Website`s purpose is to track calories and macros.
-Im using vanilla js, css and html. Spring boot. 
-Cockroach DB hosts my database.
+This template should help get you started developing with Vue 3 in Vite.
 
-Not entirely live because of some issues.
+## Recommended IDE Setup
 
-In order to connect to database you need to add datasource password to application.properties.
-Contact me and i can give it to you!
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```
