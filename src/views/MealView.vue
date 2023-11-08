@@ -1,6 +1,6 @@
 <template>
   <main>
-    <FoodsTable class="t"/>
+    <FoodsTable class="foodTable"/>
   </main>
 
 </template>
@@ -10,12 +10,13 @@
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 40%;
 }
-.t {
+
+.foodTable {
   height: 120%;
   width: 130%;
 }
-
 
 </style>
 <script setup>
