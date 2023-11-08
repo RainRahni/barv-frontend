@@ -9,16 +9,13 @@
 
 main {
   display: grid;
-  grid-template-rows: 2fr 4fr;
+  grid-template-columns: 1fr 1fr;
+}
+.t {
+  height: 120%;
+  width: 130%;
 }
 
-@media (min-width: 1024px) {
-  .meal {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
 
 </style>
 <script setup>

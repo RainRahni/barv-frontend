@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand  fixed-top">
+  <nav class="navbar navbar-expand fixed-top">
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
@@ -7,7 +7,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="#">Features</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pricing</a>
@@ -39,6 +39,10 @@
   margin-right: 0;
 }
 
+nav a:hover {
+  background-color: white;
+  color:black;
+}
 
 .navbar {
   --color-background: var(--vt-c-black);
@@ -47,6 +51,7 @@
 .nav-link {
   color:white;
 }
+
 
 </style>
 <script setup>
