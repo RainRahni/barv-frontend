@@ -22,6 +22,11 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
+          <li class="nav-item profileIcon">
+            <i class="nav-link">
+              <IconProfile />
+            </i>
+          </li>
         </ul>
       </div>
     </div>
@@ -51,8 +56,11 @@ nav a:hover {
 .nav-link {
   color:white;
 }
-
+.profileIcon:hover {
+  background-color: white;
+}
 
 </style>
 <script setup>
+import IconProfile from "@/components/icons/IconProfile.vue";
 </script>

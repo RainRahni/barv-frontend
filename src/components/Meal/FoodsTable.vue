@@ -19,12 +19,22 @@ export default defineComponent({
       <div class="col card lastCol">Weight</div>
     </div>
     <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+    <FoodItem class="foodRow" name="Apple" calories="95" carbs="25" fats="0.3" protein="0.5" weight="100"></FoodItem>
+
   </div>
 
 </template>
 
 <style scoped>
-
+.fa {
+  position: sticky;
+  top: 0;
+}
 .col {
   width: 75px;
   border: none;
@@ -43,8 +53,6 @@ export default defineComponent({
 .row {
   width: 120%;
 }
-.containerTwo {
-  display: grid;
-}
+
 
 </style>
