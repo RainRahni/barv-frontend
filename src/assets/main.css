@@ -4,7 +4,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
   font-weight: normal;
 }
 
@@ -37,10 +36,6 @@ body{
   font-family: 'Times New Roman';
 }
 
-.grid {
-  display: grid;
-  grid-template-rows: 1fr 1fr 5fr;
-}
 
 .timeContainer {
   display: flex;
@@ -195,3 +190,6 @@ input::-webkit-inner-spin-button {
   margin: 3%;
 }
 
+[v-cloak] {
+  display:none;
+}
