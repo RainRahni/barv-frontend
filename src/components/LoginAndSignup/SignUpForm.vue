@@ -13,12 +13,8 @@
       <button class="btn" style="margin-top: 5%; background-color: blueviolet; border-color: blueviolet">Log in</button>
       <a href="/forgot-password" style="color: blue; font-size: 12px; margin-top: 5%;">Forgot password?</a>
       <!-- add some line here-->
-      <router-link to="/signup">
-        <button class="btn" onclick="" style="margin-top: 5%; background-color: blueviolet;border-color: blueviolet">Create new account</button>
-
-      </router-link>
+      <button class="btn" style="margin-top: 5%; background-color: blueviolet;border-color: blueviolet">Create new account</button>
     </form>
-
   </div>
 
 
