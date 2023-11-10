@@ -1,6 +1,6 @@
 <template >
   <main>
-    <LoginForm class="logina"/>
+    <SignUpForm />
   </main>
 </template>
 
@@ -8,10 +8,11 @@
 
 import LoginForm from "@/components/LoginAndSignup/LoginForm.vue";
 import FoodItem from "@/components/Meal/FoodItem.vue";
+import SignUpForm from "@/components/LoginAndSignup/SignUpForm.vue";
 
 export default {
   name: "LoginView.vue",
-  components: {FoodItem, LoginForm}
+  components: {SignUpForm, FoodItem, LoginForm}
 }
 </script>
 <style scoped>

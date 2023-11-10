@@ -2,18 +2,23 @@
   <div class="forms">
     <form>
       <h3 style="color: white">
-        Login
+        Sign Up
       </h3>
+      <div class="form-group">
+        <input type="firstName" class="form-control" placeholder="First Name"/>
+      </div>
+      <div class="form-group">
+        <input type="lastName" class="form-control" placeholder="Last Name"/>
+      </div>
       <div class="form-group">
         <input type="email" class="form-control" placeholder="Email"/>
       </div>
       <div class="form-group">
         <input type="password" class="form-control" placeholder="Password"/>
+      </div>      <div class="form-group">
+      <input type="confirmPassword" class="form-control" placeholder="Confrim password"/>
       </div>
-      <button class="btn" style="margin-top: 5%; background-color: blueviolet; border-color: blueviolet">Log in</button>
-      <a href="/forgot-password" style="color: blue; font-size: 12px; margin-top: 5%;">Forgot password?</a>
-      <!-- add some line here-->
-      <button class="btn" style="margin-top: 5%; background-color: blueviolet;border-color: blueviolet">Create new account</button>
+      <button class="btn" style="margin-top: 5%; background-color: blueviolet; border-color: blueviolet">Sign up</button>
     </form>
   </div>
 
