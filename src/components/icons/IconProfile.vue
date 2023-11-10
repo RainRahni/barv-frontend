@@ -1,6 +1,6 @@
 <template>
   <a href="login">
-    <img src="src/assets/profile-icon-png-910.png"  alt="profile">
+    <img src="../../assets/profileIcon.png" alt="profile">
   </a>
 </template>
 <style>
