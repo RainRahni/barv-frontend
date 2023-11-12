@@ -1,6 +1,6 @@
 <template >
   <main>
-        <LoginForm class="logina"/>
+    <LoginForm class="logina"/>
   </main>
 </template>
 
@@ -18,15 +18,14 @@ export default {
 
 main {
   display: grid;
-  grid-template-columns: 1fr  1fr;
-  width: 250%;
-  height:100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 2fr;
+  margin-top: 10%;
+  margin-left: -3%;
 }
 .logina {
-  position:fixed;
+  grid-column: 2/3;
 }
-
-
 
 
 </style>

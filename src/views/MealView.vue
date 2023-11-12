@@ -10,12 +10,12 @@
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 40%;
+  grid-template-rows: 2fr 2fr;
+  margin-top: 9%;
+  margin-left: -3%;
 }
-
 .foodTable {
-  height: 120%;
-  width: 130%;
+  width: 90%;
 }
 
 </style>

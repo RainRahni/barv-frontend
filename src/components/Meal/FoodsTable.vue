@@ -10,10 +10,10 @@ export default defineComponent({
 </script>
 <template>
   <div class="containerTwo">
-    <div class="row fa">
+    <div class="row">
       <div class="col card firstCol">Name</div>
       <div class="col card middle">Calories</div>
-      <div class="col card middle">Carbs</div>
+      <div class="col card middle carbs">Carbohydrates</div>
       <div class="col card middle">Fats</div>
       <div class="col card middle">Protein</div>
       <div class="col card lastCol">Weight</div>
@@ -31,10 +31,7 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.fa {
-  position: sticky;
-  top: 0;
-}
+
 .col {
   width: 75px;
   border: none;
@@ -53,6 +50,5 @@ export default defineComponent({
 .row {
   width: 120%;
 }
-
 
 </style>
