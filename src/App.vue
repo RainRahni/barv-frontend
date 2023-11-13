@@ -6,7 +6,7 @@ import Nav from "@/components/Nav.vue";
 </script>
 
 <template>
-  <Nav />
+  <Nav v-if="$route.path !== '/'"/>
   <RouterView />
 </template>
 
