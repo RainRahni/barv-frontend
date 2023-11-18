@@ -19,12 +19,11 @@ export default {
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 2fr;
-  margin-top: 10%;
-  margin-left: -3%;
 }
 .logina {
-  grid-column: 2/3;
+  grid-column: 2/4;
+  margin-top: 50%;
+  margin-left: 20%;
 }
 
 

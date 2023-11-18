@@ -1,6 +1,6 @@
 <template >
   <main>
-    <SignUpForm />
+    <SignUpForm class="signup"/>
   </main>
 </template>
 
@@ -11,7 +11,7 @@ import FoodItem from "@/components/Meal/FoodItem.vue";
 import SignUpForm from "@/components/LoginAndSignup/SignUpForm.vue";
 
 export default {
-  name: "LoginView.vue",
+  name: "SignUpView.vue",
   components: {SignUpForm, FoodItem, LoginForm}
 }
 </script>
@@ -20,11 +20,12 @@ export default {
 main {
   display: grid;
   grid-template-columns: 1fr  1fr;
-  width: 250%;
-  height:100%;
+
 }
-.logina {
-  position:fixed;
+.signup {
+  grid-column: 2/3;
+  margin-top: 50%;
+  margin-left: 20%;
 }
 
 
