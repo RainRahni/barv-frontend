@@ -4,9 +4,7 @@
   </a>
 </template>
 <style>
-img {
-  height: 20px;
-}
+
 </style>
 <script setup>
 </script>

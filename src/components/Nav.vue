@@ -59,7 +59,9 @@ nav a:hover {
 .profileIcon:hover {
   background-color: white;
 }
-
+IconProfile {
+  height: 10%;
+}
 </style>
 <script setup>
 import IconProfile from "@/components/icons/IconProfile.vue";
