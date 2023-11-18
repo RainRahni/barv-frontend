@@ -4,7 +4,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="http://localhost:5173/">Home</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#">Features</a>
@@ -21,6 +21,11 @@
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
+          </li>
+          <li class="nav-item profileIcon">
+            <i class="nav-link">
+              <IconProfile />
+            </i>
           </li>
         </ul>
       </div>
@@ -51,8 +56,11 @@ nav a:hover {
 .nav-link {
   color:white;
 }
-
+.profileIcon:hover {
+  background-color: white;
+}
 
 </style>
 <script setup>
+import IconProfile from "@/components/icons/IconProfile.vue";
 </script>
