@@ -19,5 +19,4 @@ main {
 #foodPic {
   margin-right: -26%;
 }
-
 </style>
