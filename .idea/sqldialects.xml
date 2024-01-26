@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/67e92a20-7f7c-4fb3-8e7a-ad73ed966814/console_6.sql" dialect="Cockroach" />
-  </component>
-</project>
