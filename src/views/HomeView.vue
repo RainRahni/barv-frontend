@@ -9,6 +9,7 @@ import MainPagePicture from "@/components/MainPagePicture.vue";
   </main>
 </template>
 <style>
+
 main {
   display: grid;
   grid-template-columns: 1fr 1fr;
