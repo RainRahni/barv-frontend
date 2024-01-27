@@ -4,8 +4,8 @@ import MainPagePicture from "@/components/MainPagePicture.vue";
 
 <template>
   <main>
-    <MainPagePicture id="trainingPic" imageUrl='src/assets/images/trainingpic.jpg' />
-    <MainPagePicture id="foodPic" imageUrl="src/assets/images/foodpic.jpg"/>
+    <MainPagePicture id="trainingPic" imageUrl='~@/assets/images/trainingpic.jpg' />
+    <MainPagePicture id="foodPic" imageUrl="~@/assets/images/foodpic.jpg"/>
   </main>
 </template>
 <style>
